@@ -18,9 +18,9 @@ public class GameWorld extends World {
         StaticBody platform1 = new StaticBody(this, platformShape);
         platform1.setPosition(new Vec2(-8, -4f));
 
-        Student student = new Student(this);
-        student.setPosition(new Vec2(7, -9f));
-        student.setCredits(15);
+        Character character = new Character(this);
+        character.setPosition(new Vec2(7, -9f));
+        character.setCredits(15);
 
     }
 }
