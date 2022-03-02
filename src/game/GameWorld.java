@@ -7,6 +7,9 @@ import city.cs.engine.World;
 import org.jbox2d.common.Vec2;
 
 public class GameWorld extends World {
+
+    private Character character;
+
     public GameWorld() {
         super();
 
@@ -18,9 +21,12 @@ public class GameWorld extends World {
         StaticBody platform1 = new StaticBody(this, platformShape);
         platform1.setPosition(new Vec2(-8, -4f));
 
-        Character character = new Character(this);
+        character = new Character(this);
         character.setPosition(new Vec2(5, -9f));
-        character.setCredits(15);
 
+    }
+
+    public Character getCharacter() {
+        return character;
     }
 }

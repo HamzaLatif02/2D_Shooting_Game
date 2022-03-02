@@ -23,16 +23,15 @@ public class Game {
         //1. make an empty game world
         GameWorld world = new GameWorld();
 
-        //2. populate it with bodies (ex: platforms, collectibles, characters)
-        //make a ground platform
-        // make a suspended platform
-        //make a character (with an overlaid image)
 
 
 
         //3. make a view to look into the game world
-        //UserView view = new UserView(world, 500, 500);
         GameView view = new GameView(world, 800, 800);
+
+        view.addMouseListener(new GiveFocus(view));
+
+        view.addKeyListener(new CharacterController(world.getCharacter()));
 
         //optional: draw a 1-metre grid over the view
         // view.setGridResolution(1);
