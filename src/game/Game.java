@@ -32,7 +32,7 @@ public class Game {
 
         //3. make a view to look into the game world
         //UserView view = new UserView(world, 500, 500);
-        GameView view = new GameView(world, 500, 500);
+        GameView view = new GameView(world, 800, 800);
 
         //optional: draw a 1-metre grid over the view
         // view.setGridResolution(1);
@@ -55,7 +55,7 @@ public class Game {
         frame.setVisible(true);
 
         //optional: uncomment this to make a debugging view
-         JFrame debugView = new DebugViewer(world, 500, 500);
+         //JFrame debugView = new DebugViewer(world, 500, 500);
 
         // start our game world simulation!
         world.start();

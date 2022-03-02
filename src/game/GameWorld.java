@@ -19,7 +19,7 @@ public class GameWorld extends World {
         platform1.setPosition(new Vec2(-8, -4f));
 
         Character character = new Character(this);
-        character.setPosition(new Vec2(7, -9f));
+        character.setPosition(new Vec2(5, -9f));
         character.setCredits(15);
 
     }

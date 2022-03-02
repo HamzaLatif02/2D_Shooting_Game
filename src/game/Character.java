@@ -3,8 +3,8 @@ package game;
 import city.cs.engine.*;
 
 public class Character extends Walker {
-    private static final Shape characterShape = new BoxShape(1,2);
-    private static final BodyImage image = new BodyImage("data/character-left.png", 4f);
+    private static final Shape characterShape = new CircleShape(2);
+    private static final BodyImage image = new BodyImage("data/character-left.png", 6f);
 
     private int credits;
 
