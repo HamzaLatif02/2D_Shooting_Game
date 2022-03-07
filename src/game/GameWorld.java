@@ -9,6 +9,7 @@ import org.jbox2d.common.Vec2;
 public class GameWorld extends World {
 
     private Character character;
+    private Ninja ninja;
 
     public GameWorld() {
         super();
@@ -23,6 +24,11 @@ public class GameWorld extends World {
 
         character = new Character(this);
         character.setPosition(new Vec2(5, -9f));
+
+        ninja = new Ninja(this);
+        ninja.setPosition(new Vec2(0,-5));
+
+
 
     }
 
