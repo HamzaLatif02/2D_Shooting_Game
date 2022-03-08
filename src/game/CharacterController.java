@@ -1,5 +1,7 @@
 package game;
 
+import city.cs.engine.BodyImage;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -18,8 +20,12 @@ public class CharacterController implements KeyListener {
         // other key commands omitted
         if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A) {
             character.startWalking(-WALKING_SPEED);
+            character.removeAllImages();
+            character.addImage(new BodyImage("data/character-left-flame.png",6f));
         } else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) {
             character.startWalking(WALKING_SPEED);
+            character.removeAllImages();
+            character.addImage(new BodyImage("data/character-right-flame.png",6f));
         } else if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
             character.jump(15f);
         }
@@ -30,8 +36,12 @@ public class CharacterController implements KeyListener {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A) {
             character.stopWalking();
+            character.removeAllImages();
+            character.addImage(new BodyImage("data/character-left.png",6f));
         } else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) {
             character.stopWalking();
+            character.removeAllImages();
+            character.addImage(new BodyImage("data/character-right.png",6f));
         }
     }
 
