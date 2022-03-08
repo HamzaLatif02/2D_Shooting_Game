@@ -20,14 +20,19 @@ public class CharacterController implements KeyListener {
         // other key commands omitted
         if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A) {
             character.startWalking(-WALKING_SPEED);
-            character.removeAllImages();
-            character.addImage(new BodyImage("data/character-left-flame.png",6f));
+            character.putImageLeftMoving();
+            character.setDirection("left");
         } else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) {
             character.startWalking(WALKING_SPEED);
-            character.removeAllImages();
-            character.addImage(new BodyImage("data/character-right-flame.png",6f));
+            character.putImageRightMoving();
+            character.setDirection("right");
         } else if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
             character.jump(15f);
+            if (character.getDirection() == "right"){
+                character.putImageRightMoving();
+            } else {
+                character.putImageLeftMoving();
+            }
         }
     }
 
@@ -36,12 +41,16 @@ public class CharacterController implements KeyListener {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A) {
             character.stopWalking();
-            character.removeAllImages();
-            character.addImage(new BodyImage("data/character-left.png",6f));
+            character.putImageLeft();
         } else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) {
             character.stopWalking();
-            character.removeAllImages();
-            character.addImage(new BodyImage("data/character-right.png",6f));
+            character.putImageRight();
+        } else if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
+            if (character.getDirection() == "right"){
+                character.putImageRight();
+            } else {
+                character.putImageLeft();
+            }
         }
     }
 
