@@ -33,6 +33,8 @@ public class Game {
 
         view.addKeyListener(new CharacterController(world.getCharacter()));
 
+        world.addStepListener(new Tracker(view, world.getCharacter()));
+
         //optional: draw a 1-metre grid over the view
         // view.setGridResolution(1);
 
