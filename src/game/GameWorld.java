@@ -13,26 +13,12 @@ public class GameWorld extends World {
     public GameWorld() {
         super();
 
-        Shape groundShape = new BoxShape(15f, 7.5f);
-        StaticBody ground = new StaticBody(this, groundShape);
-        ground.setPosition(new Vec2(-10f, -17.5f));
-        ground.addImage(new BodyImage("data/platform-long.png",30f));
-        //ground.setAlwaysOutline(true);
+        new GroundPlatform(this).setPosition(new Vec2(-10f,-17.5f));
+        new GroundPlatform(this).setPosition(new Vec2(30f,-17.5f));
 
-        StaticBody ground2 = new StaticBody(this,groundShape);
-        ground2.setPosition(new Vec2(30f,-17.5f));
-        ground2.addImage(new BodyImage("data/platform-long.png",30f));
-        //ground2.setAlwaysOutline(true);
+        new SinglePlatform(this).setPosition(new Vec2(10f,-1f));
 
-
-        Shape singlePlatformShape = new BoxShape(2f, 2f);
-        StaticBody platform1 = new StaticBody(this, singlePlatformShape);
-        platform1.setPosition(new Vec2(10f, -1f));
-        platform1.addImage(new BodyImage("data/platform-single.png",4f));
-        //platform1.setAlwaysOutline(true);
-
-
-
+        new DoublePlatform(this).setPosition(new Vec2(50f,-1f));
 
         character = new Character(this);
         character.setPosition(new Vec2(-10f, -8f));
@@ -41,7 +27,6 @@ public class GameWorld extends World {
 
         ninja = new Ninja(this);
         ninja.setPosition(new Vec2(0f,-8f));
-
 
 
         new Coin(this).setPosition(new Vec2(10f,2f));

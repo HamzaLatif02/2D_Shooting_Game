@@ -5,7 +5,7 @@ import city.cs.engine.*;
 public class Ninja extends Walker {
 
     private static final Shape ninjaShape = new CircleShape(2);
-    private static final BodyImage image = new BodyImage("data/ninja-shuriken.png", 4f);
+    private static final BodyImage image = new BodyImage("data/ninja-left.png", 4f);
 
     private int health;
 
