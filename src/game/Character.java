@@ -1,6 +1,7 @@
 package game;
 
 import city.cs.engine.*;
+import org.jbox2d.common.Vec2;
 
 public class Character extends Walker {
     private static final Shape characterShape = new CircleShape(2);
@@ -72,4 +73,22 @@ public class Character extends Walker {
             this.addImage(imageRight);
         }
     }
+
+    public void shoot(){
+        Projectile p = new Projectile(this.getWorld());
+
+        if (this.direction.equals("left")){
+            p.setPosition(new Vec2(this.getPosition().x-2,this.getPosition().y));
+            p.setLinearVelocity(new Vec2(-50,0));
+        } else {
+            p.setPosition(new Vec2(this.getPosition().x+2,this.getPosition().y));
+            p.setLinearVelocity(new Vec2(50,0));
+        }
+
+
+
+    }
+
+
+
 }

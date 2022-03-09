@@ -24,6 +24,8 @@ public class CharacterController implements KeyListener {
             character.startWalking(WALKING_SPEED);
         } else if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
             character.jump(15f);
+        } else if (code == KeyEvent.VK_C || code == KeyEvent.VK_K){
+            character.shoot();
         }
     }
 
