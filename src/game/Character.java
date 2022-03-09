@@ -38,25 +38,38 @@ public class Character extends Walker {
 
     public void setDirection(String direction) {this.direction = direction;}
 
-    public void putImageLeft(){
+    @Override
+    public void startWalking(float speed){
+        super.startWalking(speed);
         this.removeAllImages();
-        this.addImage(imageLeft);
+        if (speed < 0){
+            this.addImage(imageLeftMoving);
+            this.setDirection("left");
+        } else {
+            this.addImage(imageRightMoving);
+            this.setDirection("right");
+        }
     }
 
-    public void putImageRight(){
+    @Override
+    public void jump(float speed){
+        super.jump(speed);
         this.removeAllImages();
-        this.addImage(imageRight);
+        if (this.direction.equals("left")){
+            this.addImage(imageLeftMoving);
+        } else {
+            this.addImage(imageRightMoving);
+        }
     }
 
-    public void putImageLeftMoving(){
+    @Override
+    public void stopWalking(){
+        super.stopWalking();
         this.removeAllImages();
-        this.addImage(imageLeftMoving);
+        if (this.direction.equals("left")){
+            this.addImage(imageLeft);
+        } else {
+            this.addImage(imageRight);
+        }
     }
-
-    public void putImageRightMoving(){
-        this.removeAllImages();
-        this.addImage(imageRightMoving);
-    }
-
-
 }
