@@ -79,10 +79,10 @@ public class Character extends Walker {
 
         if (this.direction.equals("left")){
             p.setPosition(new Vec2(this.getPosition().x-2,this.getPosition().y));
-            p.setLinearVelocity(new Vec2(-50,0));
+            p.setLinearVelocity(new Vec2(-20,0));
         } else {
             p.setPosition(new Vec2(this.getPosition().x+2,this.getPosition().y));
-            p.setLinearVelocity(new Vec2(50,0));
+            p.setLinearVelocity(new Vec2(20,0));
         }
 
 
