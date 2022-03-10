@@ -35,8 +35,8 @@ public class GameView extends UserView {
         g.fillRect(300,40,character.getHealth(),10);
 
         if (ninja.isAlive() == Boolean.TRUE){
-            g.drawRect(Math.round(this.worldToView(ninja.getPosition()).x-50),Math.round(this.worldToView(ninja.getPosition()).y-50),100, 5);
-            g.fillRect(Math.round(this.worldToView(ninja.getPosition()).x-50),Math.round(this.worldToView(ninja.getPosition()).y-50), ninja.getHealth()*5, 5);
+            g.drawRect(Math.round(this.worldToView(ninja.getPosition()).x-25),Math.round(this.worldToView(ninja.getPosition()).y-50),50, 5);
+            g.fillRect(Math.round(this.worldToView(ninja.getPosition()).x-25),Math.round(this.worldToView(ninja.getPosition()).y-50), Math.round(ninja.getHealth()*2.5f), 5);
         }
 
 
