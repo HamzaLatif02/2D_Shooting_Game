@@ -5,7 +5,7 @@ import city.cs.engine.*;
 public class Shuriken extends DynamicBody {
 
     private static final Shape shurikenShape = new BoxShape(0.6f,0.6f);
-    private static final BodyImage image = new BodyImage("data/shuriken.png",0.6f);
+    private static final BodyImage image = new BodyImage("data/shuriken.png",1.2f);
 
     private int damage;
     private int time;
@@ -15,6 +15,7 @@ public class Shuriken extends DynamicBody {
         addImage(image);
         this.damage = 10;
         this.time = 10;
+        //setAlwaysOutline(true);
     }
 
     public int getDamage(){return this.damage;}
