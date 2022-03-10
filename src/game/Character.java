@@ -1,7 +1,10 @@
 package game;
 
 import city.cs.engine.*;
+import city.cs.engine.Shape;
 import org.jbox2d.common.Vec2;
+
+import java.awt.*;
 
 public class Character extends Walker {
     private static final Shape characterShape = new CircleShape(2);
@@ -11,7 +14,8 @@ public class Character extends Walker {
     private static final BodyImage imageRightMoving = new BodyImage("data/character-right-flame.png",6f);
     private static final BodyImage imageLeftMoving = new BodyImage("data/character-left-flame.png",6f);
 
-
+    //private static final Shape healthBar = new BoxShape(1f,50f);
+    //private Shape remainingHealthBar = new BoxShape(1f, this.getHealth()/2f);
 
 
     private int points, health;
@@ -38,6 +42,13 @@ public class Character extends Walker {
     public String getDirection() {return direction;}
 
     public void setDirection(String direction) {this.direction = direction;}
+
+    public int getHealth() {return health;}
+
+    public void setHealth(int health) {this.health = health;}
+
+   // public Shape getHealthBar() {return healthBar;}
+    //public Shape getRemainingHealthBar() {return remainingHealthBar;}
 
     @Override
     public void startWalking(float speed){
@@ -78,16 +89,25 @@ public class Character extends Walker {
         Projectile p = new Projectile(this.getWorld());
 
         if (this.direction.equals("left")){
-            p.setPosition(new Vec2(this.getPosition().x-2,this.getPosition().y));
+            p.setPosition(new Vec2(this.getPosition().x-3,this.getPosition().y));
             p.setLinearVelocity(new Vec2(-20,0));
         } else {
-            p.setPosition(new Vec2(this.getPosition().x+2,this.getPosition().y));
-            p.setLinearVelocity(new Vec2(20,0));
+            p.setPosition(new Vec2(this.getPosition().x+3, this.getPosition().y));
+            p.setLinearVelocity(new Vec2(20, 0));
         }
 
-
-
+        ProjectileImpact projectileImpact = new ProjectileImpact(p);
+        p.addCollisionListener(projectileImpact);
     }
+
+    public Boolean checkLife (){
+        if (health <= 0 || this.getPosition().y < -25){
+            this.destroy();
+            return Boolean.FALSE;
+        }
+        else return Boolean.TRUE;
+    }
+
 
 
 

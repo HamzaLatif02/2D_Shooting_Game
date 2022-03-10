@@ -15,4 +15,13 @@ public class Ninja extends Walker {
         this.health = 20;
         //setAlwaysOutline(true);
     }
+
+    public void setHealth(int health){this.health = health;}
+    public int getHealth(){return health;}
+
+    public void checkHealth(){
+        if (health <= 0){
+            this.destroy();
+        }
+    }
 }

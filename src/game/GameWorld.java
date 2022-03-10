@@ -24,15 +24,16 @@ public class GameWorld extends World {
         ninja.setPosition(new Vec2(-10f,-8f));
 
 
-        new Coin(this).setPosition(new Vec2(10f,2f));
-        new MinusCoin(this).setPosition(new Vec2(18f,-8f));
+        new Coin(this).setPosition(new Vec2(10f,-10f));
+        new MinusCoin(this).setPosition(new Vec2(8f,-8f));
+
     }
 
     public Character getCharacter() {
         return character;
     }
 
-    protected void placePlatforms(){
+    public void placePlatforms(){
         new GroundPlatform(this).setPosition(new Vec2(0f,-17.5f));
 
         new SinglePlatform(this).setPosition(new Vec2(19f,-1f));

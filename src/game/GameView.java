@@ -25,5 +25,11 @@ public class GameView extends UserView {
     @Override
     protected void paintForeground(Graphics2D g){
         g.drawString("Coins: " + character.getPoints(),50,50);
+
+
+        g.drawString("Health:" , 250,50);
+        g.drawRect(300,40,100, 10);
+        g.fillRect(300,40,character.getHealth(),10);
+
     }
 }

@@ -60,6 +60,12 @@ public class Game {
 
         // start our game world simulation!
         world.start();
+
+        while (world.isRunning()){
+            if (world.getCharacter().checkLife() == Boolean.FALSE){
+                world.stop();
+            }
+        }
     }
 
     /** Run the game. */
