@@ -3,8 +3,6 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
-import java.awt.print.Book;
-
 public class GameWorld extends World {
 
     private Character character;
@@ -14,14 +12,16 @@ public class GameWorld extends World {
         super();
 
         placePlatforms();
+        placeCharacter();
 
-        character = new Character(this);
-        character.setPosition(new Vec2(0f, -8f));
-        CoinPickup coinPickup = new CoinPickup(character);
-        character.addCollisionListener(coinPickup);
+
 
         ninja = new Ninja(this);
         ninja.setPosition(new Vec2(-10f,-8f));
+        ninja.getWorld().addStepListener(new NinjaController(ninja));
+
+
+
 
 
         new Coin(this).setPosition(new Vec2(10f,-10f));
@@ -32,6 +32,7 @@ public class GameWorld extends World {
     public Character getCharacter() {
         return character;
     }
+    public Ninja getNinja(){return ninja;}
 
     public void placePlatforms(){
         new GroundPlatform(this).setPosition(new Vec2(0f,-17.5f));
@@ -62,5 +63,12 @@ public class GameWorld extends World {
         new SinglePlatform(this).setPosition(new Vec2(264f,-1f));
 
         new GroundPlatform(this).setPosition(new Vec2(283f,-17.5f));
+    }
+
+    public void placeCharacter(){
+        character = new Character(this);
+        character.setPosition(new Vec2(0f, -8f));
+        CoinPickup coinPickup = new CoinPickup(character);
+        character.addCollisionListener(coinPickup);
     }
 }
