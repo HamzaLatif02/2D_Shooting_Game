@@ -27,7 +27,7 @@ public class Game {
 
 
         //3. make a view to look into the game world
-        GameView view = new GameView(world, 800, 800, world.getCharacter());
+        GameView view = new GameView(world, 800, 800, world.getCharacter(), world.getNinja());
 
         view.addMouseListener(new GiveFocus(view));
 

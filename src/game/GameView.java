@@ -2,6 +2,7 @@ package game;
 
 import city.cs.engine.UserView;
 import city.cs.engine.WorldView;
+import org.jbox2d.common.Vec2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +11,12 @@ public class GameView extends UserView {
 
     private Image background;
     private Character character;
+    private Ninja ninja;
 
-    public GameView(GameWorld world, int width, int height, Character c){
+    public GameView(GameWorld world, int width, int height, Character c, Ninja n){
         super (world,width,height);
         background = new ImageIcon("data/background.png").getImage();
+        ninja = n;
         character = c;
     }
 
@@ -31,5 +34,12 @@ public class GameView extends UserView {
         g.drawRect(300,40,100, 10);
         g.fillRect(300,40,character.getHealth(),10);
 
+        if (ninja.isAlive() == Boolean.TRUE){
+            g.drawRect(Math.round(this.worldToView(ninja.getPosition()).x-50),Math.round(this.worldToView(ninja.getPosition()).y-50),100, 5);
+            g.fillRect(Math.round(this.worldToView(ninja.getPosition()).x-50),Math.round(this.worldToView(ninja.getPosition()).y-50), ninja.getHealth()*5, 5);
+        }
+
+
+        ;
     }
 }
