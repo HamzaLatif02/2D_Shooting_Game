@@ -35,6 +35,9 @@ public class GameWorld extends World {
     public Ninja getNinja(){return ninja;}
 
     public void placePlatforms(){
+
+        new WallPlatform(this).setPosition(new Vec2(-16f,0f));
+
         new GroundPlatform(this).setPosition(new Vec2(0f,-17.5f));
 
         new SinglePlatform(this).setPosition(new Vec2(19f,-1f));
@@ -63,6 +66,8 @@ public class GameWorld extends World {
         new SinglePlatform(this).setPosition(new Vec2(264f,-1f));
 
         new GroundPlatform(this).setPosition(new Vec2(283f,-17.5f));
+
+        new WallPlatform(this).setPosition(new Vec2(299f,0f));
     }
 
     public void placeCharacter(){
