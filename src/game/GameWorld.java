@@ -10,7 +10,11 @@ import java.util.Arrays;
 public class GameWorld extends World {
 
     private Character character;
-    private Ninja[] ninja = new Ninja[5];
+    private Ninja[] ninjas = new Ninja[5];
+    private NinjaBoss ninjaBoss;
+    //private Coin[] coins = new Coin[100];
+    //private MinusCoin[] minusCoins = new MinusCoin[3];
+
 
     public GameWorld() {
         super();
@@ -18,18 +22,19 @@ public class GameWorld extends World {
         placePlatforms();
         placeCharacter();
         placeNinjas();
-
+        placeNinjaBoss();
 
         new Coin(this).setPosition(new Vec2(10f,-10f));
         new MinusCoin(this).setPosition(new Vec2(8f,-8f));
-
     }
 
     public Character getCharacter() {
         return character;
     }
 
-    public Ninja[] getNinja(){return ninja;}
+    public Ninja[] getNinja(){return ninjas;}
+
+    public NinjaBoss getNinjaBoss(){return ninjaBoss;}
 
     public void placePlatforms(){
 
@@ -63,8 +68,9 @@ public class GameWorld extends World {
         new SinglePlatform(this).setPosition(new Vec2(264f,-1f));
 
         new GroundPlatform(this).setPosition(new Vec2(283f,-17.5f));
+        new GroundPlatform(this).setPosition(new Vec2(313f,-15.5f));
 
-        new WallPlatform(this).setPosition(new Vec2(299f,0f));
+        new WallPlatform(this).setPosition(new Vec2(329f,0f));
     }
 
     public void placeCharacter(){
@@ -75,19 +81,25 @@ public class GameWorld extends World {
     }
 
     public void placeNinjas(){
-        for (int i=0; i< ninja.length; i++){
-            ninja[i] = new Ninja(this);
+        for (int i=0; i< ninjas.length; i++){
+            ninjas[i] = new Ninja(this);
         }
 
-        ninja[0].setPosition(new Vec2(32f,1f));
-        ninja[1].setPosition(new Vec2(60f,1f));
-        ninja[2].setPosition(new Vec2(100f,1f));
-        ninja[3].setPosition(new Vec2(130f,1f));
-        ninja[4].setPosition(new Vec2(160f,1f));
+        ninjas[0].setPosition(new Vec2(32f,1f));
+        ninjas[1].setPosition(new Vec2(60f,1f));
+        ninjas[2].setPosition(new Vec2(100f,1f));
+        ninjas[3].setPosition(new Vec2(130f,1f));
+        ninjas[4].setPosition(new Vec2(160f,1f));
 
-        for (Ninja ninja : ninja){
+        for (Ninja ninja : ninjas){
             ninja.getWorld().addStepListener(new NinjaController(ninja));
         }
+    }
+
+    public void placeNinjaBoss(){
+        ninjaBoss = new NinjaBoss(this);
+        ninjaBoss.setPosition(new Vec2(319f,5f));
+        ninjaBoss.getWorld().addStepListener(new NinjaBossController(ninjaBoss));
     }
 
 }

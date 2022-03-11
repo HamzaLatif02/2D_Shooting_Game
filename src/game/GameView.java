@@ -12,12 +12,15 @@ public class GameView extends UserView {
     private Image background;
     private Character character;
     private Ninja[] ninja;
+    private NinjaBoss ninjaBoss;
 
-    public GameView(GameWorld world, int width, int height, Character c, Ninja[] n){
+    public GameView(GameWorld world, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
         super (world,width,height);
         background = new ImageIcon("data/background.png").getImage();
         ninja = n;
         character = c;
+        ninjaBoss = nb;
+
     }
 
     @Override
@@ -42,6 +45,13 @@ public class GameView extends UserView {
                 g.setColor(new Color(250,3,90));
                 g.fillRect(Math.round(this.worldToView(ninja.getPosition()).x-25),Math.round(this.worldToView(ninja.getPosition()).y-50), Math.round(ninja.getHealth()*2.5f), 5);
             }
+        }
+
+        if (ninjaBoss.isAlive() == Boolean.TRUE){
+            g.setColor(Color.black);
+            g.drawRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110),200, 5);
+            g.setColor(new Color(250,3,90));
+            g.fillRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110), Math.round(ninjaBoss.getHealth()), 5);
         }
 
 

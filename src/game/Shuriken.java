@@ -13,7 +13,7 @@ public class Shuriken extends DynamicBody {
     public Shuriken(World w){
         super(w, shurikenShape);
         addImage(image);
-        this.damage = 10;
+        this.damage = 5;
         this.time = 10;
         //setAlwaysOutline(true);
     }
