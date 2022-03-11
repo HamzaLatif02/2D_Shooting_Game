@@ -3,25 +3,21 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class GameWorld extends World {
 
     private Character character;
-    private Ninja ninja;
+    private Ninja[] ninja = new Ninja[5];
 
     public GameWorld() {
         super();
 
         placePlatforms();
         placeCharacter();
-
-
-
-        ninja = new Ninja(this);
-        ninja.setPosition(new Vec2(-10f,-8f));
-        ninja.getWorld().addStepListener(new NinjaController(ninja));
-
-
-
+        placeNinjas();
 
 
         new Coin(this).setPosition(new Vec2(10f,-10f));
@@ -32,7 +28,8 @@ public class GameWorld extends World {
     public Character getCharacter() {
         return character;
     }
-    public Ninja getNinja(){return ninja;}
+
+    public Ninja[] getNinja(){return ninja;}
 
     public void placePlatforms(){
 
@@ -76,4 +73,21 @@ public class GameWorld extends World {
         CoinPickup coinPickup = new CoinPickup(character);
         character.addCollisionListener(coinPickup);
     }
+
+    public void placeNinjas(){
+        for (int i=0; i< ninja.length; i++){
+            ninja[i] = new Ninja(this);
+        }
+
+        ninja[0].setPosition(new Vec2(32f,1f));
+        ninja[1].setPosition(new Vec2(60f,1f));
+        ninja[2].setPosition(new Vec2(100f,1f));
+        ninja[3].setPosition(new Vec2(130f,1f));
+        ninja[4].setPosition(new Vec2(160f,1f));
+
+        for (Ninja ninja : ninja){
+            ninja.getWorld().addStepListener(new NinjaController(ninja));
+        }
+    }
+
 }

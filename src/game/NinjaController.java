@@ -17,13 +17,13 @@ public class NinjaController implements StepListener {
     public void preStep(StepEvent e) {
 
         if (ninja.isAlive() == Boolean.TRUE) {
-            if (time % 120 < 60){
+            if (time % 240 < 120){
                 ninja.moveRight();
             } else {
                 ninja.moveLeft();
             }
 
-            if (time % 150 == 0){
+            if (time % 30 == 0){
                 ninja.shoot();
             }
 

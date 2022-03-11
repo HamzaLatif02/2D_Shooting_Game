@@ -11,15 +11,14 @@ public class Ninja extends Walker {
 
     private int health;
     private String direction;
-    private int steps, speed;
+    private int speed;
 
     public Ninja(World world) {
         super(world, ninjaShape);
         addImage(imageLeft);
         this.health = 20;
         this.direction = "left";
-        this.steps = 50;
-        this.speed = 5;
+        this.speed = 3;
         //setAlwaysOutline(true);
     }
 
@@ -28,9 +27,6 @@ public class Ninja extends Walker {
 
     public void setDirection(String direction){this.direction = direction;}
     public String getDirection(){return direction;}
-
-    public void setSteps(int steps){this.steps = steps;}
-    public int getSteps(){return steps;}
 
     public Boolean isAlive(){
         if (health <= 0){
