@@ -27,15 +27,18 @@ public class GameView extends UserView {
 
     @Override
     protected void paintForeground(Graphics2D g){
-        g.drawString("Coins: " + character.getPoints(),50,50);
 
+        g.drawString("Coins: " + character.getPoints(),50,50);
 
         g.drawString("Health:" , 250,50);
         g.drawRect(300,40,100, 10);
+        g.setColor(new Color(3,230,250));
         g.fillRect(300,40,character.getHealth(),10);
 
         if (ninja.isAlive() == Boolean.TRUE){
+            g.setColor(Color.black);
             g.drawRect(Math.round(this.worldToView(ninja.getPosition()).x-25),Math.round(this.worldToView(ninja.getPosition()).y-50),50, 5);
+            g.setColor(new Color(250,3,90));
             g.fillRect(Math.round(this.worldToView(ninja.getPosition()).x-25),Math.round(this.worldToView(ninja.getPosition()).y-50), Math.round(ninja.getHealth()*2.5f), 5);
         }
 
