@@ -27,7 +27,7 @@ public class GameWorld extends World {
         new Coin(this).setPosition(new Vec2(10f,-8f));
         new Coin(this).setPosition(new Vec2(32f,3f));
         new Coin(this).setPosition(new Vec2(12,-8f));
-        //new MinusCoin(this).setPosition(new Vec2(8f,-8f));
+        new MinusCoin(this).setPosition(new Vec2(8f,-8f));
     }
 
     public Character getCharacter() {

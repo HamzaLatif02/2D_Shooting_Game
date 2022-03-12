@@ -1,26 +1,27 @@
 package game;
 
-import city.cs.engine.CollisionEvent;
-import city.cs.engine.CollisionListener;
+import city.cs.engine.Sensor;
+import city.cs.engine.SensorEvent;
+import city.cs.engine.SensorListener;
+import city.cs.engine.World;
 
-public class CoinPickup implements CollisionListener {
+public class CoinPickup implements SensorListener {
 
-    private Character character;
-
-    public CoinPickup(Character c){
-        this.character = c;
+    private Coin coin;
+    public CoinPickup(Coin coin){
+        this.coin = coin;
     }
 
     @Override
-    public void collide(CollisionEvent e) {
-        if (e.getOtherBody() instanceof Coin){
-            character.setPoints(character.getPoints()+1);
-            e.getOtherBody().destroy();
-        } else if (e.getOtherBody() instanceof MinusCoin){
-            if (character.getPoints() > 0){
-                character.setPoints(character.getPoints()-1);
-            }
-            e.getOtherBody().destroy();
+    public void beginContact(SensorEvent e) {
+        if (e.getContactBody() instanceof Character){
+            ((Character) e.getContactBody()).setPoints(((Character) e.getContactBody()).getPoints()+1);
+            coin.destroy();
         }
+    }
+
+    @Override
+    public void endContact(SensorEvent e) {
+
     }
 }
