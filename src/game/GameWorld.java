@@ -12,9 +12,6 @@ public class GameWorld extends World {
     private Character character;
     private Ninja[] ninjas = new Ninja[10];
     private NinjaBoss ninjaBoss;
-    //private Coin[] coins = new Coin[100];
-    //private MinusCoin[] minusCoins = new MinusCoin[3];
-
 
     public GameWorld() {
         super();
@@ -23,19 +20,15 @@ public class GameWorld extends World {
         placeCharacter();
         placeNinjas();
         placeNinjaBoss();
+        placeCoins();
+        placeMinusCoins();
 
-        new Coin(this).setPosition(new Vec2(10f,-8f));
-        new Coin(this).setPosition(new Vec2(32f,3f));
-        new Coin(this).setPosition(new Vec2(12,-8f));
-        new MinusCoin(this).setPosition(new Vec2(8f,-8f));
     }
 
     public Character getCharacter() {
         return character;
     }
-
     public Ninja[] getNinja(){return ninjas;}
-
     public NinjaBoss getNinjaBoss(){return ninjaBoss;}
 
     public void placePlatforms(){
@@ -46,8 +39,8 @@ public class GameWorld extends World {
 
         new SinglePlatform(this).setPosition(new Vec2(19f,-1f));
 
-        for (int i=0; i < 28; i+= 9){
-            new DoublePlatform(this).setPosition(new Vec2(48f + i, -17f));
+        for (int i=0; i < 5; i++){
+            new DoublePlatform(this).setPosition(new Vec2(48f + i*9, -17f));
         }
 
         new DoublePlatform(this).setPosition(new Vec2(32f,-1f));
@@ -65,8 +58,8 @@ public class GameWorld extends World {
         new DoublePlatform(this).setPosition(new Vec2(117f, 11f));
         new DoublePlatform(this).setPosition(new Vec2(133f, 1f));
 
-        for (int i=0; i < 33; i += 8){
-            new SinglePlatform(this).setPosition(new Vec2(176f + i, -17f));
+        for (int i=0; i < 6; i ++){
+            new SinglePlatform(this).setPosition(new Vec2(176f + i*8, -17f));
         }
 
         new DoublePlatform(this).setPosition(new Vec2(176f,-1f));
@@ -76,8 +69,8 @@ public class GameWorld extends World {
 
         new GroundPlatform(this).setPosition(new Vec2(229f,-17.5f));
 
-        for (int i=0; i < 13; i+= 12){
-            new DoublePlatform(this).setPosition(new Vec2(250f + i, -17f));
+        for (int i=0; i < 2; i++){
+            new DoublePlatform(this).setPosition(new Vec2(250f + i*12, -17f));
         }
 
         new SinglePlatform(this).setPosition(new Vec2(247f,-1f));
@@ -92,11 +85,13 @@ public class GameWorld extends World {
     }
 
     public void placeCharacter(){
+
         character = new Character(this);
         character.setPosition(new Vec2(0f, -8f));
     }
 
     public void placeNinjas(){
+
         for (int i=0; i< ninjas.length; i++){
             ninjas[i] = new Ninja(this);
         }
@@ -118,9 +113,79 @@ public class GameWorld extends World {
     }
 
     public void placeNinjaBoss(){
+
         ninjaBoss = new NinjaBoss(this);
         ninjaBoss.setPosition(new Vec2(319f,5f));
         ninjaBoss.getWorld().addStepListener(new NinjaBossController(ninjaBoss));
+
     }
 
+    public void placeCoins(){
+
+        for (int i = 0; i < 3; i++){
+            new Coin(this).setPosition(new Vec2(4 + i*5, -8f));
+        }
+
+        new Coin(this).setPosition(new Vec2(19f,3f));
+
+        for (int i=0; i<2; i++){
+            new Coin(this).setPosition(new Vec2(29f + i*5,3f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this).setPosition(new Vec2(53f +i*5,4f));
+        }
+
+        for (int i =0; i<7 ; i++){
+            new Coin(this).setPosition(new Vec2(45f + i*5,-13f));
+        }
+
+        for (int i=0; i<5; i++){
+            new Coin(this).setPosition(new Vec2(85f + i*5,-8f));
+        }
+
+        for (int i=0; i<5; i++){
+            new Coin(this).setPosition(new Vec2(115f + i*5,-6f));
+        }
+
+        for (int i=0; i<5; i++){
+            new Coin(this).setPosition(new Vec2(145f + i*5,-8f));
+        }
+
+        for (int i=0; i<6; i++){
+            new Coin(this).setPosition(new Vec2(176f + i*8,-13f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this).setPosition(new Vec2(181f + i*5,4f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this).setPosition(new Vec2(205f + i*5,3f));
+        }
+
+        for (int i=0; i<5; i++){
+            new Coin(this).setPosition(new Vec2(219f + i*5,-8f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this).setPosition(new Vec2(247f + i*18,3f));
+        }
+
+        for (int i=0; i<5; i++){
+            new Coin(this).setPosition(new Vec2(273f + i*5,-8f));
+        }
+    }
+
+    public void placeMinusCoins(){
+
+        new MinusCoin(this).setPosition(new Vec2(40f,4f));
+        new MinusCoin(this).setPosition(new Vec2(64f,3f));
+        new MinusCoin(this).setPosition(new Vec2(117f,5f));
+        new MinusCoin(this).setPosition(new Vec2(176f,3f));
+        new MinusCoin(this).setPosition(new Vec2(200f,4f));
+        new MinusCoin(this).setPosition(new Vec2(251f,4f));
+        new MinusCoin(this).setPosition(new Vec2(261f,4f));
+
+    }
 }

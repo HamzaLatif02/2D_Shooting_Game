@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 
 public class CharacterController implements KeyListener {
 
-    private static final float WALKING_SPEED = 4;
+    private static final float WALKING_SPEED = 5;
     private Character character;
 
     public CharacterController(Character character) {
