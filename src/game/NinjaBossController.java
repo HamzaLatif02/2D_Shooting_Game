@@ -20,7 +20,6 @@ public class NinjaBossController implements StepListener {
             if (time % 60 == 0){
                 ninjaBoss.shoot();
             }
-
             time++;
         }
     }

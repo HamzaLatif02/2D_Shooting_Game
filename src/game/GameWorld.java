@@ -24,8 +24,10 @@ public class GameWorld extends World {
         placeNinjas();
         placeNinjaBoss();
 
-        new Coin(this).setPosition(new Vec2(10f,-10f));
-        new MinusCoin(this).setPosition(new Vec2(8f,-8f));
+        new Coin(this).setPosition(new Vec2(10f,-8f));
+        new Coin(this).setPosition(new Vec2(32f,3f));
+        new Coin(this).setPosition(new Vec2(12,-8f));
+        //new MinusCoin(this).setPosition(new Vec2(8f,-8f));
     }
 
     public Character getCharacter() {
@@ -76,8 +78,6 @@ public class GameWorld extends World {
     public void placeCharacter(){
         character = new Character(this);
         character.setPosition(new Vec2(0f, -8f));
-        CoinPickup coinPickup = new CoinPickup(character);
-        character.addCollisionListener(coinPickup);
     }
 
     public void placeNinjas(){

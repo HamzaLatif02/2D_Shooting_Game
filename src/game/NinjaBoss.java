@@ -30,6 +30,7 @@ public class NinjaBoss extends Walker {
 
     public void shoot(){
 
+
         int offset = 3;
 
         for (int i=0; i<shurikens.length; i++){
