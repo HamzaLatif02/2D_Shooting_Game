@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class GameWorld extends World {
 
     private Character character;
-    private Ninja[] ninjas = new Ninja[5];
+    private Ninja[] ninjas = new Ninja[10];
     private NinjaBoss ninjaBoss;
     //private Coin[] coins = new Coin[100];
     //private MinusCoin[] minusCoins = new MinusCoin[3];
@@ -46,6 +46,10 @@ public class GameWorld extends World {
 
         new SinglePlatform(this).setPosition(new Vec2(19f,-1f));
 
+        for (int i=0; i < 28; i+= 9){
+            new DoublePlatform(this).setPosition(new Vec2(48f + i, -17f));
+        }
+
         new DoublePlatform(this).setPosition(new Vec2(32f,-1f));
         new DoublePlatform(this).setPosition(new Vec2(40f,0f));
         new DoublePlatform(this).setPosition(new Vec2(56f,0f));
@@ -57,6 +61,14 @@ public class GameWorld extends World {
         new GroundPlatform(this).setPosition(new Vec2(125f,-15.5f));
         new GroundPlatform(this).setPosition(new Vec2(155f,-17.5f));
 
+        new DoublePlatform(this).setPosition(new Vec2(117f, 1f));
+        new DoublePlatform(this).setPosition(new Vec2(117f, 11f));
+        new DoublePlatform(this).setPosition(new Vec2(133f, 1f));
+
+        for (int i=0; i < 33; i += 8){
+            new SinglePlatform(this).setPosition(new Vec2(176f + i, -17f));
+        }
+
         new DoublePlatform(this).setPosition(new Vec2(176f,-1f));
         new DoublePlatform(this).setPosition(new Vec2(184f,0f));
         new DoublePlatform(this).setPosition(new Vec2(200f,0f));
@@ -64,10 +76,14 @@ public class GameWorld extends World {
 
         new GroundPlatform(this).setPosition(new Vec2(229f,-17.5f));
 
-        new SinglePlatform(this).setPosition(new Vec2(248f,-1f));
-        new SinglePlatform(this).setPosition(new Vec2(252f,0f));
-        new SinglePlatform(this).setPosition(new Vec2(260f,0f));
-        new SinglePlatform(this).setPosition(new Vec2(264f,-1f));
+        for (int i=0; i < 13; i+= 12){
+            new DoublePlatform(this).setPosition(new Vec2(250f + i, -17f));
+        }
+
+        new SinglePlatform(this).setPosition(new Vec2(247f,-1f));
+        new SinglePlatform(this).setPosition(new Vec2(251f,0f));
+        new SinglePlatform(this).setPosition(new Vec2(261f,0f));
+        new SinglePlatform(this).setPosition(new Vec2(265f,-1f));
 
         new GroundPlatform(this).setPosition(new Vec2(283f,-17.5f));
         new GroundPlatform(this).setPosition(new Vec2(313f,-15.5f));
@@ -90,6 +106,11 @@ public class GameWorld extends World {
         ninjas[2].setPosition(new Vec2(100f,1f));
         ninjas[3].setPosition(new Vec2(130f,1f));
         ninjas[4].setPosition(new Vec2(160f,1f));
+        ninjas[5].setPosition(new Vec2(62f,-15f));
+        ninjas[6].setPosition(new Vec2(129f,5f));
+        ninjas[7].setPosition(new Vec2(204f,1f));
+        ninjas[8].setPosition(new Vec2(246f,-15f));
+        ninjas[9].setPosition(new Vec2(283f,1f));
 
         for (Ninja ninja : ninjas){
             ninja.getWorld().addStepListener(new NinjaController(ninja));
