@@ -31,12 +31,20 @@ public class GameView extends UserView {
     @Override
     protected void paintForeground(Graphics2D g){
 
-        g.drawString("Coins: " + character.getPoints(),50,50);
+        g.drawString("Coins: " + character.getPoints(),20,50);
 
-        g.drawString("Health:" , 250,50);
-        g.drawRect(300,40,100, 10);
+        g.drawString("Controls", 350,50);
+        g.drawString("Move: Arrows or WASD", 350, 65);
+        g.drawString("Shoot: C or K", 350, 80);
+
+        g.drawString("To Win", 600, 50);
+        g.drawString("Collect min 45 coins AND", 600, 65);
+        g.drawString("Defeat the final boss", 600, 80);
+
+        g.drawString("Health:" , 100,50);
+        g.drawRect(150,40,100, 10);
         g.setColor(new Color(73,152,183));
-        g.fillRect(300,40,character.getHealth(),10);
+        g.fillRect(150,40,character.getHealth(),10);
 
         for (Ninja ninja : ninja){
             if (ninja.isAlive() == Boolean.TRUE){
@@ -52,6 +60,13 @@ public class GameView extends UserView {
             g.drawRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110),200, 5);
             g.setColor(new Color(147,3,140));
             g.fillRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110), Math.round(ninjaBoss.getHealth()), 5);
+        }
+
+
+        if (character.getPoints() > 44 && ninjaBoss.isAlive() == Boolean.FALSE){
+            g.setFont(new Font("Arial", Font.BOLD, 100));
+            g.setColor(Color.black);
+            g.drawString("YOU WON", 200,400);
         }
 
 

@@ -100,13 +100,14 @@ public class Character extends Walker {
         p.addCollisionListener(projectileImpact);
     }
 
-    public Boolean checkLife (){
+    public Boolean checkLife(){
         if (health <= 0 || this.getPosition().y < -25){
             this.destroy();
             return Boolean.FALSE;
         }
         else return Boolean.TRUE;
     }
+
 
 
 
