@@ -35,14 +35,14 @@ public class GameView extends UserView {
 
         g.drawString("Health:" , 250,50);
         g.drawRect(300,40,100, 10);
-        g.setColor(new Color(3,230,250));
+        g.setColor(new Color(73,152,183));
         g.fillRect(300,40,character.getHealth(),10);
 
         for (Ninja ninja : ninja){
             if (ninja.isAlive() == Boolean.TRUE){
                 g.setColor(Color.black);
                 g.drawRect(Math.round(this.worldToView(ninja.getPosition()).x-25),Math.round(this.worldToView(ninja.getPosition()).y-50),50, 5);
-                g.setColor(new Color(250,3,90));
+                g.setColor(new Color(181,40,2));
                 g.fillRect(Math.round(this.worldToView(ninja.getPosition()).x-25),Math.round(this.worldToView(ninja.getPosition()).y-50), Math.round(ninja.getHealth()*2.5f), 5);
             }
         }
@@ -50,12 +50,12 @@ public class GameView extends UserView {
         if (ninjaBoss.isAlive() == Boolean.TRUE){
             g.setColor(Color.black);
             g.drawRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110),200, 5);
-            g.setColor(new Color(250,3,90));
+            g.setColor(new Color(147,3,140));
             g.fillRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110), Math.round(ninjaBoss.getHealth()), 5);
         }
 
 
 
-        ;
+
     }
 }

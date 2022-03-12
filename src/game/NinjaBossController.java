@@ -17,6 +17,13 @@ public class NinjaBossController implements StepListener {
     @Override
     public void preStep(StepEvent stepEvent) {
         if (ninjaBoss.isAlive() == Boolean.TRUE){
+
+            if (time % 240 < 120){
+                ninjaBoss.moveLeft();
+            } else {
+                ninjaBoss.moveRight();
+            }
+
             if (time % 60 == 0){
                 ninjaBoss.shoot();
             }
