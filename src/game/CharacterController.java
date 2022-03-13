@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 
 public class CharacterController implements KeyListener {
 
-    private static final float WALKING_SPEED = 5;
+    //private static final float WALKING_SPEED = 5;
     private Character character;
 
     public CharacterController(Character character) {
@@ -20,9 +20,9 @@ public class CharacterController implements KeyListener {
         int code = e.getKeyCode();
         // other key commands omitted
         if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A) {
-            character.startWalking(-WALKING_SPEED);
+            character.startWalking(-character.getSpeed());
         } else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) {
-            character.startWalking(WALKING_SPEED);
+            character.startWalking(character.getSpeed());
         } else if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
             character.jump(15f);
         } else if (code == KeyEvent.VK_C || code == KeyEvent.VK_K){

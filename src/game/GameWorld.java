@@ -22,6 +22,10 @@ public class GameWorld extends World {
         placeNinjaBoss();
         placeCoins();
         placeMinusCoins();
+        placeHealthPotion();
+        placeSpeedPotion();
+
+
 
     }
 
@@ -188,4 +192,14 @@ public class GameWorld extends World {
         new MinusCoin(this).setPosition(new Vec2(261f,4f));
 
     }
+
+    public void placeHealthPotion(){
+        new HealthPotion(this).setPosition(new Vec2(262f,-13f));
+
+    }
+
+    public void placeSpeedPotion(){
+        new SpeedPotion(this).setPosition(new Vec2(117f,15f));
+    }
+
 }
