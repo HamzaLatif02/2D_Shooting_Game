@@ -65,6 +65,7 @@ public class Game {
 
         while (world.isRunning()){
             if (world.getCharacter().checkLife() == Boolean.FALSE){
+                world.oneStep();
                 world.stop();
             } else if (world.getCharacter().getPoints() > 44 && world.getNinjaBoss().isAlive() == Boolean.FALSE){
                 world.oneStep();

@@ -62,10 +62,21 @@ public class GameView extends UserView {
             g.fillRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110), Math.round(ninjaBoss.getHealth()), 5);
         }
 
+        if (character.checkLife() == Boolean.FALSE){
+            g.setFont(new Font("Arial", Font.BOLD, 100));
+            g.setColor(Color.black);
+            g.drawString("YOU LOST", 203, 403);
+            g.setFont(new Font("Arial", Font.BOLD, 100));
+            g.setColor(new Color(181,40,2));
+            g.drawString("YOU LOST", 200,400);
+        }
 
         if (character.getPoints() > 44 && ninjaBoss.isAlive() == Boolean.FALSE){
             g.setFont(new Font("Arial", Font.BOLD, 100));
             g.setColor(Color.black);
+            g.drawString("YOU WON", 203, 403);
+            g.setFont(new Font("Arial", Font.BOLD, 100));
+            g.setColor(new Color(73,152,183));
             g.drawString("YOU WON", 200,400);
         }
 
