@@ -1,19 +1,13 @@
 package game;
 
-import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
+public class LevelOne extends GameLevel{
 
-public class GameWorld extends World {
-
-    private Character character;
     private Ninja[] ninjas = new Ninja[10];
     private NinjaBoss ninjaBoss;
 
-    public GameWorld() {
+    public LevelOne(){
         super();
 
         placePlatforms();
@@ -25,15 +19,12 @@ public class GameWorld extends World {
         placeHealthPotion();
         placeSpeedPotion();
 
-
-
     }
 
-    public Character getCharacter() {
-        return character;
-    }
+
     public Ninja[] getNinja(){return ninjas;}
     public NinjaBoss getNinjaBoss(){return ninjaBoss;}
+
 
     public void placePlatforms(){
 
@@ -89,9 +80,7 @@ public class GameWorld extends World {
     }
 
     public void placeCharacter(){
-
-        character = new Character(this);
-        character.setPosition(new Vec2(0f, -8f));
+        getCharacter().setPosition(new Vec2(0f, -8f));
     }
 
     public void placeNinjas(){
@@ -200,6 +189,14 @@ public class GameWorld extends World {
 
     public void placeSpeedPotion(){
         new SpeedPotion(this).setPosition(new Vec2(117f,15f));
+    }
+
+
+    @Override
+    public Boolean isCompleted() {
+        if (getCharacter().getPoints() > 44 && getNinjaBoss().isAlive() == Boolean.FALSE){
+            return Boolean.TRUE;
+        } else return Boolean.FALSE;
     }
 
 }

@@ -15,6 +15,10 @@ public class CharacterController implements KeyListener {
         this.character = character;
     }
 
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();

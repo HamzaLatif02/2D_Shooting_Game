@@ -16,29 +16,34 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class Game {
 
+    private GameLevel level;
+    private GameView view;
+    private CharacterController characterController;
+
 
     /** Initialise a new Game. */
     public Game() {
 
+
+        level = new LevelOne();
+        view = new GameView(level, 800,800, level.getCharacter(), ((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
+
         //1. make an empty game world
-        GameWorld world = new GameWorld();
+        //GameWorld world = new GameWorld();
 
-
-
+        characterController = new CharacterController(level.getCharacter());
 
         //3. make a view to look into the game world
-        GameView view = new GameView(world, 800, 800, world.getCharacter(), world.getNinja(), world.getNinjaBoss());
+        //GameView view = new GameView(world, 800, 800, world.getCharacter(), world.getNinja(), world.getNinjaBoss());
 
         view.addMouseListener(new GiveFocus(view));
 
-        view.addKeyListener(new CharacterController(world.getCharacter()));
+        view.addKeyListener(characterController);
 
-        world.addStepListener(new Tracker(view, world.getCharacter()));
-
+        level.addStepListener(new Tracker(view, level.getCharacter()));
 
         //optional: draw a 1-metre grid over the view
         //view.setGridResolution(1);
-
 
         //4. create a Java window (frame) and add the game
         //   view to it
@@ -56,14 +61,19 @@ public class Game {
         // finally, make the frame visible
         frame.setVisible(true);
 
-
         //optional: uncomment this to make a debugging view
-         //JFrame debugView = new DebugViewer(world, 500, 500);
+        //JFrame debugView = new DebugViewer(world, 500, 500);
 
         // start our game world simulation!
-        world.start();
+        level.start();
 
-        while (world.isRunning()){
+        while (level.isRunning()){
+            if (level.isCompleted()){
+                goToNextLevel();
+            }
+        }
+
+        /*while (world.isRunning()){
             if (world.getCharacter().checkLife() == Boolean.FALSE){
                 world.oneStep();
                 world.stop();
@@ -71,6 +81,21 @@ public class Game {
                 world.oneStep();
                 world.stop();
             }
+        }*/
+    }
+
+    public void goToNextLevel(){
+
+        if (level instanceof LevelOne){
+            level.stop();
+            level = new LevelTwo();
+
+            view.setWorld(level);
+            characterController.setCharacter(level.getCharacter());
+            level.start();
+
+        } else if (level instanceof LevelTwo){
+            System.out.println("game won");
         }
     }
 

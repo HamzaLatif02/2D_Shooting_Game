@@ -13,13 +13,15 @@ public class GameView extends UserView {
     private Character character;
     private Ninja[] ninja;
     private NinjaBoss ninjaBoss;
+    private GameLevel level;
 
-    public GameView(GameWorld world, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
-        super (world,width,height);
+    public GameView(GameLevel level, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
+        super (level,width,height);
         background = new ImageIcon("data/background.png").getImage();
         ninja = n;
         character = c;
         ninjaBoss = nb;
+        this.level = level;
 
     }
 
@@ -47,7 +49,7 @@ public class GameView extends UserView {
         g.fillRect(150,40,character.getHealth(),10);
 
         for (Ninja ninja : ninja){
-            if (ninja.isAlive() == Boolean.TRUE){
+            if (ninja.isAlive()){
                 g.setColor(Color.black);
                 g.drawRect(Math.round(this.worldToView(ninja.getPosition()).x-25),Math.round(this.worldToView(ninja.getPosition()).y-50),50, 5);
                 g.setColor(new Color(181,40,2));
@@ -55,14 +57,14 @@ public class GameView extends UserView {
             }
         }
 
-        if (ninjaBoss.isAlive() == Boolean.TRUE){
+        if (ninjaBoss.isAlive()){
             g.setColor(Color.black);
             g.drawRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110),200, 5);
             g.setColor(new Color(147,3,140));
             g.fillRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110), Math.round(ninjaBoss.getHealth()), 5);
         }
 
-        if (character.checkLife() == Boolean.FALSE){
+        if (!character.isAlive()){
             g.setFont(new Font("Arial", Font.BOLD, 100));
             g.setColor(Color.black);
             g.drawString("YOU LOST", 203, 403);
@@ -71,14 +73,14 @@ public class GameView extends UserView {
             g.drawString("YOU LOST", 200,400);
         }
 
-        if (character.getPoints() > 44 && ninjaBoss.isAlive() == Boolean.FALSE){
+        /*if (level.isCompleted()){
             g.setFont(new Font("Arial", Font.BOLD, 100));
             g.setColor(Color.black);
             g.drawString("YOU WON", 203, 403);
             g.setFont(new Font("Arial", Font.BOLD, 100));
             g.setColor(new Color(73,152,183));
             g.drawString("YOU WON", 200,400);
-        }
+        }*/
 
 
     }

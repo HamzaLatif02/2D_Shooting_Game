@@ -15,7 +15,7 @@ public class ShurikenImpact implements CollisionListener {
     public void collide(CollisionEvent e) {
         if (e.getOtherBody() instanceof Character) {
             ((Character) e.getOtherBody()).setHealth(((Character) e.getOtherBody()).getHealth() - shuriken.getDamage());
-            ((Character) e.getOtherBody()).checkLife();
+            ((Character) e.getOtherBody()).isAlive();
         }
         e.getReportingBody().destroy();
     }
