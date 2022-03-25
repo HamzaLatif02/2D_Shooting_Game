@@ -17,7 +17,7 @@ public class GameView extends UserView {
 
     public GameView(GameLevel level, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
         super (level,width,height);
-        background = new ImageIcon("data/background.png").getImage();
+        background = new ImageIcon("data/level1/background.png").getImage();
         ninja = n;
         character = c;
         ninjaBoss = nb;

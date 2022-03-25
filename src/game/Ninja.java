@@ -6,8 +6,8 @@ import org.jbox2d.common.Vec2;
 public class Ninja extends Walker {
 
     private static final Shape ninjaShape = new CircleShape(2);
-    private static final BodyImage imageLeft = new BodyImage("data/ninja-left.png", 4f);
-    private static final BodyImage imageRight = new BodyImage("data/ninja-right.png", 4f);
+    private static final BodyImage imageLeft = new BodyImage("data/level1/ninja-left.png", 4f);
+    private static final BodyImage imageRight = new BodyImage("data/level1/ninja-right.png", 4f);
 
     private int health;
     private String direction;

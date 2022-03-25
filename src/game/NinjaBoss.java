@@ -6,8 +6,8 @@ import org.jbox2d.common.Vec2;
 public class NinjaBoss extends Walker {
 
     private static final Shape ninjaBossShape = new CircleShape(4.8f);
-    private static final BodyImage imageLeft = new BodyImage("data/ninjaboss-left.png", 10f);
-    private static final BodyImage imageRight = new BodyImage("data/ninjaboss-right.png", 10f);
+    private static final BodyImage imageLeft = new BodyImage("data/level1/ninjaboss-left.png", 10f);
+    private static final BodyImage imageRight = new BodyImage("data/level1/ninjaboss-right.png", 10f);
     private String direction;
     private int speed;
     private Shuriken[] shurikens = new Shuriken[3];
