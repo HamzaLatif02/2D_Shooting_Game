@@ -2,16 +2,23 @@ package game;
 
 import org.jbox2d.common.Vec2;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class LevelTwo extends GameLevel{
 
+    private Image background;
 
     public LevelTwo(){
         super();
 
+        setBackground();
         placePlatforms();
 
+    }
+
+    public void setBackground(){
+        background = new ImageIcon("data/level2/background2.png").getImage();
     }
 
     public void placePlatforms(){
@@ -26,5 +33,8 @@ public class LevelTwo extends GameLevel{
     public Boolean isCompleted() {
         return Boolean.FALSE;
     }
+
+    @Override
+    public Image getBackground(){return background;}
 
 }

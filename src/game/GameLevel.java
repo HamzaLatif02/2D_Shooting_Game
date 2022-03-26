@@ -17,4 +17,6 @@ public abstract class GameLevel extends World {
 
 
     public abstract Boolean isCompleted();
+
+    public abstract Image getBackground();
 }

@@ -91,8 +91,9 @@ public class Game {
             level = new LevelTwo();
 
             view.setWorld(level);
+            view.updateLevel(level);
             view.updateCharacter(level.getCharacter());
-            characterController.setCharacter(level.getCharacter());
+            characterController.updateCharacter(level.getCharacter());
             level.addStepListener(new Tracker(view, level.getCharacter()));
             level.getCharacter().setPoints(0);
             level.getCharacter().setHealth(100);

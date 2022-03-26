@@ -15,7 +15,7 @@ public class CharacterController implements KeyListener {
         this.character = character;
     }
 
-    public void setCharacter(Character character) {
+    public void updateCharacter(Character character) {
         this.character = character;
     }
 

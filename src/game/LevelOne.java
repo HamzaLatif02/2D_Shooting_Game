@@ -2,16 +2,19 @@ package game;
 
 import org.jbox2d.common.Vec2;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class LevelOne extends GameLevel{
 
     private Ninja[] ninjas = new Ninja[10];
     private NinjaBoss ninjaBoss;
+    private Image background;
 
     public LevelOne(){
         super();
 
+        setBackground();
         placePlatforms();
         placeCharacter();
         placeNinjas();
@@ -27,6 +30,9 @@ public class LevelOne extends GameLevel{
     public Ninja[] getNinja(){return ninjas;}
     public NinjaBoss getNinjaBoss(){return ninjaBoss;}
 
+    public void setBackground(){
+        background = new ImageIcon("data/level1/background.png").getImage();
+    }
 
     public void placePlatforms(){
 
@@ -201,5 +207,9 @@ public class LevelOne extends GameLevel{
         } else return Boolean.FALSE;
     }
 
+    @Override
+    public Image getBackground(){
+        return background;
+    }
 
 }

@@ -1,6 +1,7 @@
 package game;
 
 import city.cs.engine.UserView;
+import city.cs.engine.World;
 import city.cs.engine.WorldView;
 import org.jbox2d.common.Vec2;
 
@@ -9,19 +10,17 @@ import java.awt.*;
 
 public class GameView extends UserView {
 
-    private Image background;
     private Character character;
     private Ninja[] ninja;
     private NinjaBoss ninjaBoss;
     private GameLevel level;
 
-    public GameView(GameLevel level, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
-        super (level,width,height);
-        background = new ImageIcon("data/level1/background.png").getImage();
+    public GameView(GameLevel l, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
+        super (l,width,height);
         ninja = n;
         character = c;
         ninjaBoss = nb;
-        this.level = level;
+        level = l;
 
     }
 
@@ -29,9 +28,13 @@ public class GameView extends UserView {
         this.character = character;
     }
 
+    public void updateLevel(GameLevel level){
+        this.level = level;
+    }
+
     @Override
     protected void paintBackground(Graphics2D g){
-        g.drawImage(background, 0,0, this);
+        g.drawImage(level.getBackground() , 0,0, this);
     }
 
     @Override
