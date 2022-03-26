@@ -2,6 +2,9 @@ package game;
 
 import city.cs.engine.World;
 
+import javax.swing.*;
+import java.awt.*;
+
 public abstract class GameLevel extends World {
 
     private Character character;
@@ -11,6 +14,7 @@ public abstract class GameLevel extends World {
     }
 
     public Character getCharacter(){return character;}
+
 
     public abstract Boolean isCompleted();
 }

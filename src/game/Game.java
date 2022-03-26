@@ -91,8 +91,13 @@ public class Game {
             level = new LevelTwo();
 
             view.setWorld(level);
+            view.updateCharacter(level.getCharacter());
             characterController.setCharacter(level.getCharacter());
+            level.addStepListener(new Tracker(view, level.getCharacter()));
+            level.getCharacter().setPoints(0);
+            level.getCharacter().setHealth(100);
             level.start();
+
 
         } else if (level instanceof LevelTwo){
             System.out.println("game won");

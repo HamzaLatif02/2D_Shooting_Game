@@ -2,6 +2,8 @@ package game;
 
 import org.jbox2d.common.Vec2;
 
+import java.awt.*;
+
 public class LevelOne extends GameLevel{
 
     private Ninja[] ninjas = new Ninja[10];
@@ -194,9 +196,10 @@ public class LevelOne extends GameLevel{
 
     @Override
     public Boolean isCompleted() {
-        if (getCharacter().getPoints() > 44 && getNinjaBoss().isAlive() == Boolean.FALSE){
+        if (getCharacter().getPoints() > 1 || getNinjaBoss().isAlive() == Boolean.FALSE){
             return Boolean.TRUE;
         } else return Boolean.FALSE;
     }
+
 
 }
