@@ -26,6 +26,8 @@ public class LevelTwo extends GameLevel{
         new WallPlatform(this).setPosition(new Vec2(-16f,0f));
 
         new GroundPlatform(this).setPosition(new Vec2(0f,-17.5f));
+        new DoublePlatform(this).setPosition(new Vec2(19f, 0f));
+        new SinglePlatform(this).setPosition(new Vec2(0f,0f));
     }
 
 
