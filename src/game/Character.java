@@ -143,10 +143,10 @@ public class Character extends Walker {
         Projectile p = new Projectile(this.getWorld());
 
         if (this.direction.equals("left")){
-            p.setPosition(new Vec2(this.getPosition().x-2.3f,this.getPosition().y));
+            p.setPosition(new Vec2(this.getPosition().x-2.5f,this.getPosition().y));
             p.setLinearVelocity(new Vec2(-30,0));
         } else {
-            p.setPosition(new Vec2(this.getPosition().x+2.3f, this.getPosition().y));
+            p.setPosition(new Vec2(this.getPosition().x+2.5f, this.getPosition().y));
             p.setLinearVelocity(new Vec2(30, 0));
         }
 

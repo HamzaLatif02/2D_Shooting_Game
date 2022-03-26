@@ -4,7 +4,7 @@ import city.cs.engine.*;
 
 public class Projectile extends DynamicBody {
 
-    private static final Shape projectileShape = new PolygonShape(-0.29f,0.17f, 0.059f,0.299f, 0.288f,0.008f, 0.083f,-0.3f, -0.275f,-0.199f);
+    private static final Shape projectileShape = new PolygonShape(-0.48f,0.286f, 0.096f,0.5f, 0.48f,0.012f, 0.136f,-0.5f, -0.458f,-0.332f);
     private static final BodyImage image = new BodyImage("data/level1/projectile2.png",1f);
     private static final BodyImage image2 = new BodyImage("data/level2/projectile4.png",1f);
 
