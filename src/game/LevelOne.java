@@ -16,7 +16,6 @@ public class LevelOne extends GameLevel{
 
         setBackground();
         placePlatforms();
-        placeCharacter();
         placeNinjas();
         placeNinjaBoss();
         placeCoins();
@@ -85,10 +84,6 @@ public class LevelOne extends GameLevel{
         new GroundPlatform(this).setPosition(new Vec2(313f,-15.5f));
 
         new WallPlatform(this).setPosition(new Vec2(329f,0f));
-    }
-
-    public void placeCharacter(){
-        getCharacter().setPosition(new Vec2(0f, -8f));
     }
 
     public void placeNinjas(){

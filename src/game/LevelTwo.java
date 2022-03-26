@@ -30,7 +30,6 @@ public class LevelTwo extends GameLevel{
         new SinglePlatform(this).setPosition(new Vec2(0f,0f));
     }
 
-
     @Override
     public Boolean isCompleted() {
         return Boolean.FALSE;
