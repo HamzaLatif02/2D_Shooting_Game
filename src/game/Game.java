@@ -40,7 +40,7 @@ public class Game {
 
         view.addKeyListener(characterController);
 
-        level.addStepListener(new Tracker(view, level.getCharacter()));
+        level.addStepListener(new Tracker(view, level.getCharacter(), level));
 
         //optional: draw a 1-metre grid over the view
         //view.setGridResolution(1);
@@ -94,7 +94,7 @@ public class Game {
             view.updateLevel(level);
             view.updateCharacter(level.getCharacter());
             characterController.updateCharacter(level.getCharacter());
-            level.addStepListener(new Tracker(view, level.getCharacter()));
+            level.addStepListener(new Tracker(view, level.getCharacter(), level));
             level.getCharacter().setPoints(0);
             level.getCharacter().setHealth(100);
             level.start();

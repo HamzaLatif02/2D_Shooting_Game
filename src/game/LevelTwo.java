@@ -15,6 +15,7 @@ public class LevelTwo extends GameLevel{
         setBackground();
         placePlatforms();
 
+
     }
 
     public void setBackground(){
@@ -26,8 +27,49 @@ public class LevelTwo extends GameLevel{
         new WallPlatform(this).setPosition(new Vec2(-16f,0f));
 
         new GroundPlatform(this).setPosition(new Vec2(0f,-17.5f));
-        new DoublePlatform(this).setPosition(new Vec2(19f, 0f));
-        new SinglePlatform(this).setPosition(new Vec2(0f,0f));
+
+        new DoublePlatform(this, "horizontal").setPosition(new Vec2(30f, -5f));
+        new DoublePlatform(this, "horizontal").setPosition(new Vec2(45f,-1f));
+
+        new GroundPlatform(this).setPosition(new Vec2(70f, -17.5f));
+
+        new SinglePlatform(this).setPosition(new Vec2(70f, -8f));
+        new SinglePlatform(this).setPosition(new Vec2(60f,0f));
+        new SinglePlatform(this).setPosition(new Vec2(80f,0f));
+        new SinglePlatform(this).setPosition(new Vec2(50f,8f));
+        new SinglePlatform(this).setPosition(new Vec2(90f,8f));
+        new SinglePlatform(this).setPosition(new Vec2(60f,16f));
+        new SinglePlatform(this).setPosition(new Vec2(80f,16f));
+        new SinglePlatform(this).setPosition(new Vec2(70f,24f));
+
+        new SinglePlatform(this).setPosition(new Vec2(70f, 8f));
+
+        new DoublePlatform(this, "horizontal").setPosition(new Vec2(105f,-8f));
+        new DoublePlatform(this, "horizontal").setPosition(new Vec2(120f, 0f));
+        new DoublePlatform(this, "horizontal").setPosition(new Vec2(135f, -8f));
+
+        new GroundPlatform(this).setPosition(new Vec2(160f,-17.5f));
+
+        new DoublePlatform(this, "vertical").setPosition(new Vec2(175f, 16f));
+        new DoublePlatform(this).setPosition(new Vec2(185f, 16f));
+        new DoublePlatform(this).setPosition(new Vec2(200f, 16f));
+        new DoublePlatform(this).setPosition(new Vec2(215f, 16f));
+        new DoublePlatform(this).setPosition(new Vec2(230f, 16f));
+        new DoublePlatform(this).setPosition(new Vec2(245f, 16f));
+        new DoublePlatform(this, "vertical").setPosition(new Vec2(255f, 16f));
+
+        new GroundPlatform(this).setPosition(new Vec2(270f,-17.5f));
+
+        new DoublePlatform(this, "vertical").setPosition(new Vec2(285f, 16f));
+
+        new SinglePlatform(this).setPosition(new Vec2(295f, 16f));
+
+        new DoublePlatform(this, "vertical").setPosition(new Vec2(305f, 32f));
+
+        new GroundPlatform( this).setPosition(new Vec2(330f, 26.5f));
+
+        new WallPlatform(this).setPosition(new Vec2(346f,34f));
+
     }
 
     @Override

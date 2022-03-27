@@ -1,23 +1,65 @@
 package game;
 
 import city.cs.engine.*;
+import org.jbox2d.common.Vec2;
 
-public class DoublePlatform extends StaticBody {
+public class DoublePlatform extends StaticBody implements StepListener{
 
     private static final Shape doubleShape = new PolygonShape(-3.65f,2.0f, 3.75f,2.00f, 4.0f,1.70f, 4.0f,-1.70f, 3.75f,-2.0f, -3.65f,-2.0f, -4.0f,-1.70f, -4.0f,1.70f);
     private static final BodyImage image = new BodyImage("data/level1/platform-double.png",8f);
     private static final BodyImage image2 = new BodyImage("data/level2/sandstone-platform-double.png", 8f);
 
-    DoublePlatform(World w){
+    private int time;
+    private String direction;
+
+
+    public DoublePlatform(World w){
         super(w,doubleShape);
+
+        this.time = 0;
 
         if (w instanceof LevelOne){
             addImage(image);
+
         } else if (w instanceof LevelTwo){
             addImage(image2);
         }
 
         //setAlwaysOutline(true);
+
+    }
+
+    public DoublePlatform(World w, String direction){
+        super(w, doubleShape);
+        this.time=0;
+        this.direction = direction;
+
+        addImage(image2);
+        getWorld().addStepListener(this);
+    }
+
+
+    @Override
+    public void preStep(StepEvent stepEvent) {
+        if (direction.equals("horizontal")){
+            if (time % 240 < 120){
+                this.setPosition(new Vec2(getPosition().x-0.1f,getPosition().y));
+            } else {
+                this.setPosition(new Vec2(getPosition().x+0.1f,getPosition().y));
+            }
+        } else {
+            if (time % 480 < 240){
+                this.setPosition(new Vec2(getPosition().x,getPosition().y-0.1f));
+            } else {
+                this.setPosition(new Vec2(getPosition().x,getPosition().y+0.1f));
+            }
+        }
+
+        time++;
+    }
+
+    @Override
+    public void postStep(StepEvent stepEvent) {
 
     }
 }

@@ -8,10 +8,12 @@ public class Tracker implements StepListener {
 
     private GameView view;
     private Character character;
+    private GameLevel level;
 
-    public Tracker (GameView gv, Character c){
+    public Tracker (GameView gv, Character c, GameLevel l){
         this.view = gv;
         this.character = c;
+        this.level = l;
     }
 
 
@@ -21,6 +23,14 @@ public class Tracker implements StepListener {
 
     @Override
     public void postStep(StepEvent e) {
-        view.setCentre(new Vec2(character.getPosition().x, 0f));
+        if (level instanceof LevelOne){
+            view.setCentre(new Vec2(character.getPosition().x, 0f));
+        } else if (level instanceof LevelTwo){
+            if (character.getPosition().y > 0f){
+                view.setCentre(new Vec2(character.getPosition().x, character.getPosition().y));
+            } else {
+                view.setCentre(new Vec2(character.getPosition().x, 0f));
+            }
+        }
     }
 }
