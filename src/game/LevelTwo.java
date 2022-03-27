@@ -9,6 +9,7 @@ public class LevelTwo extends GameLevel{
 
     private Image background;
     private Mummy[] mummies = new Mummy[10];
+    private MummyBoss mummyBoss;
 
 
     public LevelTwo(){
@@ -17,6 +18,7 @@ public class LevelTwo extends GameLevel{
         setBackground();
         placePlatforms();
         placeMummies();
+        placeMummyBoss();
 
 
     }
@@ -97,6 +99,11 @@ public class LevelTwo extends GameLevel{
         mummies[8].setPosition(new Vec2(280f, -8f));
         mummies[9].setPosition(new Vec2(335f, 36f));
 
+    }
+
+    public void placeMummyBoss(){
+        mummyBoss = new MummyBoss(this);
+        mummyBoss.setPosition(new Vec2(340f,39f));
     }
 
     @Override
