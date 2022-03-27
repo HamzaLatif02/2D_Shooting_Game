@@ -11,13 +11,18 @@ public class Mummy extends Walker {
     private int health;
     private String direction;
     private int speed;
+    private String doesMove;
 
-    public Mummy (World world){
+    public Mummy (World world, String Movement){
         super(world, mummyShape);
         addImage(imageLeft);
         this.health = 50;
         this.direction = "left";
-        this.speed = 1;
+        this.speed = 2;
+        this.doesMove = Movement;
+        if (doesMove.equals("yes")){
+            getWorld().addStepListener(new MummyController(this));
+        }
     }
 
     public int getHealth() {

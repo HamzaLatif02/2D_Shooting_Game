@@ -8,12 +8,15 @@ import java.awt.*;
 public class LevelTwo extends GameLevel{
 
     private Image background;
+    private Mummy[] mummies = new Mummy[10];
+
 
     public LevelTwo(){
         super();
 
         setBackground();
         placePlatforms();
+        placeMummies();
 
 
     }
@@ -69,6 +72,30 @@ public class LevelTwo extends GameLevel{
         new GroundPlatform( this).setPosition(new Vec2(330f, 26.5f));
 
         new WallPlatform(this).setPosition(new Vec2(346f,34f));
+
+    }
+
+    public void placeMummies(){
+
+        for (int i =0; i< 5; i++){
+            mummies[i] = new Mummy(this, "no");
+        }
+
+        for (int i=5; i< 10; i++){
+            mummies[i] = new Mummy(this, "yes");
+        }
+
+        mummies[0].setPosition(new Vec2(70f,-4f));
+        mummies[1].setPosition(new Vec2(70f, 12f));
+        mummies[2].setPosition(new Vec2(90f, 12f));
+        mummies[3].setPosition(new Vec2(200f, 20f));
+        mummies[4].setPosition(new Vec2(295f, 20f));
+
+        mummies[5].setPosition(new Vec2(170f, -8f));
+        mummies[6].setPosition(new Vec2(219f,20f));
+        mummies[7].setPosition(new Vec2(234f, 20f));
+        mummies[8].setPosition(new Vec2(280f, -8f));
+        mummies[9].setPosition(new Vec2(335f, 36f));
 
     }
 

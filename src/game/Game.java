@@ -97,6 +97,7 @@ public class Game {
             level.addStepListener(new Tracker(view, level.getCharacter(), level));
             level.getCharacter().setPoints(0);
             level.getCharacter().setHealth(100);
+            level.getCharacter().setSpeed(6);
             level.start();
 
 
