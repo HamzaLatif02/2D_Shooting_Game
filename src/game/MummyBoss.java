@@ -16,7 +16,7 @@ public class MummyBoss extends Walker {
         addImage(imageLeft);
         this.direction = "left";
         this.speed = 6;
-        this.health = 300;
+        this.health = 400;
         getWorld().addStepListener(new MummyBossController(this));
     }
 

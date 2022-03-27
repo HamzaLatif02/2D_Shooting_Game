@@ -23,6 +23,14 @@ public class LevelTwo extends GameLevel{
 
     }
 
+    public Mummy[] getMummies() {
+        return mummies;
+    }
+
+    public MummyBoss getMummyBoss() {
+        return mummyBoss;
+    }
+
     public void setBackground(){
         background = new ImageIcon("data/level2/background2.png").getImage();
     }

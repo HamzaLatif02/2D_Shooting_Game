@@ -17,7 +17,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Game {
 
     private GameLevel level;
-    private GameView view;
+    private GameView view, view2;
     private CharacterController characterController;
 
 
@@ -90,6 +90,7 @@ public class Game {
             level.stop();
             level = new LevelTwo();
 
+            view.addEnemies(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
             view.setWorld(level);
             view.updateLevel(level);
             view.updateCharacter(level.getCharacter());

@@ -14,6 +14,8 @@ public class GameView extends UserView {
     private Ninja[] ninja;
     private NinjaBoss ninjaBoss;
     private GameLevel level;
+    private Mummy[] mummy;
+    private MummyBoss mummyBoss;
 
     public GameView(GameLevel l, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
         super (l,width,height);
@@ -21,7 +23,11 @@ public class GameView extends UserView {
         character = c;
         ninjaBoss = nb;
         level = l;
+    }
 
+    public void addEnemies(Mummy[] m, MummyBoss mb){
+        mummy = m;
+        mummyBoss = mb;
     }
 
     public void updateCharacter(Character character){
@@ -52,24 +58,49 @@ public class GameView extends UserView {
 
         g.drawString("Health:" , 100,50);
         g.drawRect(150,40,100, 10);
-        g.setColor(new Color(73,152,183));
+        if (level instanceof LevelOne){
+            g.setColor(new Color(73,152,183));
+        } else if (level instanceof LevelTwo){
+            g.setColor(new Color(88,219,109));
+        }
+
         g.fillRect(150,40,character.getHealth(),10);
 
-        for (Ninja ninja : ninja){
-            if (ninja.isAlive()){
+        if (level instanceof LevelOne){
+            for (Ninja ninja : ninja){
+                if (ninja.isAlive()){
+                    g.setColor(Color.black);
+                    g.drawRect(Math.round(this.worldToView(ninja.getPosition()).x-25),Math.round(this.worldToView(ninja.getPosition()).y-50),50, 5);
+                    g.setColor(new Color(181,40,2));
+                    g.fillRect(Math.round(this.worldToView(ninja.getPosition()).x-25),Math.round(this.worldToView(ninja.getPosition()).y-50), Math.round(ninja.getHealth()*2.5f), 5);
+                }
+            }
+
+            if (ninjaBoss.isAlive()){
                 g.setColor(Color.black);
-                g.drawRect(Math.round(this.worldToView(ninja.getPosition()).x-25),Math.round(this.worldToView(ninja.getPosition()).y-50),50, 5);
-                g.setColor(new Color(181,40,2));
-                g.fillRect(Math.round(this.worldToView(ninja.getPosition()).x-25),Math.round(this.worldToView(ninja.getPosition()).y-50), Math.round(ninja.getHealth()*2.5f), 5);
+                g.drawRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110),200, 5);
+                g.setColor(new Color(147,3,140));
+                g.fillRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110), Math.round(ninjaBoss.getHealth()), 5);
+            }
+
+        } else if (level instanceof LevelTwo){
+            for (Mummy mummy : mummy){
+                if (mummy.isAlive()){
+                    g.setColor(Color.black);
+                    g.drawRect(Math.round(this.worldToView(mummy.getPosition()).x-25),Math.round(this.worldToView(mummy.getPosition()).y-50),50, 5);
+                    g.setColor(new Color(168,201,117));
+                    g.fillRect(Math.round(this.worldToView(mummy.getPosition()).x-25),Math.round(this.worldToView(mummy.getPosition()).y-50), Math.round(mummy.getHealth()), 5);
+                }
+            }
+
+            if (mummyBoss.isAlive()){
+                g.setColor(Color.black);
+                g.drawRect(Math.round(this.worldToView(mummyBoss.getPosition()).x-100),Math.round(this.worldToView(mummyBoss.getPosition()).y-110),200, 5);
+                g.setColor(new Color(0,255,176));
+                g.fillRect(Math.round(this.worldToView(mummyBoss.getPosition()).x-100),Math.round(this.worldToView(mummyBoss.getPosition()).y-110), Math.round(mummyBoss.getHealth()/2), 5);
             }
         }
 
-        if (ninjaBoss.isAlive()){
-            g.setColor(Color.black);
-            g.drawRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110),200, 5);
-            g.setColor(new Color(147,3,140));
-            g.fillRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110), Math.round(ninjaBoss.getHealth()), 5);
-        }
 
         if (!character.isAlive()){
             g.setFont(new Font("Arial", Font.BOLD, 100));
