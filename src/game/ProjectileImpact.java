@@ -21,6 +21,12 @@ public class ProjectileImpact implements CollisionListener {
         } else if (e.getOtherBody() instanceof NinjaBoss){
             ((NinjaBoss) e.getOtherBody()).setHealth(((NinjaBoss) e.getOtherBody()).getHealth() - projectile.getDamage());
             ((NinjaBoss) e.getOtherBody()).isAlive();
+        } else if (e.getOtherBody() instanceof Mummy){
+            ((Mummy) e.getOtherBody()).setHealth(((Mummy) e.getOtherBody()).getHealth() - projectile.getDamage());
+            ((Mummy) e.getOtherBody()).isAlive();
+        } else if (e.getOtherBody() instanceof MummyBoss){
+            ((MummyBoss) e.getOtherBody()).setHealth(((MummyBoss) e.getOtherBody()).getHealth() - projectile.getDamage());
+            ((MummyBoss) e.getOtherBody()).isAlive();
         }
         e.getReportingBody().destroy();
     }

@@ -17,6 +17,7 @@ public class Projectile extends DynamicBody {
             this.addImage(image);
         } else if (w instanceof LevelTwo){
             this.addImage(image2);
+            this.setGravityScale(0);
         }
 
         this.damage = 5;

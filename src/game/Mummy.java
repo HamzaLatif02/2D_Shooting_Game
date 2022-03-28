@@ -1,6 +1,7 @@
 package game;
 
 import city.cs.engine.*;
+import org.jbox2d.common.Vec2;
 
 public class Mummy extends Walker {
 
@@ -20,9 +21,11 @@ public class Mummy extends Walker {
         this.direction = "left";
         this.speed = 2;
         this.doesMove = Movement;
-        if (doesMove.equals("yes")){
-            getWorld().addStepListener(new MummyController(this));
-        }
+        getWorld().addStepListener(new MummyController(this));
+    }
+
+    public String getDoesMove() {
+        return doesMove;
     }
 
     public int getHealth() {
@@ -66,4 +69,22 @@ public class Mummy extends Walker {
         this.removeAllImages();
         this.addImage(imageRight);
     }
+
+
+    public void shoot(){
+        PoisonProjectile pp = new PoisonProjectile(this.getWorld());
+
+        if (direction.equals("left")){
+            pp.setPosition(new Vec2(this.getPosition().x-3,this.getPosition().y));
+            pp.setLinearVelocity(new Vec2(-20,0));
+        } else {
+            pp.setPosition(new Vec2(this.getPosition().x+3, this.getPosition().y));
+            pp.setLinearVelocity(new Vec2(20, 0));
+        }
+
+        PoisonProjectileImpact poisonProjectileImpact = new PoisonProjectileImpact(pp);
+        pp.addCollisionListener(poisonProjectileImpact);
+
+    }
+
 }

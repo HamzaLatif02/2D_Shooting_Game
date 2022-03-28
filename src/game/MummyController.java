@@ -16,14 +16,21 @@ public class MummyController implements StepListener {
     public void preStep(StepEvent stepEvent) {
 
         if (mummy.isAlive() == Boolean.TRUE){
-            if (time % 480 < 240){
-                mummy.moveLeft();
-            } else {
-                mummy.moveRight();
+            if(mummy.getDoesMove().equals("yes")){
+                if (time % 480 < 240){
+                    mummy.moveLeft();
+                } else {
+                    mummy.moveRight();
+                }
             }
+
+            if (time % 60 == 0){
+                mummy.shoot();
+            }
+            time++;
         }
 
-        time++;
+
 
     }
 
