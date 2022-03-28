@@ -22,7 +22,8 @@ public class Character extends Walker {
     //private Shape remainingHealthBar = new BoxShape(1f, this.getHealth()/2f);
 
 
-    private int points, health, speed;
+    private int points, health;
+    private float speed;
     private String direction;
 
     public Character (World world) {
@@ -58,11 +59,11 @@ public class Character extends Walker {
 
     public void setHealth(int health) {this.health = health;}
 
-    public int getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed){this.speed = speed;}
+    public void setSpeed(float speed){this.speed = speed;}
 
     // public Shape getHealthBar() {return healthBar;}
     //public Shape getRemainingHealthBar() {return remainingHealthBar;}
