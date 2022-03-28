@@ -1,22 +1,36 @@
 package game;
 
 import city.cs.engine.BodyImage;
+import city.cs.engine.StepEvent;
+import city.cs.engine.StepListener;
 import org.jbox2d.common.Vec2;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class CharacterController implements KeyListener {
+public class CharacterController implements KeyListener, StepListener {
 
     //private static final float WALKING_SPEED = 5;
     private Character character;
+    private int time;
 
     public CharacterController(Character character) {
         this.character = character;
+        this.time = 0;
+        character.getWorld().addStepListener(this);
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 
     public void updateCharacter(Character character) {
         this.character = character;
+        character.getWorld().addStepListener(this);
     }
 
     @Override
@@ -29,8 +43,14 @@ public class CharacterController implements KeyListener {
             character.startWalking(character.getSpeed());
         } else if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
             character.jump(15f);
-        } else if (code == KeyEvent.VK_C || code == KeyEvent.VK_K){
-            character.shoot();
+        } else if (code == KeyEvent.VK_C || code == KeyEvent.VK_K ){
+            if (character.getWorld() instanceof LevelOne){
+                character.shoot();
+            } else if (character.getWorld() instanceof LevelTwo){
+                if (getTime() % 2 == 0){
+                    character.shoot();
+                }
+            }
         }
     }
 
@@ -50,4 +70,13 @@ public class CharacterController implements KeyListener {
     public void keyTyped(KeyEvent e) {
     }
 
+    @Override
+    public void preStep(StepEvent stepEvent) {
+        setTime(getTime() + 1);
+    }
+
+    @Override
+    public void postStep(StepEvent stepEvent) {
+
+    }
 }
