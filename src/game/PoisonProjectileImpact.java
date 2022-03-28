@@ -19,7 +19,7 @@ public class PoisonProjectileImpact implements CollisionListener {
     public void collide(CollisionEvent e) {
         if (e.getOtherBody() instanceof Character) {
             ((Character) e.getOtherBody()).setHealth(((Character) e.getOtherBody()).getHealth() - poisonProjectile.getDamage());
-            if (((Character) e.getOtherBody()).getSpeed() > 4){
+            if (((Character) e.getOtherBody()).getSpeed() > 4.1){
                 ((Character) e.getOtherBody()).setSpeed(((Character) e.getOtherBody()).getSpeed()-0.2f);
             }
             ((Character) e.getOtherBody()).isAlive();

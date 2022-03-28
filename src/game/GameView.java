@@ -66,6 +66,14 @@ public class GameView extends UserView {
 
         g.fillRect(150,40,character.getHealth(),10);
 
+        if (level instanceof LevelTwo){
+            g.setColor(Color.black);
+            g.drawString("Speed: ", 100, 70);
+            g.drawRect(150, 60, 60, 10);
+            g.setColor(new Color(181,247,189));
+            g.fillRect(150,60, (int) (character.getSpeed()*10f),10);
+        }
+
         if (level instanceof LevelOne){
             for (Ninja ninja : ninja){
                 if (ninja.isAlive()){
