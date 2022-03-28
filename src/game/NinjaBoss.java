@@ -53,13 +53,10 @@ public class NinjaBoss extends Walker {
             }
 
             offset -= 3;
-        }
 
-        for (Shuriken shuriken : shurikens){
-            ShurikenImpact shurikenImpact = new ShurikenImpact(shuriken);
-            shuriken.addCollisionListener(shurikenImpact);
+            ShurikenImpact shurikenImpact = new ShurikenImpact(shurikens[i]);
+            shurikens[i].addCollisionListener(shurikenImpact);
         }
-
     }
 
     public void moveLeft(){

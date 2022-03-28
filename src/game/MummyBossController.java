@@ -21,6 +21,10 @@ public class MummyBossController implements StepListener {
             } else {
                 mummyBoss.moveRight();
             }
+
+            if (time % 120 < 30 && time % 2 == 0){
+                mummyBoss.shoot();
+            }
         }
         time++;
     }

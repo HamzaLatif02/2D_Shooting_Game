@@ -1,6 +1,7 @@
 package game;
 
 import city.cs.engine.*;
+import org.jbox2d.common.Vec2;
 
 public class MummyBoss extends Walker {
 
@@ -10,6 +11,7 @@ public class MummyBoss extends Walker {
     private String direction;
     private int speed;
     private int health;
+    private PoisonProjectile[] poisonProjectiles = new PoisonProjectile[3];
 
     public MummyBoss(World world) {
         super(world, mummyBossShape);
@@ -51,5 +53,28 @@ public class MummyBoss extends Walker {
         this.setDirection("right");
         this.removeAllImages();
         this.addImage(imageRight);
+    }
+
+    public void shoot(){
+
+        int offset = 3;
+
+        for (int i=0; i<poisonProjectiles.length; i++){
+            poisonProjectiles[i] = new PoisonProjectile(this.getWorld());
+
+            if (direction.equals("left")){
+                poisonProjectiles[i].setPosition(new Vec2(this.getPosition().x-6,this.getPosition().y+offset));
+                poisonProjectiles[i].setLinearVelocity(new Vec2(-20,0));
+            } else {
+                poisonProjectiles[i].setPosition(new Vec2(this.getPosition().x+6, this.getPosition().y+offset));
+                poisonProjectiles[i].setLinearVelocity(new Vec2(20, 0));
+            }
+
+            offset -=3;
+
+            PoisonProjectileImpact poisonProjectileImpact = new PoisonProjectileImpact(poisonProjectiles[i]);
+            poisonProjectiles[i].addCollisionListener(poisonProjectileImpact);
+        }
+
     }
 }
