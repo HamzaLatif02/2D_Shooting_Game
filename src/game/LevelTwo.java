@@ -21,6 +21,8 @@ public class LevelTwo extends GameLevel{
         placeMummyBoss();
         placeHealthPotions();
         placeSpeedpotions();
+        placeCoins();
+        placeMinusCoins();
 
 
     }
@@ -118,12 +120,103 @@ public class LevelTwo extends GameLevel{
 
     public void placeHealthPotions(){
         new HealthPotion(this, "negative").setPosition(new Vec2(70f, 12f));
-        new HealthPotion(this, "positive").setPosition(new Vec2(305f, 20f));
+        new HealthPotion(this, "positive").setPosition(new Vec2(305f, 36f));
     }
 
     public void placeSpeedpotions(){
         new SpeedPotion(this, "negative").setPosition(new Vec2(170f, -8f));
-        new SpeedPotion(this, "positive").setPosition(new Vec2(285f, 36f));
+        new SpeedPotion(this, "positive").setPosition(new Vec2(285f, 20f));
+    }
+
+    public void placeCoins(){
+
+        for (int i=0; i<3; i++){
+            new Coin(this, "single").setPosition(new Vec2(4 + i*5, -8f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(20 + i*5, -1f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(35 + i*5, 3f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(60 + i*3, -8f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(78 + i*3, -8f));
+        }
+
+        for (int i=0; i<2; i++){
+            for (int j=0; j<2; j++){
+                new Coin(this, "single").setPosition(new Vec2(60 + i*20, 4 + j*16));
+            }
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(50 + i*40, 12f));
+        }
+
+        new Coin(this, "double").setPosition(new Vec2(70f, 28f));
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(95 + i*5, -4f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(110 + i*5, 4f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(125 + i*5, -4f));
+        }
+
+        for (int i=0; i<6; i++){
+            new Coin(this, "single").setPosition(new Vec2(146 + i*3, -8f));
+        }
+
+        new Coin(this, "double").setPosition(new Vec2(175f, 24f));
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(183 + i*5, 20f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(198 + i*5, 20f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(228 + i*5, 20f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(243 + i*5, 20f));
+        }
+
+        for (int i =0; i<3; i++){
+            new Coin(this, "single").setPosition(new Vec2(256 + i*5, -8f));
+        }
+
+        new Coin(this, "single").setPosition(new Vec2(285f, 8f));
+        new Coin(this, "double").setPosition(new Vec2(295f, 26f));
+        new Coin(this, "single").setPosition(new Vec2(305f, 24f));
+        new Coin(this, "single").setPosition(new Vec2(314f, 36f));
+
+    }
+
+    public void placeMinusCoins(){
+        for (int i=0; i<2; i++){
+            new MinusCoin(this).setPosition(new Vec2(57 + i*9, -8f));
+        }
+
+        for (int i=0; i<2; i++){
+            new MinusCoin(this).setPosition(new Vec2(75 + i*9, -8f));
+        }
+
+        new MinusCoin(this).setPosition(new Vec2(215f, 20f));
     }
 
     @Override

@@ -50,7 +50,7 @@ public class Mummy extends Walker {
     }
 
     public Boolean isAlive(){
-        if (health <= 0){
+        if (health <= 0 || this.getPosition().y < -25){
             this.destroy();
             return Boolean.FALSE;
         } else return Boolean.TRUE;

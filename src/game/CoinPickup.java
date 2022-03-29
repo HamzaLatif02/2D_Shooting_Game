@@ -8,14 +8,20 @@ import city.cs.engine.World;
 public class CoinPickup implements SensorListener {
 
     private Coin coin;
-    public CoinPickup(Coin coin){
+    private String value;
+    public CoinPickup(Coin coin, String value){
         this.coin = coin;
+        this.value = value;
     }
 
     @Override
     public void beginContact(SensorEvent e) {
         if (e.getContactBody() instanceof Character){
-            ((Character) e.getContactBody()).setPoints(((Character) e.getContactBody()).getPoints()+1);
+            if (value.equals("single")){
+                ((Character) e.getContactBody()).setPoints(((Character) e.getContactBody()).getPoints()+1);
+            } else {
+                ((Character) e.getContactBody()).setPoints(((Character) e.getContactBody()).getPoints()+2);
+            }
             coin.destroy();
         }
     }

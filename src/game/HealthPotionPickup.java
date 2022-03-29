@@ -14,8 +14,8 @@ public class HealthPotionPickup implements SensorListener {
     public void beginContact(SensorEvent e) {
         if (e.getContactBody() instanceof Character){
             if (type.equals("positive")){
-                if (((Character) e.getContactBody()).getHealth() < 76){
-                    ((Character) e.getContactBody()).setHealth(((Character) e.getContactBody()).getHealth() + 25);
+                if (((Character) e.getContactBody()).getHealth() < 51){
+                    ((Character) e.getContactBody()).setHealth(((Character) e.getContactBody()).getHealth() + 50);
                 } else {
                     ((Character) e.getContactBody()).setHealth(100);
                 }
