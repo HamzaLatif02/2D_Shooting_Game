@@ -17,7 +17,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Game {
 
     private GameLevel level;
-    private GameView view, view2;
+    private GameView view;
     private CharacterController characterController;
 
 
@@ -68,7 +68,7 @@ public class Game {
         level.start();
 
         while (level.isRunning()){
-            if (level.isCompleted()){
+            if (level.getCompleted()){
                 goToNextLevel();
             }
         }

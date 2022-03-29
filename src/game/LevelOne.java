@@ -22,6 +22,7 @@ public class LevelOne extends GameLevel{
         placeMinusCoins();
         placeHealthPotion();
         placeSpeedPotion();
+        placePortal();
 
     }
 
@@ -194,10 +195,14 @@ public class LevelOne extends GameLevel{
         new SpeedPotion(this, "positive").setPosition(new Vec2(117f,15f));
     }
 
+    public void placePortal(){
+        getPortal().setPosition(new Vec2(327f, 4.5f));
+    }
+
 
     @Override
-    public Boolean isCompleted() {
-        if (getCharacter().getPoints() > 1 || getNinjaBoss().isAlive() == Boolean.FALSE){
+    public Boolean objectivesDone() {
+        if (getCharacter().getPoints() > 44 && getNinjaBoss().isAlive() == Boolean.FALSE){
             return Boolean.TRUE;
         } else return Boolean.FALSE;
     }

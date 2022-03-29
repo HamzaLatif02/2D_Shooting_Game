@@ -119,15 +119,14 @@ public class GameView extends UserView {
             g.drawString("YOU LOST", 200,400);
         }
 
-        /*if (level.isCompleted()){
-            g.setFont(new Font("Arial", Font.BOLD, 100));
+        if (level.objectivesDone()){
+            g.setFont(new Font("Arial", Font.BOLD, 40));
             g.setColor(Color.black);
-            g.drawString("YOU WON", 203, 403);
-            g.setFont(new Font("Arial", Font.BOLD, 100));
+            g.drawString("LEVEL COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-150), Math.round(this.worldToView(level.getPortal().getPosition()).y+200));
+            g.setFont(new Font("Arial", Font.BOLD, 40));
             g.setColor(new Color(73,152,183));
-            g.drawString("YOU WON", 200,400);
-        }*/
+            g.drawString("LEVEL COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-148),Math.round(this.worldToView(level.getPortal().getPosition()).y+198));
 
-
+        }
     }
 }

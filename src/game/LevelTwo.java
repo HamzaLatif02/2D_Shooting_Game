@@ -23,6 +23,7 @@ public class LevelTwo extends GameLevel{
         placeSpeedpotions();
         placeCoins();
         placeMinusCoins();
+        placePortal();
 
 
     }
@@ -219,8 +220,12 @@ public class LevelTwo extends GameLevel{
         new MinusCoin(this).setPosition(new Vec2(215f, 20f));
     }
 
+    public void placePortal(){
+        getPortal().setPosition(new Vec2(344f, 45.5f));
+    }
+
     @Override
-    public Boolean isCompleted() {
+    public Boolean objectivesDone() {
         if (getCharacter().getPoints() > 44 && getMummyBoss().isAlive() == Boolean.FALSE){
             return Boolean.TRUE;
         }
