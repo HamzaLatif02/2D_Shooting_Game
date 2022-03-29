@@ -9,13 +9,21 @@ public class HealthPotion extends StaticBody{
     private Sensor healthPotionSensor;
     private HealthPotionPickup healthPotionPickup;
     private static final BodyImage healthPotionImage = new BodyImage("data/healthpotion.png",2f);
+    private static final BodyImage minusHealthPotionImage = new BodyImage("data/minushealthpotion.png", 2f);
 
-    public HealthPotion(World w){
+    private String type;
+
+    public HealthPotion(World w, String type){
         super(w);
-        addImage(healthPotionImage);
+        this.type = type;
+        if (type.equals("positive")){
+            addImage(healthPotionImage);
+        } else {
+            addImage(minusHealthPotionImage);
+        }
         ghostHealthPotionShape = new GhostlyFixture(this, healthPotionShape);
         healthPotionSensor = new Sensor(this, healthPotionShape);
-        healthPotionPickup = new HealthPotionPickup(this);
+        healthPotionPickup = new HealthPotionPickup(this, type);
         healthPotionSensor.addSensorListener(healthPotionPickup);
 
         //setAlwaysOutline(true);

@@ -19,6 +19,8 @@ public class LevelTwo extends GameLevel{
         placePlatforms();
         placeMummies();
         placeMummyBoss();
+        placeHealthPotions();
+        placeSpeedpotions();
 
 
     }
@@ -112,6 +114,16 @@ public class LevelTwo extends GameLevel{
     public void placeMummyBoss(){
         mummyBoss = new MummyBoss(this);
         mummyBoss.setPosition(new Vec2(340f,39f));
+    }
+
+    public void placeHealthPotions(){
+        new HealthPotion(this, "negative").setPosition(new Vec2(70f, 12f));
+        new HealthPotion(this, "positive").setPosition(new Vec2(305f, 20f));
+    }
+
+    public void placeSpeedpotions(){
+        new SpeedPotion(this, "negative").setPosition(new Vec2(170f, -8f));
+        new SpeedPotion(this, "positive").setPosition(new Vec2(285f, 36f));
     }
 
     @Override

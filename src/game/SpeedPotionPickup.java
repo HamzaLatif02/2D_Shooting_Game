@@ -6,13 +6,23 @@ import city.cs.engine.SensorListener;
 public class SpeedPotionPickup implements SensorListener {
 
     private SpeedPotion speedPotion;
+    private String type;
 
-    public SpeedPotionPickup(SpeedPotion speedPotion){this.speedPotion = speedPotion;}
+    public SpeedPotionPickup(SpeedPotion speedPotion, String type){this.speedPotion = speedPotion; this.type = type;}
 
     @Override
     public void beginContact(SensorEvent e) {
         if (e.getContactBody() instanceof Character){
-            ((Character) e.getContactBody()).setSpeed(7);
+            if (type.equals("positive")){
+                if (e.getContactBody().getWorld() instanceof LevelOne){
+                    ((Character) e.getContactBody()).setSpeed(7);
+                } else if (e.getContactBody().getWorld() instanceof LevelTwo){
+                    ((Character) e.getContactBody()).setSpeed(6);
+                }
+            } else {
+                ((Character) e.getContactBody()).setSpeed(4);
+            }
+
             speedPotion.destroy();
         }
 

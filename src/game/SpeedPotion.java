@@ -9,13 +9,22 @@ public class SpeedPotion extends StaticBody {
     private Sensor speedPotionSensor;
     private SpeedPotionPickup speedPotionPickup;
     private static final BodyImage speedPotionImage = new BodyImage("data/speedpotion.png",2f);
+    private static final BodyImage slowDownPotionImage = new BodyImage("data/slowdownpotion.png",2f);
 
-    public SpeedPotion(World w){
+    private String type;
+
+    public SpeedPotion(World w, String type){
         super(w);
-        addImage(speedPotionImage);
+        this.type = type;
+        if (type.equals("positive")){
+            addImage(speedPotionImage);
+        } else {
+            addImage(slowDownPotionImage);
+        }
+
         ghostSpeedPotionShape = new GhostlyFixture(this, speedPotionShape);
         speedPotionSensor = new Sensor(this, speedPotionShape);
-        speedPotionPickup = new SpeedPotionPickup(this);
+        speedPotionPickup = new SpeedPotionPickup(this, type);
         speedPotionSensor.addSensorListener(speedPotionPickup);
 
         //setAlwaysOutline(true);

@@ -186,12 +186,12 @@ public class LevelOne extends GameLevel{
     }
 
     public void placeHealthPotion(){
-        new HealthPotion(this).setPosition(new Vec2(262f,-13f));
+        new HealthPotion(this, "positive").setPosition(new Vec2(262f,-13f));
 
     }
 
     public void placeSpeedPotion(){
-        new SpeedPotion(this).setPosition(new Vec2(117f,15f));
+        new SpeedPotion(this, "positive").setPosition(new Vec2(117f,15f));
     }
 
 
