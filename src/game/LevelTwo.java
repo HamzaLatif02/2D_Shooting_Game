@@ -221,6 +221,9 @@ public class LevelTwo extends GameLevel{
 
     @Override
     public Boolean isCompleted() {
+        if (getCharacter().getPoints() > 44 && getMummyBoss().isAlive() == Boolean.FALSE){
+            return Boolean.TRUE;
+        }
         return Boolean.FALSE;
     }
 
