@@ -202,7 +202,7 @@ public class LevelOne extends GameLevel{
 
     @Override
     public Boolean objectivesDone() {
-        if (getCharacter().getPoints() > 44 && getNinjaBoss().isAlive() == Boolean.FALSE){
+        if (getCharacter().getPoints() > 0 || getNinjaBoss().isAlive() == Boolean.FALSE){
             return Boolean.TRUE;
         } else return Boolean.FALSE;
     }

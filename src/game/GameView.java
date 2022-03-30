@@ -119,7 +119,7 @@ public class GameView extends UserView {
             g.drawString("YOU LOST", 200,400);
         }
 
-        if (level.objectivesDone()){
+        /*if (level.objectivesDone()){
             g.setFont(new Font("Arial", Font.BOLD, 40));
             g.setColor(Color.black);
             g.drawString("LEVEL COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-150), Math.round(this.worldToView(level.getPortal().getPosition()).y+200));
@@ -127,6 +127,6 @@ public class GameView extends UserView {
             g.setColor(new Color(73,152,183));
             g.drawString("LEVEL COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-148),Math.round(this.worldToView(level.getPortal().getPosition()).y+198));
 
-        }
+        }*/
     }
 }

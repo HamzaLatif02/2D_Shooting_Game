@@ -68,7 +68,10 @@ public class Game {
         level.start();
 
         while (level.isRunning()){
-            if (level.getCompleted()){
+            /*if (level.getCompleted()){
+                goToNextLevel();
+            }*/
+            if (level.objectivesDone()){
                 goToNextLevel();
             }
         }
@@ -89,22 +92,26 @@ public class Game {
         if (level instanceof LevelOne){
             level.stop();
             level = new LevelTwo();
-
             view.addEnemies(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
-            view.setWorld(level);
-            view.updateLevel(level);
-            view.updateCharacter(level.getCharacter());
-            characterController.updateCharacter(level.getCharacter());
-            level.addStepListener(new Tracker(view, level.getCharacter(), level));
-            level.getCharacter().setPoints(0);
-            level.getCharacter().setHealth(100);
-            level.getCharacter().setSpeed(6);
-            level.start();
-
+            updateLevel();
 
         } else if (level instanceof LevelTwo){
-            System.out.println("game won");
+            level.stop();
+            level = new LevelThree();
+            updateLevel();
         }
+    }
+
+    public void updateLevel(){
+        view.setWorld(level);
+        view.updateLevel(level);
+        view.updateCharacter(level.getCharacter());
+        characterController.updateCharacter(level.getCharacter());
+        level.addStepListener(new Tracker(view, level.getCharacter(), level));
+        level.getCharacter().setPoints(0);
+        level.getCharacter().setHealth(100);
+        level.getCharacter().setSpeed(6);
+        level.start();
     }
 
 
