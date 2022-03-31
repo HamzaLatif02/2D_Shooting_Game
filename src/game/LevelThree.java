@@ -36,9 +36,15 @@ public class LevelThree extends GameLevel{
         new DoublePlatform(this).setPosition(new Vec2(60f, 25f));
         new DoublePlatform(this).setPosition(new Vec2(70f, 25f));
 
+        new Portal(this, "gravity", "left").setPosition(new Vec2(77f, 29f));
+        new Portal(this, "gravity", "right").setPosition(new Vec2(99f, 29f));
 
-        new GroundPlatform(this).setPosition(new Vec2(95f,11.5f));
-        new GroundPlatform(this).setPosition(new Vec2(95f, 46.5f));
+        new SinglePlatform(this).setPosition(new Vec2(81f, 21f));
+        new SinglePlatform(this).setPosition(new Vec2(81f, 37f));
+
+
+        new GroundPlatform(this).setPosition(new Vec2(94f,11.5f));
+        new GroundPlatform(this).setPosition(new Vec2(94f, 46.5f));
 
     }
 

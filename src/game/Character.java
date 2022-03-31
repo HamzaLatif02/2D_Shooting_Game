@@ -30,6 +30,7 @@ public class Character extends Walker {
     private int points, health;
     private float speed;
     private String direction;
+    private Boolean changeGravity;
 
 
     public Character (World world) {
@@ -47,6 +48,7 @@ public class Character extends Walker {
         this.health = 100;
         this.direction = "right";
         this.speed = 5;
+        this.changeGravity = Boolean.FALSE;
 
         //setAlwaysOutline(true);
 
@@ -73,6 +75,14 @@ public class Character extends Walker {
     }
 
     public void setSpeed(float speed){this.speed = speed;}
+
+    public Boolean getChangeGravity() {
+        return changeGravity;
+    }
+
+    public void setChangeGravity(Boolean changeGravity) {
+        this.changeGravity = changeGravity;
+    }
 
     // public Shape getHealthBar() {return healthBar;}
     //public Shape getRemainingHealthBar() {return remainingHealthBar;}
