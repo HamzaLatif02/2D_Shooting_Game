@@ -51,6 +51,12 @@ public class CharacterController implements KeyListener, StepListener {
                     character.shoot();
                 }
             }
+        } else if (code == KeyEvent.VK_SPACE){
+            if (character.getWorld() instanceof LevelThree){
+                character.jump(0);
+                character.setGravityScale(-character.getGravityScale());
+            }
+
         }
     }
 
@@ -62,6 +68,8 @@ public class CharacterController implements KeyListener, StepListener {
         } else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) {
             character.stopWalking();
         } else if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
+            character.stopWalking();
+        } else if (code == KeyEvent.VK_SPACE){
             character.stopWalking();
         }
     }

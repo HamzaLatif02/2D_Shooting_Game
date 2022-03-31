@@ -31,6 +31,7 @@ public class Character extends Walker {
     private float speed;
     private String direction;
 
+
     public Character (World world) {
         super(world, characterShape);
 

@@ -12,12 +12,24 @@ public class LevelThree extends GameLevel{
     public LevelThree(){
         super();
 
+        //getCharacter().setGravityScale(-getGravity());
+
         setBackground();
+        placePlatforms();
         placePortal();
+
     }
 
     public void setBackground() {
         this.background = new ImageIcon("data/level3/background3.png").getImage();
+    }
+
+    public void placePlatforms(){
+        new WallPlatform(this).setPosition(new Vec2(-16f, 0f));
+        new GroundPlatform(this).setPosition(new Vec2(0f, -17.5f));
+        new GroundPlatform(this).setPosition(new Vec2(0f, 17.5f));
+        new DoublePlatform(this).setPosition(new Vec2(10,1));
+        new SinglePlatform(this).setPosition(new Vec2(-5,2));
     }
 
     public void placePortal(){
