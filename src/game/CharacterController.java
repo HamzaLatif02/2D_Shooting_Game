@@ -37,40 +37,48 @@ public class CharacterController implements KeyListener, StepListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         // other key commands omitted
-        if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A) {
-            character.startWalking(-character.getSpeed());
-        } else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) {
-            character.startWalking(character.getSpeed());
-        } else if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
-            character.jump(15f);
-        } else if (code == KeyEvent.VK_C || code == KeyEvent.VK_K ){
-            if (character.getWorld() instanceof LevelOne){
-                character.shoot();
-            } else if (character.getWorld() instanceof LevelTwo){
-                if (getTime() % 2 == 0){
+        if (character.isAlive()){
+            if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A) {
+                character.startWalking(-character.getSpeed());
+            } else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) {
+                character.startWalking(character.getSpeed());
+            } else if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
+                if (character.getGravityScale() > 0){
+                    character.jump(15);
+                } else {
+                    character.jump(-15);
+                }
+            } else if (code == KeyEvent.VK_C || code == KeyEvent.VK_K ){
+                if (character.getWorld() instanceof LevelOne){
                     character.shoot();
+                } else if (character.getWorld() instanceof LevelTwo){
+                    if (getTime() % 2 == 0){
+                        character.shoot();
+                    }
+                }
+            } else if (code == KeyEvent.VK_SPACE){
+                if (character.getWorld() instanceof LevelThree){
+                    character.jump(0);
+                    character.setGravityScale(-character.getGravityScale());
                 }
             }
-        } else if (code == KeyEvent.VK_SPACE){
-            if (character.getWorld() instanceof LevelThree){
-                character.jump(0);
-                character.setGravityScale(-character.getGravityScale());
-            }
-
         }
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
-        if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A) {
-            character.stopWalking();
-        } else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) {
-            character.stopWalking();
-        } else if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
-            character.stopWalking();
-        } else if (code == KeyEvent.VK_SPACE){
-            character.stopWalking();
+        if (character.isAlive()){
+            if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A) {
+                character.stopWalking();
+            } else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) {
+                character.stopWalking();
+            } else if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
+                character.stopWalking();
+            } else if (code == KeyEvent.VK_SPACE){
+                character.stopWalking();
+            }
         }
     }
 

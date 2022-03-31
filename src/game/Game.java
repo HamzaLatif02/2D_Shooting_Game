@@ -88,7 +88,6 @@ public class Game {
     }
 
     public void goToNextLevel(){
-
         if (level instanceof LevelOne){
             level.stop();
             level = new LevelTwo();
@@ -101,7 +100,6 @@ public class Game {
             updateLevelElements();
         }
     }
-
     public void updateLevelElements(){
         view.setWorld(level);
         view.updateLevel(level);

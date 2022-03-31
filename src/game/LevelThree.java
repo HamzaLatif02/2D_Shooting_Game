@@ -27,9 +27,19 @@ public class LevelThree extends GameLevel{
     public void placePlatforms(){
         new WallPlatform(this).setPosition(new Vec2(-16f, 0f));
         new GroundPlatform(this).setPosition(new Vec2(0f, -17.5f));
-        new GroundPlatform(this).setPosition(new Vec2(0f, 17.5f));
-        new DoublePlatform(this).setPosition(new Vec2(10,1));
-        new SinglePlatform(this).setPosition(new Vec2(-5,2));
+
+        new DoublePlatform(this, "horizontal").setPosition(new Vec2(30f, -5f));
+        new DoublePlatform(this, "vertical").setPosition(new Vec2(30f, 25f));
+
+        new DoublePlatform(this).setPosition(new Vec2(40f, 25f));
+        new DoublePlatform(this).setPosition(new Vec2(50f, 25f));
+        new DoublePlatform(this).setPosition(new Vec2(60f, 25f));
+        new DoublePlatform(this).setPosition(new Vec2(70f, 25f));
+
+
+        new GroundPlatform(this).setPosition(new Vec2(95f,11.5f));
+        new GroundPlatform(this).setPosition(new Vec2(95f, 46.5f));
+
     }
 
     public void placePortal(){
