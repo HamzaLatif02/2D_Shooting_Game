@@ -93,16 +93,16 @@ public class Game {
             level.stop();
             level = new LevelTwo();
             view.addEnemies(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
-            updateLevel();
+            updateLevelElements();
 
         } else if (level instanceof LevelTwo){
             level.stop();
             level = new LevelThree();
-            updateLevel();
+            updateLevelElements();
         }
     }
 
-    public void updateLevel(){
+    public void updateLevelElements(){
         view.setWorld(level);
         view.updateLevel(level);
         view.updateCharacter(level.getCharacter());

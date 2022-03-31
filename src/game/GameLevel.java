@@ -13,7 +13,6 @@ public abstract class GameLevel extends World {
     private Boolean completed;
 
     public GameLevel(){
-
         character = new Character(this);
         character.setPosition(new Vec2(0f, -8f));
         this.completed = Boolean.FALSE;
