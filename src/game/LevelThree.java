@@ -37,19 +37,49 @@ public class LevelThree extends GameLevel{
         new DoublePlatform(this).setPosition(new Vec2(70f, 25f));
 
         new Portal(this, "gravity", "left").setPosition(new Vec2(77f, 29f));
-        new Portal(this, "gravity", "right").setPosition(new Vec2(99f, 29f));
 
         new SinglePlatform(this).setPosition(new Vec2(81f, 21f));
         new SinglePlatform(this).setPosition(new Vec2(81f, 37f));
 
+        for (int i=0; i<10; i++){
+            new GroundPlatform(this).setPosition(new Vec2(94f + i*35, 11.5f));
+        }
+        for (int i=0; i<10; i++){
+            new GroundPlatform(this).setPosition(new Vec2(94f + i*35, 46.5f));
+        }
 
-        new GroundPlatform(this).setPosition(new Vec2(94f,11.5f));
-        new GroundPlatform(this).setPosition(new Vec2(94f, 46.5f));
+        //ground1
+
+        //ground2
+
+        //ground3
+
+        //ground4
+
+        //ground5
+
+        //ground6
+
+        //ground7
+
+        //ground8
+
+        //ground9
+
+        //ground10
+
+        new SinglePlatform(this).setPosition(new Vec2(422f, 21f));
+        new SinglePlatform(this).setPosition(new Vec2(422f, 37f));
+
+        new Portal(this, "gravity", "right").setPosition(new Vec2(426f, 29f));
+
+        new GroundPlatform(this).setPosition(new Vec2(444f, 11.5f));
+        new WallPlatform(this).setPosition(new Vec2(460f, 19f));
 
     }
 
     public void placePortal(){
-        getPortal().setPosition(new Vec2(1000,1000));
+        getPortal().setPosition(new Vec2(458f,30.5f));
     }
 
     @Override
