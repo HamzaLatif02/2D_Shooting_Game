@@ -12,11 +12,14 @@ public class CharacterController implements KeyListener, StepListener {
 
     //private static final float WALKING_SPEED = 5;
     private Character character;
-    private int time;
+    private int time, delay;
+    private Boolean canShoot;
 
     public CharacterController(Character character) {
         this.character = character;
         this.time = 0;
+        this.delay = 30;
+        this.canShoot = Boolean.FALSE;
         character.getWorld().addStepListener(this);
     }
 
@@ -31,6 +34,10 @@ public class CharacterController implements KeyListener, StepListener {
     public void updateCharacter(Character character) {
         this.character = character;
         character.getWorld().addStepListener(this);
+    }
+
+    public void setCanShoot(Boolean canShoot) {
+        this.canShoot = canShoot;
     }
 
     @Override
@@ -52,7 +59,7 @@ public class CharacterController implements KeyListener, StepListener {
                 if (character.getWorld() instanceof LevelOne){
                     character.shoot();
                 } else if (character.getWorld() instanceof LevelTwo){
-                    if (getTime() % 2 == 0){
+                    if (canShoot == Boolean.TRUE){
                         character.shoot();
                     }
                 }
@@ -92,6 +99,19 @@ public class CharacterController implements KeyListener, StepListener {
 
     @Override
     public void preStep(StepEvent stepEvent) {
+        if (character.getWorld() instanceof LevelTwo){
+            if (time % 2 == 0){
+                setCanShoot(Boolean.TRUE);
+            } else {
+                setCanShoot(Boolean.FALSE);
+            }
+        } else if (character.getWorld() instanceof LevelThree){
+            if (time > delay){
+                setTime(0);
+                character.shoot();
+            }
+        }
+
         setTime(getTime() + 1);
     }
 

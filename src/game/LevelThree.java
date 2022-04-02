@@ -28,6 +28,8 @@ public class LevelThree extends GameLevel{
         new WallPlatform(this).setPosition(new Vec2(-16f, 0f));
         new GroundPlatform(this).setPosition(new Vec2(0f, -17.5f));
 
+        //new BombThrower(this).setPosition(new Vec2(13f, -8f));
+
         new DoublePlatform(this, "horizontal").setPosition(new Vec2(30f, -5f));
         new DoublePlatform(this, "vertical").setPosition(new Vec2(30f, 25f));
 
