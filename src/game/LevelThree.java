@@ -48,25 +48,76 @@ public class LevelThree extends GameLevel{
             new GroundPlatform(this).setPosition(new Vec2(94f + i*35, 46.5f));
         }
 
-        //ground1
+        //ground1 coordinates 79-109
 
-        //ground2
+        //ground2 coordinates 114-144
 
-        //ground3
+        new SinglePlatform(this, "vertical").setPosition(new Vec2(117f, 35f));
+        //new SinglePlatform(this, "vertical").setPosition(new Vec2(123f, 36f));
+        new SinglePlatform(this, "vertical").setPosition(new Vec2(129f, 35f));
+        //new SinglePlatform(this, "vertical").setPosition(new Vec2(135f, 36f));
+        new SinglePlatform(this, "vertical").setPosition(new Vec2(141f, 35f));
 
-        //ground4
+        //ground3 coordinates 149-179
 
-        //ground5
+        new SinglePlatform(this).setPosition(new Vec2(152f, 37f));
+        new SinglePlatform(this).setPosition(new Vec2(152f, 33f));
+        new SinglePlatform(this).setPosition(new Vec2(152f, 29f));
 
-        //ground6
+        new SinglePlatform(this).setPosition(new Vec2(164f, 21f));
+        new SinglePlatform(this).setPosition(new Vec2(164f, 25f));
+        new SinglePlatform(this).setPosition(new Vec2(164f, 29f));
 
-        //ground7
+        new SinglePlatform(this).setPosition(new Vec2(176f, 37f));
+        new SinglePlatform(this).setPosition(new Vec2(176f, 33f));
+        new SinglePlatform(this).setPosition(new Vec2(176f, 29f));
 
-        //ground8
+        //ground4 coordinates 184-214
 
-        //ground9
+        new DoublePlatform(this).setPosition(new Vec2(190f, 32f));
+        new DoublePlatform(this).setPosition(new Vec2(208f, 26f));
 
-        //ground10
+        //ground5 coordinates 219-249
+
+        //ground6 coordinates 254-284
+
+        new DoublePlatform(this).setPosition(new Vec2(260f, 26f));
+        new DoublePlatform(this).setPosition(new Vec2(278f, 32f));
+
+        //ground7 coordinates 289-319
+
+        new SinglePlatform(this).setPosition(new Vec2(292f, 21f));
+        new SinglePlatform(this).setPosition(new Vec2(292f, 25f));
+        new SinglePlatform(this).setPosition(new Vec2(292f, 29f));
+
+        new SinglePlatform(this).setPosition(new Vec2(304f, 37f));
+        new SinglePlatform(this).setPosition(new Vec2(304f, 33f));
+        new SinglePlatform(this).setPosition(new Vec2(304f, 29f));
+
+        new SinglePlatform(this).setPosition(new Vec2(316f, 21f));
+        new SinglePlatform(this).setPosition(new Vec2(316f, 25f));
+        new SinglePlatform(this).setPosition(new Vec2(316f, 29f));
+
+        //ground8 coordinates 324-354
+
+        new SinglePlatform(this).setPosition(new Vec2(327f, 37f));
+        new SinglePlatform(this).setPosition(new Vec2(327f, 29f));
+
+        new SinglePlatform(this).setPosition(new Vec2(339f, 21f));
+        new SinglePlatform(this).setPosition(new Vec2(339f, 29f));
+
+        new SinglePlatform(this).setPosition(new Vec2(351f, 37f));
+        new SinglePlatform(this).setPosition(new Vec2(351f, 29f));
+
+        //ground9 coordinates 359-389
+
+        new SinglePlatform(this, "vertical").setPosition(new Vec2(362f, 35f));
+        new SinglePlatform(this, "vertical").setPosition(new Vec2(374f, 35f));
+        new SinglePlatform(this, "vertical").setPosition(new Vec2(386f, 35f));
+
+        //ground10 coordinates 394-424
+
+        //
 
         new SinglePlatform(this).setPosition(new Vec2(422f, 21f));
         new SinglePlatform(this).setPosition(new Vec2(422f, 37f));
