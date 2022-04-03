@@ -22,6 +22,7 @@ public class LevelThree extends GameLevel implements StepListener {
         placePortal();
         placeBombThrowers();
         placeCoins();
+        placeMinusCoins();
         addStepListener(this);
 
     }
@@ -65,9 +66,7 @@ public class LevelThree extends GameLevel implements StepListener {
         //ground2 coordinates 114-144
 
         new SinglePlatform(this, "vertical").setPosition(new Vec2(117f, 35f));
-        //new SinglePlatform(this, "vertical").setPosition(new Vec2(123f, 36f));
         new SinglePlatform(this, "vertical").setPosition(new Vec2(129f, 35f));
-        //new SinglePlatform(this, "vertical").setPosition(new Vec2(135f, 36f));
         new SinglePlatform(this, "vertical").setPosition(new Vec2(141f, 35f));
 
         //ground3 coordinates 149-179
@@ -251,6 +250,32 @@ public class LevelThree extends GameLevel implements StepListener {
             for (int j=0; j<5; j++){
                 new Coin(this, "single").setPosition(new Vec2(401+j*4, 29+(i*4)));
             }
+        }
+    }
+
+    public void placeMinusCoins(){
+        //ground1
+        for (int i=0; i<2; i++){
+            new MinusCoin(this).setPosition(new Vec2(105f, 21+i*16));
+        }
+
+        //ground2
+        for (int i=0; i<2; i++){
+            for (int j=0; j<2; j++){
+                new MinusCoin(this).setPosition(new Vec2(115f + j*28, 21+i*16));
+            }
+        }
+
+        //ground9
+        for (int i=0; i<2; i++){
+            for (int j=0; j<2; j++){
+                new MinusCoin(this).setPosition(new Vec2(360f + j*28, 21+i*16));
+            }
+        }
+
+        //ground10
+        for (int i=0; i<2; i++){
+            new MinusCoin(this).setPosition(new Vec2(398f, 21+i*16));
         }
     }
 
