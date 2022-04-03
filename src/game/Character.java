@@ -31,6 +31,7 @@ public class Character extends Walker {
     private float speed;
     private String direction;
     private Boolean changeGravity;
+    private int enemiesKilled;
 
 
     public Character (World world) {
@@ -49,6 +50,7 @@ public class Character extends Walker {
         this.direction = "right";
         this.speed = 5;
         this.changeGravity = Boolean.FALSE;
+        this.enemiesKilled = 0;
 
         //setAlwaysOutline(true);
 
@@ -82,6 +84,14 @@ public class Character extends Walker {
 
     public void setChangeGravity(Boolean changeGravity) {
         this.changeGravity = changeGravity;
+    }
+
+    public int getEnemiesKilled() {
+        return enemiesKilled;
+    }
+
+    public void setEnemiesKilled(int enemiesKilled) {
+        this.enemiesKilled = enemiesKilled;
     }
 
     // public Shape getHealthBar() {return healthBar;}
@@ -209,7 +219,7 @@ public class Character extends Walker {
     }
 
     public Boolean isAlive(){
-        if (health <= 0 || this.getPosition().y < -25){
+        if (health <= 0 || this.getPosition().y < -25 || (getWorld() instanceof LevelThree && this.getPosition().y > 54)){
             this.destroy();
             return Boolean.FALSE;
         }

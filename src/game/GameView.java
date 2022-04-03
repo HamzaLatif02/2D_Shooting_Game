@@ -16,7 +16,7 @@ public class GameView extends UserView {
     private GameLevel level;
     private Mummy[] mummy;
     private MummyBoss mummyBoss;
-    private Bomb bomb;
+    private BombThrower[] bombThrowers;
 
     public GameView(GameLevel l, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
         super (l,width,height);
@@ -29,6 +29,10 @@ public class GameView extends UserView {
     public void addEnemies(Mummy[] m, MummyBoss mb){
         mummy = m;
         mummyBoss = mb;
+    }
+
+    public void addEnemies(BombThrower[] bt){
+        bombThrowers = bt;
     }
 
 
@@ -54,9 +58,20 @@ public class GameView extends UserView {
         g.drawString("Move: Arrows or WASD", 350, 65);
         g.drawString("Shoot: C or K", 350, 80);
 
+        if (level instanceof LevelThree && character.getChangeGravity()){
+            g.drawString("Gravity: Spacebar", 350, 95);
+        }
+
         g.drawString("To Win", 600, 50);
         g.drawString("Collect min 45 coins AND", 600, 65);
-        g.drawString("Defeat the final boss", 600, 80);
+
+        if (level instanceof LevelOne || level instanceof LevelTwo){
+            g.drawString("Defeat the final boss", 600, 80);
+        } else if (level instanceof LevelThree){
+            g.drawString("Defeat all enemies", 600, 80);
+        }
+
+
 
         g.drawString("Health:" , 100,50);
         g.drawRect(150,40,100, 10);
@@ -64,6 +79,8 @@ public class GameView extends UserView {
             g.setColor(new Color(73,152,183));
         } else if (level instanceof LevelTwo){
             g.setColor(new Color(88,219,109));
+        } else if (level instanceof LevelThree){
+            g.setColor(new Color(246,216,172));
         }
 
         g.fillRect(150,40,character.getHealth(),10);
@@ -74,6 +91,11 @@ public class GameView extends UserView {
             g.drawRect(150, 60, 60, 10);
             g.setColor(new Color(181,247,189));
             g.fillRect(150,60, (int) (character.getSpeed()*10f),10);
+        }
+
+        if (level instanceof LevelThree){
+            g.setColor(Color.black);
+            g.drawString("Enemies killed: " + character.getEnemiesKilled() + "/10", 20, 70);
         }
 
         if (level instanceof LevelOne){
@@ -109,6 +131,15 @@ public class GameView extends UserView {
                 g.setColor(new Color(0,255,176));
                 g.fillRect(Math.round(this.worldToView(mummyBoss.getPosition()).x-100),Math.round(this.worldToView(mummyBoss.getPosition()).y-110), Math.round(mummyBoss.getHealth()/2), 5);
             }
+        } else if (level instanceof LevelThree){
+            for (BombThrower bombThrower : bombThrowers){
+                if (bombThrower.isAlive()){
+                    g.setColor(Color.black);
+                    g.drawRect(Math.round(this.worldToView(bombThrower.getPosition()).x-25),Math.round(this.worldToView(bombThrower.getPosition()).y-50),50, 5);
+                    g.setColor(new Color(79,193,179));
+                    g.fillRect(Math.round(this.worldToView(bombThrower.getPosition()).x-25),Math.round(this.worldToView(bombThrower.getPosition()).y-50), Math.round(bombThrower.getHealth()), 5);
+                }
+            }
         }
 
 
@@ -121,14 +152,20 @@ public class GameView extends UserView {
             g.drawString("YOU LOST", 200,400);
         }
 
-        /*if (level.objectivesDone()){
+        if (level.objectivesDone() && (level instanceof LevelOne || level instanceof LevelTwo)){
             g.setFont(new Font("Arial", Font.BOLD, 40));
             g.setColor(Color.black);
             g.drawString("LEVEL COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-150), Math.round(this.worldToView(level.getPortal().getPosition()).y+200));
             g.setFont(new Font("Arial", Font.BOLD, 40));
             g.setColor(new Color(73,152,183));
             g.drawString("LEVEL COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-148),Math.round(this.worldToView(level.getPortal().getPosition()).y+198));
-
-        }*/
+        } else if (level.objectivesDone() && level instanceof LevelThree){
+            g.setFont(new Font("Arial", Font.BOLD, 40));
+            g.setColor(Color.black);
+            g.drawString("GAME COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-150), Math.round(this.worldToView(level.getPortal().getPosition()).y+200));
+            g.setFont(new Font("Arial", Font.BOLD, 40));
+            g.setColor(new Color(73,152,183));
+            g.drawString("GAME COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-148),Math.round(this.worldToView(level.getPortal().getPosition()).y+198));
+        }
     }
 }

@@ -21,7 +21,7 @@ public class Bomb extends DynamicBody implements StepListener{
         this.addImage(image);
         this.time = 0;
         this.timer = 180;
-        this.damage = 15;
+        this.damage = 5;
         this.exploded = Boolean.FALSE;
         getWorld().addStepListener(this);
         //setAlwaysOutline(true);

@@ -12,13 +12,16 @@ public class BombThrower extends Walker implements StepListener {
     private int time;
     private Bomb bomb;
     private GameLevel level;
+    private Boolean killAdded;
 
     public BombThrower(World w) {
         super(w, bombThrowerShape);
         level = (GameLevel)w;
         addImage(imageLeft);
-        this.health = 100;
+        this.health = 50;
+        this.killAdded = Boolean.FALSE;
         getWorld().addStepListener(this);
+
     }
 
     public int getHealth() {
@@ -29,8 +32,17 @@ public class BombThrower extends Walker implements StepListener {
         this.health = health;
     }
 
+    public Boolean getKillAdded() {
+        return killAdded;
+    }
+
+    public void setKillAdded(Boolean killAdded) {
+        this.killAdded = killAdded;
+    }
+
     public boolean isAlive(){
         if (health <= 0 || this.getPosition().y < -25){
+            //this.killAdded = Boolean.TRUE;
             this.destroy();
             return Boolean.FALSE;
         } else return Boolean.TRUE;
@@ -47,7 +59,7 @@ public class BombThrower extends Walker implements StepListener {
 
     @Override
     public void preStep(StepEvent stepEvent) {
-        if (isAlive() == Boolean.TRUE){
+        if (this.isAlive() == Boolean.TRUE){
             if (this.getPosition().x - level.getCharacter().getPosition().x < 20){
                 if (time % 120 == 0){
                     shoot();

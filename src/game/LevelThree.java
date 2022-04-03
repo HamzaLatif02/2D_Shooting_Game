@@ -1,13 +1,16 @@
 package game;
 
+import city.cs.engine.StepEvent;
+import city.cs.engine.StepListener;
 import org.jbox2d.common.Vec2;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class LevelThree extends GameLevel{
+public class LevelThree extends GameLevel implements StepListener {
 
     private Image background;
+    private BombThrower[] bombThrowers = new BombThrower[10];
 
     public LevelThree(){
         super();
@@ -18,11 +21,16 @@ public class LevelThree extends GameLevel{
         placePlatforms();
         placePortal();
         placeBombThrowers();
+        addStepListener(this);
 
     }
 
     public void setBackground() {
         this.background = new ImageIcon("data/level3/background3.png").getImage();
+    }
+
+    public BombThrower[] getBombThrowers() {
+        return bombThrowers;
     }
 
     public void placePlatforms(){
@@ -50,6 +58,8 @@ public class LevelThree extends GameLevel{
         }
 
         //ground1 coordinates 79-109
+
+        new SinglePlatform(this).setPosition(new Vec2(107f, 25f));
 
         //ground2 coordinates 114-144
 
@@ -132,14 +142,22 @@ public class LevelThree extends GameLevel{
 
     public void placeBombThrowers(){
 
-        new BombThrower(this).setPosition(new Vec2(50f,29f));
-        new BombThrower(this).setPosition(new Vec2(70f, 29f));
+        for (int i=0; i<10; i++){
+            bombThrowers[i] = new BombThrower(this);
+        }
 
-        new BombThrower(this).setPosition(new Vec2(190f,36f));
-        new BombThrower(this).setPosition(new Vec2(208f,30f));
+        bombThrowers[0].setPosition(new Vec2(30f, 29f));
+        bombThrowers[1].setPosition(new Vec2(50f, 29f));
+        bombThrowers[2].setPosition(new Vec2(70f, 29f));
+        bombThrowers[3].setPosition(new Vec2(107f, 29f));
+        bombThrowers[4].setPosition(new Vec2(190f, 36f));
+        bombThrowers[5].setPosition(new Vec2(208f, 30f));
+        bombThrowers[6].setPosition(new Vec2(260f, 30f));
+        bombThrowers[7].setPosition(new Vec2(278f, 36f));
+        bombThrowers[8].setPosition(new Vec2(339f, 25f));
+        bombThrowers[9].setPosition(new Vec2(351f, 33f));
 
-        new BombThrower(this).setPosition(new Vec2(260f, 30f));
-        new BombThrower(this).setPosition(new Vec2(278f, 36f));
+
     }
 
     public void placePortal(){
@@ -148,11 +166,31 @@ public class LevelThree extends GameLevel{
 
     @Override
     public Boolean objectivesDone() {
+        if (getCharacter().getPoints() > 45 && getCharacter().getEnemiesKilled() == 10){
+            return Boolean.TRUE;
+        }
         return Boolean.FALSE;
     }
 
     @Override
     public Image getBackground() {
         return background;
+    }
+
+    @Override
+    public void preStep(StepEvent stepEvent) {
+        for (BombThrower bombThrower : bombThrowers){
+            if (!bombThrower.isAlive() && !bombThrower.getKillAdded()){
+                getCharacter().setEnemiesKilled(getCharacter().getEnemiesKilled()+1);
+                bombThrower.setKillAdded(Boolean.TRUE);
+            } /*else if (!bombThrower.isAlive() && bombThrower.getKillAdded()){
+
+            }*/
+        }
+    }
+
+    @Override
+    public void postStep(StepEvent stepEvent) {
+
     }
 }

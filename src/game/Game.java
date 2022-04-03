@@ -97,6 +97,7 @@ public class Game {
         } else if (level instanceof LevelTwo){
             level.stop();
             level = new LevelThree();
+            view.addEnemies(((LevelThree)level).getBombThrowers());
             updateLevelElements();
         }
     }
