@@ -21,6 +21,7 @@ public class LevelThree extends GameLevel implements StepListener {
         placePlatforms();
         placePortal();
         placeBombThrowers();
+        placeCoins();
         addStepListener(this);
 
     }
@@ -157,7 +158,100 @@ public class LevelThree extends GameLevel implements StepListener {
         bombThrowers[8].setPosition(new Vec2(339f, 25f));
         bombThrowers[9].setPosition(new Vec2(351f, 33f));
 
+    }
 
+    public void placeCoins(){
+        for (int i=0; i<3; i++){
+            new Coin(this, "single").setPosition(new Vec2(6+i*4, -8f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(22+i*4, -1f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(28+i*4, 11f));
+        }
+
+        for (int i=0; i<4; i++){
+            for (int j=0; j<2; j++){
+                new Coin(this, "single").setPosition(new Vec2(38+(j*4)+(i*10), 29f));
+            }
+        }
+
+        //ground1
+        for (int i=0; i<2; i++){
+            for (int j=0; j<5; j++){
+                new Coin(this, "single").setPosition(new Vec2(86+j*4, 29+(i*4)));
+            }
+        }
+
+        //ground2
+        for (int i=0; i<2; i++){
+            for (int j=0; j<5; j++){
+                new Coin(this, "single").setPosition(new Vec2(121+j*4, 21 + i*16));
+            }
+        }
+
+        //ground3
+        for (int i=0; i<2; i++){
+            for (int j=0; j<5; j++){
+                new Coin(this, "single").setPosition(new Vec2(158+i*12, 21 + j*4));
+            }
+        }
+
+        //ground4
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(188+i*4, 36f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(206+i*4, 30f));
+        }
+
+        //ground5
+        for (int i=0; i<5; i++){
+            for (int j=0; j<7; j++){
+                new Coin(this, "single").setPosition(new Vec2(222+j*4, 21+i*4));
+            }
+        }
+
+        //ground6
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(258+i*4, 30f));
+        }
+
+        for (int i=0; i<2; i++){
+            new Coin(this, "single").setPosition(new Vec2(276+i*4, 36f));
+        }
+
+        //ground7
+        for (int i=0; i<2; i++){
+            for (int j=0; j<5; j++){
+                new Coin(this, "single").setPosition(new Vec2(298+i*12, 21 + j*4));
+            }
+        }
+
+        //ground8
+        for (int i=0; i<2; i++){
+            for (int j=0; j<5; j++){
+                new Coin(this, "single").setPosition(new Vec2(333+i*12, 21 + j*4));
+            }
+        }
+
+        //ground9
+        for (int i=0; i<2; i++){
+            for (int j=0; j<5; j++){
+                new Coin(this, "single").setPosition(new Vec2(366+j*4, 21 + i*16));
+            }
+        }
+
+        //ground10
+        for (int i=0; i<2; i++){
+            for (int j=0; j<5; j++){
+                new Coin(this, "single").setPosition(new Vec2(401+j*4, 29+(i*4)));
+            }
+        }
     }
 
     public void placePortal(){
@@ -166,7 +260,7 @@ public class LevelThree extends GameLevel implements StepListener {
 
     @Override
     public Boolean objectivesDone() {
-        if (getCharacter().getPoints() > 45 && getCharacter().getEnemiesKilled() == 10){
+        if (getCharacter().getPoints() > 120 && getCharacter().getEnemiesKilled() == 10){
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -183,9 +277,7 @@ public class LevelThree extends GameLevel implements StepListener {
             if (!bombThrower.isAlive() && !bombThrower.getKillAdded()){
                 getCharacter().setEnemiesKilled(getCharacter().getEnemiesKilled()+1);
                 bombThrower.setKillAdded(Boolean.TRUE);
-            } /*else if (!bombThrower.isAlive() && bombThrower.getKillAdded()){
-
-            }*/
+            }
         }
     }
 

@@ -18,7 +18,7 @@ public class CharacterController implements KeyListener, StepListener {
     public CharacterController(Character character) {
         this.character = character;
         this.time = 0;
-        this.delay = 60;
+        this.delay = 30;
         this.canShoot = Boolean.FALSE;
         character.getWorld().addStepListener(this);
     }

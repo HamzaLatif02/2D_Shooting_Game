@@ -99,8 +99,11 @@ public class Game {
             level = new LevelThree();
             view.addEnemies(((LevelThree)level).getBombThrowers());
             updateLevelElements();
+        } else if (level instanceof LevelThree){
+            level.stop();
         }
     }
+
     public void updateLevelElements(){
         view.setWorld(level);
         view.updateLevel(level);
@@ -112,7 +115,6 @@ public class Game {
         level.getCharacter().setSpeed(6);
         level.start();
     }
-
 
     /** Run the game. */
     public static void main(String[] args) {
