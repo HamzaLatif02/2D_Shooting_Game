@@ -15,14 +15,14 @@ public class LevelThree extends GameLevel implements StepListener {
     public LevelThree(){
         super();
 
-        //getCharacter().setGravityScale(-getGravity());
-
         setBackground();
         placePlatforms();
         placePortal();
         placeBombThrowers();
         placeCoins();
         placeMinusCoins();
+        placeExplosivesMines();
+        placeHealthPotions();
         addStepListener(this);
 
     }
@@ -277,6 +277,21 @@ public class LevelThree extends GameLevel implements StepListener {
         for (int i=0; i<2; i++){
             new MinusCoin(this).setPosition(new Vec2(398f, 21+i*16));
         }
+    }
+
+    public void placeExplosivesMines(){
+        new ExplosiveMine(this).setPosition(new Vec2(60f, 35f));
+
+        for (int i=0; i<10; i++){
+            new ExplosiveMine(this).setPosition(new Vec2(111.5f + i*35f, 29f));
+        }
+
+        new ExplosiveMine(this).setPosition(new Vec2(164f, 33f));
+        new ExplosiveMine(this).setPosition(new Vec2(304f, 25f));
+    }
+
+    public void placeHealthPotions(){
+        new HealthPotion(this, "positive").setPosition(new Vec2(199f, 29f));
     }
 
     public void placePortal(){
