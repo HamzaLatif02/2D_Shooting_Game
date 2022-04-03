@@ -49,7 +49,6 @@ public class BombThrower extends Walker implements StepListener {
     public void preStep(StepEvent stepEvent) {
         if (isAlive() == Boolean.TRUE){
             if (this.getPosition().x - level.getCharacter().getPosition().x < 20){
-                System.out.println("yes");
                 if (time % 120 == 0){
                     shoot();
                 }
