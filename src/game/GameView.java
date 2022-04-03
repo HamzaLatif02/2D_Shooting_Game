@@ -16,6 +16,7 @@ public class GameView extends UserView {
     private GameLevel level;
     private Mummy[] mummy;
     private MummyBoss mummyBoss;
+    private Bomb bomb;
 
     public GameView(GameLevel l, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
         super (l,width,height);
@@ -29,6 +30,7 @@ public class GameView extends UserView {
         mummy = m;
         mummyBoss = mb;
     }
+
 
     public void updateCharacter(Character character){
         this.character = character;

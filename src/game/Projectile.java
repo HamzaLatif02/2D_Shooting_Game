@@ -17,19 +17,20 @@ public class Projectile extends DynamicBody implements StepListener {
 
         if (w instanceof LevelOne ){
             this.addImage(image);
+            this.damage =5;
         } else if (w instanceof LevelTwo){
             this.addImage(image2);
             this.setGravityScale(0);
             getWorld().addStepListener(this);
             this.time =0;
+            this.damage =5;
         } else if (w instanceof LevelThree){
             this.addImage(image3);
             this.setGravityScale(0);
             getWorld().addStepListener(this);
             this.time =0;
+            this.damage =10;
         }
-
-        this.damage = 5;
     }
 
     public void setDamage(int damage){this.damage = damage;}

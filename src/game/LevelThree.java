@@ -17,6 +17,7 @@ public class LevelThree extends GameLevel{
         setBackground();
         placePlatforms();
         placePortal();
+        placeBombThrowers();
 
     }
 
@@ -27,8 +28,6 @@ public class LevelThree extends GameLevel{
     public void placePlatforms(){
         new WallPlatform(this).setPosition(new Vec2(-16f, 0f));
         new GroundPlatform(this).setPosition(new Vec2(0f, -17.5f));
-
-        //new BombThrower(this).setPosition(new Vec2(13f, -8f));
 
         new DoublePlatform(this, "horizontal").setPosition(new Vec2(30f, -5f));
         new DoublePlatform(this, "vertical").setPosition(new Vec2(30f, 25f));
@@ -129,6 +128,18 @@ public class LevelThree extends GameLevel{
         new GroundPlatform(this).setPosition(new Vec2(444f, 11.5f));
         new WallPlatform(this).setPosition(new Vec2(460f, 19f));
 
+    }
+
+    public void placeBombThrowers(){
+
+        new BombThrower(this).setPosition(new Vec2(50f,29f));
+        new BombThrower(this).setPosition(new Vec2(70f, 29f));
+
+        new BombThrower(this).setPosition(new Vec2(190f,36f));
+        new BombThrower(this).setPosition(new Vec2(208f,30f));
+
+        new BombThrower(this).setPosition(new Vec2(260f, 30f));
+        new BombThrower(this).setPosition(new Vec2(278f, 36f));
     }
 
     public void placePortal(){

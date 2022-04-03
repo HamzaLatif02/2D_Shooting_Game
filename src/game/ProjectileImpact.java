@@ -27,6 +27,8 @@ public class ProjectileImpact implements CollisionListener {
         } else if (e.getOtherBody() instanceof MummyBoss){
             ((MummyBoss) e.getOtherBody()).setHealth(((MummyBoss) e.getOtherBody()).getHealth() - projectile.getDamage());
             ((MummyBoss) e.getOtherBody()).isAlive();
+        } else if (e.getOtherBody() instanceof BombThrower){
+            ((BombThrower) e.getOtherBody()).setHealth(((BombThrower) e.getOtherBody()).getHealth() - projectile.getDamage());
         }
         e.getReportingBody().destroy();
     }
