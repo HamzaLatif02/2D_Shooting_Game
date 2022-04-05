@@ -10,6 +10,7 @@ import java.awt.*;
 
 public class GameView extends UserView {
 
+    private Game game;
     private Character character;
     private Ninja[] ninja;
     private NinjaBoss ninjaBoss;
@@ -18,8 +19,10 @@ public class GameView extends UserView {
     private MummyBoss mummyBoss;
     private BombThrower[] bombThrowers;
 
-    public GameView(GameLevel l, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
+
+    public GameView(Game g, GameLevel l, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
         super (l,width,height);
+        game = g;
         ninja = n;
         character = c;
         ninjaBoss = nb;

@@ -4,7 +4,7 @@ import city.cs.engine.*;
 import city.cs.engine.Shape;
 import org.jbox2d.common.Vec2;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import java.awt.*;
 import java.io.IOException;
@@ -19,19 +19,31 @@ public class Game {
     private GameLevel level;
     private GameView view;
     private CharacterController characterController;
+    private final JFrame frame;
+    private MainMenu mainMenu;
+    private SettingMenu settingMenu;
+    private Boolean menuVisible;
 
 
     /** Initialise a new Game. */
     public Game() {
 
+        menuVisible = Boolean.FALSE;
+
+
+        frame = new JFrame("City Game");
+        mainMenu = new MainMenu(this);
+        settingMenu = new SettingMenu(this);
+
 
         level = new LevelOne();
-        view = new GameView(level, 800,800, level.getCharacter(), ((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
+        view = new GameView(this, level, 800,800, level.getCharacter(), ((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
 
         //1. make an empty game world
         //GameWorld world = new GameWorld();
 
-        characterController = new CharacterController(level.getCharacter());
+
+        characterController = new CharacterController(this, level.getCharacter());
 
         //3. make a view to look into the game world
         //GameView view = new GameView(world, 800, 800, world.getCharacter(), world.getNinja(), world.getNinjaBoss());
@@ -42,12 +54,14 @@ public class Game {
 
         level.addStepListener(new Tracker(view, level.getCharacter(), level));
 
+
         //optional: draw a 1-metre grid over the view
         //view.setGridResolution(1);
 
         //4. create a Java window (frame) and add the game
         //   view to it
-        final JFrame frame = new JFrame("City Game");
+        //final JFrame frame = new JFrame("City Game");
+
         frame.add(view);
 
         // enable the frame to quit the application
@@ -67,24 +81,31 @@ public class Game {
         // start our game world simulation!
         level.start();
 
-        while (level.isRunning()){
+
+        checkLevelCompletition();
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public MainMenu getMainMenu() {
+        return mainMenu;
+    }
+
+    public GameView getView() {
+        return view;
+    }
+
+    public void checkLevelCompletition(){
+        while (this.level.isRunning()){
             /*if (level.getCompleted()){
                 goToNextLevel();
             }*/
-            if (level.objectivesDone()){
+            if (this.level.objectivesDone()){
                 goToNextLevel();
             }
         }
-
-        /*while (world.isRunning()){
-            if (world.getCharacter().checkLife() == Boolean.FALSE){
-                world.oneStep();
-                world.stop();
-            } else if (world.getCharacter().getPoints() > 44 && world.getNinjaBoss().isAlive() == Boolean.FALSE){
-                world.oneStep();
-                world.stop();
-            }
-        }*/
     }
 
     public void goToNextLevel(){
@@ -116,9 +137,35 @@ public class Game {
         level.start();
     }
 
+    public void toggleMenu(){
+        if (menuVisible){
+            frame.remove(mainMenu.getMainPanel());
+            menuVisible = Boolean.FALSE;
+            frame.pack();
+            level.start();
+
+        } else {
+            frame.add(mainMenu.getMainPanel(), BorderLayout.WEST);
+            menuVisible = Boolean.TRUE;
+            frame.pack();
+            level.stop();
+        }
+    }
+
+    public void transitionToSettings(){
+        frame.remove(mainMenu.getMainPanel());
+        frame.add(settingMenu.getMainPanel(), BorderLayout.WEST);
+        frame.pack();
+    }
+
+    public void transitionToMainMenu(){
+        frame.remove(settingMenu.getMainPanel());
+        frame.add(mainMenu.getMainPanel(), BorderLayout.WEST);
+        frame.pack();
+    }
+
     /** Run the game. */
     public static void main(String[] args) {
-
         new Game();
     }
 }

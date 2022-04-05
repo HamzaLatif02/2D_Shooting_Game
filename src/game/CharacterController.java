@@ -14,12 +14,14 @@ public class CharacterController implements KeyListener, StepListener {
     private Character character;
     private int time, delay;
     private Boolean canShoot;
+    private Game game;
 
-    public CharacterController(Character character) {
+    public CharacterController(Game game, Character character) {
         this.character = character;
         this.time = 0;
         this.delay = 30;
         this.canShoot = Boolean.FALSE;
+        this.game = game;
         character.getWorld().addStepListener(this);
     }
 
@@ -70,6 +72,8 @@ public class CharacterController implements KeyListener, StepListener {
                         character.setGravityScale(-character.getGravityScale());
                     }
                 }
+            } else if (code == KeyEvent.VK_ESCAPE){
+                game.toggleMenu();
             }
         }
 
