@@ -1,15 +1,8 @@
 package game;
 
-import city.cs.engine.*;
-import city.cs.engine.Shape;
-import org.jbox2d.common.Vec2;
-
 import javax.swing.*;
 
 import java.awt.*;
-import java.io.IOException;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * Your main game entry point
@@ -21,19 +14,23 @@ public class Game {
     private CharacterController characterController;
     private final JFrame frame;
     private MainMenu mainMenu;
+    private InGameMenu inGameMenu;
     private SettingMenu settingMenu;
-    private Boolean menuVisible;
+    private Boolean menuVisible, mainMenuVisible;
 
 
     /** Initialise a new Game. */
     public Game() {
 
+        mainMenuVisible = Boolean.TRUE;
         menuVisible = Boolean.FALSE;
 
 
         frame = new JFrame("City Game");
         mainMenu = new MainMenu(this);
+        inGameMenu = new InGameMenu(this);
         settingMenu = new SettingMenu(this);
+
 
 
         level = new LevelOne();
@@ -62,7 +59,10 @@ public class Game {
         //   view to it
         //final JFrame frame = new JFrame("City Game");
 
-        frame.add(view);
+        if (mainMenuVisible){
+            frame.add(mainMenu.getMainPanel());
+        }
+        //frame.add(view);
 
         // enable the frame to quit the application
         // when the x button is pressed
@@ -89,8 +89,8 @@ public class Game {
         return frame;
     }
 
-    public MainMenu getMainMenu() {
-        return mainMenu;
+    public InGameMenu getMainMenu() {
+        return inGameMenu;
     }
 
     public GameView getView() {
@@ -139,30 +139,52 @@ public class Game {
 
     public void toggleMenu(){
         if (menuVisible){
-            frame.remove(mainMenu.getMainPanel());
+            frame.remove(inGameMenu.getMainPanel());
             menuVisible = Boolean.FALSE;
             frame.pack();
             level.start();
 
         } else {
-            frame.add(mainMenu.getMainPanel(), BorderLayout.WEST);
+            frame.add(inGameMenu.getMainPanel(), BorderLayout.WEST);
             menuVisible = Boolean.TRUE;
             frame.pack();
             level.stop();
         }
     }
 
-    public void transitionToSettings(){
+    public void transitionToSettings(String menu){
+        if (menu.equals("main")){
+            frame.remove(mainMenu.getMainPanel());
+            frame.add(settingMenu.getMainPanel());
+            frame.pack();
+        } else if (menu.equals("ingame")){
+            frame.remove(inGameMenu.getMainPanel());
+            frame.add(settingMenu.getMainPanel(), BorderLayout.WEST);
+            frame.pack();
+        }
+
+    }
+
+    public void transitionToInGameMenu(){
+        if (mainMenuVisible){
+            frame.remove(settingMenu.getMainPanel());
+            frame.add(mainMenu.getMainPanel());
+            frame.pack();
+        } else {
+            frame.remove(settingMenu.getMainPanel());
+            frame.add(inGameMenu.getMainPanel(), BorderLayout.WEST);
+            frame.pack();
+        }
+
+    }
+
+    public void startNewGame(){
+        mainMenuVisible = Boolean.FALSE;
         frame.remove(mainMenu.getMainPanel());
-        frame.add(settingMenu.getMainPanel(), BorderLayout.WEST);
+        frame.add(view);
         frame.pack();
     }
 
-    public void transitionToMainMenu(){
-        frame.remove(settingMenu.getMainPanel());
-        frame.add(mainMenu.getMainPanel(), BorderLayout.WEST);
-        frame.pack();
-    }
 
     /** Run the game. */
     public static void main(String[] args) {

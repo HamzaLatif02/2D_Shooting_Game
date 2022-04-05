@@ -4,25 +4,26 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMenu {
+public class InGameMenu {
     private JPanel mainPanel;
-    private JButton exitButton;
+    private JButton continueButton;
     private JButton settingsButton;
-    private JButton newgameButton;
-    private JButton loadgameButton;
+    private JButton exitButton;
+    private JButton saveButton;
 
     private Game game;
 
-    public MainMenu(Game game){
+    public InGameMenu(Game game){
+        this.game = game;
 
-        newgameButton.addActionListener(new ActionListener() {
+        continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                game.startNewGame();
+                game.toggleMenu();
             }
         });
 
-        loadgameButton.addActionListener(new ActionListener() {
+        saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -32,7 +33,7 @@ public class MainMenu {
         settingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                game.transitionToSettings("main");
+                game.transitionToSettings("ingame");
             }
         });
 
@@ -43,11 +44,9 @@ public class MainMenu {
             }
         });
 
-
-
     }
 
-    public JPanel getMainPanel() {
+    public JPanel getMainPanel(){
         return mainPanel;
     }
 }
