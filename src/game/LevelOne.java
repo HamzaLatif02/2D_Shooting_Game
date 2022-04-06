@@ -1,15 +1,20 @@
 package game;
 
+import city.cs.engine.SoundClip;
 import org.jbox2d.common.Vec2;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class LevelOne extends GameLevel{
 
     private Ninja[] ninjas = new Ninja[10];
     private NinjaBoss ninjaBoss;
     private Image background;
+    private static SoundClip bgMusic;
 
     public LevelOne(){
         super();
@@ -24,6 +29,14 @@ public class LevelOne extends GameLevel{
         placeSpeedPotion();
         placePortal();
 
+    }
+
+    static {
+        try {
+            bgMusic = new SoundClip("data/bgm2.wav");
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            System.out.println(e);
+        }
     }
 
 
@@ -215,5 +228,10 @@ public class LevelOne extends GameLevel{
     @Override
     public String getLevelName() {
         return "LevelOne";
+    }
+
+    @Override
+    public void startBackgroundMusic() {
+        bgMusic.loop();
     }
 }

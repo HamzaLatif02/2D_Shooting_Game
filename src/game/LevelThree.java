@@ -317,6 +317,11 @@ public class LevelThree extends GameLevel implements StepListener {
     }
 
     @Override
+    public void startBackgroundMusic() {
+
+    }
+
+    @Override
     public void preStep(StepEvent stepEvent) {
         for (BombThrower bombThrower : bombThrowers){
             if (!bombThrower.isAlive() && !bombThrower.getKillAdded()){

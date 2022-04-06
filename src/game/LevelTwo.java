@@ -239,4 +239,9 @@ public class LevelTwo extends GameLevel{
     public String getLevelName() {
         return "LevelTwo";
     }
+
+    @Override
+    public void startBackgroundMusic() {
+
+    }
 }

@@ -1,5 +1,6 @@
 package game;
 
+import city.cs.engine.SoundClip;
 import city.cs.engine.World;
 import org.jbox2d.common.Vec2;
 
@@ -43,5 +44,7 @@ public abstract class GameLevel extends World {
     public abstract Image getBackground();
 
     public abstract String getLevelName();
+
+    public abstract void startBackgroundMusic();
 
 }
