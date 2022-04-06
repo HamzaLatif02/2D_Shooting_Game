@@ -1,8 +1,13 @@
 package game;
 
+import city.cs.engine.SoundClip;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * Your main game entry point
@@ -17,6 +22,7 @@ public class Game {
     private InGameMenu inGameMenu;
     private SettingMenu settingMenu;
     private Boolean menuVisible, mainMenuVisible;
+    private SoundClip bgMusic;
 
 
     /** Initialise a new Game. */
@@ -60,6 +66,7 @@ public class Game {
         //final JFrame frame = new JFrame("City Game");
 
         if (mainMenuVisible){
+            playBackgroundMusic();
             frame.add(mainMenu.getMainPanel());
         }
         //frame.add(view);
@@ -99,6 +106,10 @@ public class Game {
 
     public GameLevel getLevel() {
         return level;
+    }
+
+    public SoundClip getBgMusic() {
+        return bgMusic;
     }
 
     public void checkLevelCompletition(){
@@ -187,6 +198,17 @@ public class Game {
         frame.remove(mainMenu.getMainPanel());
         frame.add(view);
         frame.pack();
+    }
+
+    public void playBackgroundMusic(){
+        try {
+            bgMusic = new SoundClip("data/bgm1.wav");   // Open an audio input stream
+            bgMusic.loop();                              // Set it to continous playback (looping)
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            //code in here will deal with any errors
+            //that might occur while loading/playing sound
+            System.out.println(e);
+        }
     }
 
 
