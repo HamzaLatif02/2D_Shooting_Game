@@ -3,6 +3,7 @@ package game;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class InGameMenu {
     private JPanel mainPanel;
@@ -26,7 +27,11 @@ public class InGameMenu {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    new GameSaverLoader().save("data/gamesaved.txt", game.getLevel());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 

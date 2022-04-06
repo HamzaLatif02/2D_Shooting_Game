@@ -42,4 +42,6 @@ public abstract class GameLevel extends World {
 
     public abstract Image getBackground();
 
+    public abstract String getLevelName();
+
 }

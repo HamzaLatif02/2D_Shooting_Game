@@ -312,6 +312,11 @@ public class LevelThree extends GameLevel implements StepListener {
     }
 
     @Override
+    public String getLevelName() {
+        return "LevelThree";
+    }
+
+    @Override
     public void preStep(StepEvent stepEvent) {
         for (BombThrower bombThrower : bombThrowers){
             if (!bombThrower.isAlive() && !bombThrower.getKillAdded()){

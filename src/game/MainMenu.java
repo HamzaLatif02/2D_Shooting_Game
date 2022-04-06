@@ -3,6 +3,7 @@ package game;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class MainMenu {
     private JPanel mainPanel;
@@ -25,7 +26,11 @@ public class MainMenu {
         loadgameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    new GameSaverLoader().load("data/gamesaved.txt");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 

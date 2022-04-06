@@ -69,7 +69,7 @@ public class Game {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
         // don't let the frame be resized
-        frame.setResizable(false);
+        //frame.setResizable(false);
         // size the frame to fit the world view
         frame.pack();
         // finally, make the frame visible
@@ -95,6 +95,10 @@ public class Game {
 
     public GameView getView() {
         return view;
+    }
+
+    public GameLevel getLevel() {
+        return level;
     }
 
     public void checkLevelCompletition(){

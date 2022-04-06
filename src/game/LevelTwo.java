@@ -235,4 +235,8 @@ public class LevelTwo extends GameLevel{
     @Override
     public Image getBackground(){return background;}
 
+    @Override
+    public String getLevelName() {
+        return "LevelTwo";
+    }
 }
