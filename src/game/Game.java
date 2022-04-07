@@ -112,6 +112,10 @@ public class Game {
         return bgMusic;
     }
 
+    public Boolean getMainMenuVisible() {
+        return mainMenuVisible;
+    }
+
     public void checkLevelCompletition(){
         while (this.level.isRunning()){
             /*if (level.getCompleted()){
@@ -208,11 +212,14 @@ public class Game {
     public void playBackgroundMusic(){
         try {
             bgMusic = new SoundClip("data/bgm1.wav");
+            bgMusic.setVolume(0.5);
             bgMusic.loop();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             System.out.println(e);
         }
     }
+
+
 
 
     /** Run the game. */

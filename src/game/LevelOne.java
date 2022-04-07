@@ -232,6 +232,7 @@ public class LevelOne extends GameLevel{
 
     @Override
     public void startBackgroundMusic() {
+        bgMusic.setVolume(0.5);
         bgMusic.loop();
     }
 

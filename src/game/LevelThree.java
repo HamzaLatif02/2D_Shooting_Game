@@ -331,6 +331,7 @@ public class LevelThree extends GameLevel implements StepListener {
 
     @Override
     public void startBackgroundMusic() {
+        bgMusic.setVolume(0.5);
         bgMusic.loop();
     }
 
