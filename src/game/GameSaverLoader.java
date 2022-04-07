@@ -9,7 +9,20 @@ public class GameSaverLoader {
         FileWriter writer = null;
         try {
             writer = new FileWriter(fileName, append);
-            writer.write(level.getLevelName() + "," + level.getCharacter().getPosition().x + "," + level.getCharacter().getPosition().y + "," +level.getCharacter().getPoints());
+            writer.write(level.getLevelName() + "\n");
+            for (int i=0; i< level.getStaticBodies().size(); i++){
+                writer.write(level.getStaticBodies().get(i).getClass().getSimpleName() + "," + level.getStaticBodies().get(i).getPosition().x + "," + level.getStaticBodies().get(i).getPosition().y + "\n");
+            }
+
+            for (int i=0; i<level.getDynamicBodies().size(); i++){
+                if (level.getDynamicBodies().get(i) instanceof Character){
+                    writer.write(level.getDynamicBodies().get(i).getClass().getSimpleName() + "," + level.getDynamicBodies().get(i).getPosition().x + "," + level.getDynamicBodies().get(i).getPosition().y + "," + ((Character) level.getDynamicBodies().get(i)).getPoints() + "," + ((Character) level.getDynamicBodies().get(i)).getHealth() + "," + ((Character) level.getDynamicBodies().get(i)).getDirection() + "," + ((Character) level.getDynamicBodies().get(i)).getSpeed() + "," + ((Character) level.getDynamicBodies().get(i)).getChangeGravity() + "," + ((Character) level.getDynamicBodies().get(i)).getEnemiesKilled() + "\n");
+                } else {
+                    writer.write(level.getDynamicBodies().get(i).getClass().getSimpleName() + "," + level.getDynamicBodies().get(i).getPosition().x + "," + level.getDynamicBodies().get(i).getPosition().y + "\n");
+                }
+
+            }
+
         } finally {
             if (writer != null) {
                 writer.close();

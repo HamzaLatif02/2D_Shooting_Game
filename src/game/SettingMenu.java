@@ -14,8 +14,8 @@ public class SettingMenu {
 
     private Game game;
 
-    public SettingMenu(Game game){
-        this.game = game;
+    public SettingMenu(Game g){
+        this.game = g;
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -28,7 +28,7 @@ public class SettingMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int i = VolumeSelector.getSelectedIndex();
-
+                muteVolumeCheckBox.setSelected(false);
                 switch (i) {
                     case 0:
                         if (game.getMainMenuVisible()){
@@ -67,13 +67,6 @@ public class SettingMenu {
                             game.getLevel().getBackgroundMusic().setVolume(0.5);
                         }
                         break;
-                    case 4:
-                        if (game.getMainMenuVisible()){
-                            game.getBgMusic().pause();
-                        } else {
-                            game.getLevel().getBackgroundMusic().pause();
-                        }
-                        break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + i);
                 }
@@ -89,7 +82,7 @@ public class SettingMenu {
 
                 if (muted){
                     if (game.getMainMenuVisible()){
-                        game.getBgMusic().pause();
+                        game.getBgMusic().stop();
                     } else {
                         game.getLevel().getBackgroundMusic().pause();
                     }
