@@ -125,14 +125,19 @@ public class Game {
 
     public void goToNextLevel(){
         if (level instanceof LevelOne){
+            level.getBackgroundMusic().stop();
             level.stop();
             level = new LevelTwo();
+            level.startBackgroundMusic();
             view.addEnemies(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
             updateLevelElements();
 
+
         } else if (level instanceof LevelTwo){
+            level.getBackgroundMusic().stop();
             level.stop();
             level = new LevelThree();
+            level.startBackgroundMusic();
             view.addEnemies(((LevelThree)level).getBombThrowers());
             updateLevelElements();
         } else if (level instanceof LevelThree){
@@ -202,11 +207,9 @@ public class Game {
 
     public void playBackgroundMusic(){
         try {
-            bgMusic = new SoundClip("data/bgm1.wav");   // Open an audio input stream
-            bgMusic.loop();                              // Set it to continous playback (looping)
+            bgMusic = new SoundClip("data/bgm1.wav");
+            bgMusic.loop();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            //code in here will deal with any errors
-            //that might occur while loading/playing sound
             System.out.println(e);
         }
     }

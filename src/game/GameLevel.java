@@ -47,4 +47,6 @@ public abstract class GameLevel extends World {
 
     public abstract void startBackgroundMusic();
 
+    public abstract SoundClip getBackgroundMusic();
+
 }

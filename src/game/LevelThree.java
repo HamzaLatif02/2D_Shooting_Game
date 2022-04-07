@@ -1,16 +1,21 @@
 package game;
 
+import city.cs.engine.SoundClip;
 import city.cs.engine.StepEvent;
 import city.cs.engine.StepListener;
 import org.jbox2d.common.Vec2;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class LevelThree extends GameLevel implements StepListener {
 
     private Image background;
     private BombThrower[] bombThrowers = new BombThrower[10];
+    private static SoundClip bgMusic;
 
     public LevelThree(){
         super();
@@ -25,6 +30,14 @@ public class LevelThree extends GameLevel implements StepListener {
         placeHealthPotions();
         addStepListener(this);
 
+    }
+
+    static {
+        try {
+            bgMusic = new SoundClip("data/bgm4.wav");
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            System.out.println(e);
+        }
     }
 
     public void setBackground() {
@@ -318,7 +331,12 @@ public class LevelThree extends GameLevel implements StepListener {
 
     @Override
     public void startBackgroundMusic() {
+        bgMusic.loop();
+    }
 
+    @Override
+    public SoundClip getBackgroundMusic() {
+        return bgMusic;
     }
 
     @Override

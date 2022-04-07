@@ -234,4 +234,9 @@ public class LevelOne extends GameLevel{
     public void startBackgroundMusic() {
         bgMusic.loop();
     }
+
+    @Override
+    public SoundClip getBackgroundMusic() {
+        return bgMusic;
+    }
 }
