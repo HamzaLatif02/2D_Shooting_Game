@@ -11,6 +11,7 @@ public class MainMenu {
     private JButton settingsButton;
     private JButton newgameButton;
     private JButton loadgameButton;
+    private JLabel mainMenuText;
 
     private Game game;
 
