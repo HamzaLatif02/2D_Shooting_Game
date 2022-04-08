@@ -45,6 +45,9 @@ public class DoublePlatform extends StaticBody implements StepListener{
         getWorld().addStepListener(this);
     }
 
+    public String getDirection() {
+        return direction;
+    }
 
     @Override
     public void preStep(StepEvent stepEvent) {

@@ -18,7 +18,21 @@ public class GameSaverLoader {
             for (int i=0; i< level.getStaticBodies().size(); i++){
                 StaticBody sb = level.getStaticBodies().get(i);
 
-                writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "\n");
+                if (sb instanceof Coin){
+                    writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((Coin) sb).getValue() + "\n");
+                } else if (sb instanceof DoublePlatform){
+                    writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((DoublePlatform) sb).getDirection() + "\n");
+                } else if (sb instanceof HealthPotion){
+                    writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((HealthPotion) sb).getType() + "\n");
+                } else if (sb instanceof Portal){
+                    writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((Portal) sb).getType() + "," + ((Portal) sb).getDirection() + "\n");
+                } else if (sb instanceof SinglePlatform){
+                    writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((SinglePlatform) sb).getMovement() + "\n");
+                }
+                else {
+                    writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "\n");
+                }
+
             }
 
             for (int i=0; i<level.getDynamicBodies().size(); i++){

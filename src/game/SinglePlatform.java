@@ -11,6 +11,7 @@ public class SinglePlatform extends StaticBody implements StepListener {
     private static final BodyImage image3 = new BodyImage("data/level3/stone-platform-single.png", 4f);
 
     private int time1, time2 ,delay;
+    private String movement;
     public SinglePlatform(World w){
         super(w,singleShape);
 
@@ -26,6 +27,7 @@ public class SinglePlatform extends StaticBody implements StepListener {
 
     public SinglePlatform(World w, String movement){
         super(w, singleShape);
+        this.movement = movement;
 
         this.time1 = 0;
         this.time2 = 0;
@@ -39,7 +41,9 @@ public class SinglePlatform extends StaticBody implements StepListener {
         }
     }
 
-
+    public String getMovement() {
+        return movement;
+    }
 
     @Override
     public void preStep(StepEvent stepEvent) {

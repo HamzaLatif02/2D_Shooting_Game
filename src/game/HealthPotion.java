@@ -28,4 +28,8 @@ public class HealthPotion extends StaticBody{
 
         //setAlwaysOutline(true);
     }
+
+    public String getType() {
+        return type;
+    }
 }

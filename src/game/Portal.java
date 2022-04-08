@@ -13,6 +13,8 @@ public class Portal extends StaticBody {
     private PortalInteraction portalInteraction;
 
 
+    private String type, direction;
+
     public Portal(World w) {
         super(w, portalShape);
         addImage(portalImage);
@@ -23,6 +25,8 @@ public class Portal extends StaticBody {
 
     public Portal(World w, String type, String direction){
         super(w, portalShape);
+        this.type = type;
+        this.direction = direction;
         ghostPortalShape = new GhostlyFixture(this, portalShape);
         portalSensor = new Sensor(this, portalShape);
 
@@ -35,5 +39,13 @@ public class Portal extends StaticBody {
         }
 
         portalSensor.addSensorListener(portalInteraction);
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getDirection() {
+        return direction;
     }
 }

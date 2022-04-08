@@ -34,4 +34,8 @@ public class Coin extends StaticBody {
 
         //setAlwaysOutline(true);
     }
+
+    public String getValue() {
+        return value;
+    }
 }
