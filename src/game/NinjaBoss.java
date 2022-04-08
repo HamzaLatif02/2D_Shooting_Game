@@ -28,6 +28,9 @@ public class NinjaBoss extends Walker {
 
     public void setDirection(String direction){this.direction = direction;}
 
+    public String getDirection() {
+        return direction;
+    }
 
     public Boolean isAlive(){
         if (health <= 0 || this.getPosition().y < -25){

@@ -1,5 +1,8 @@
 package game;
 
+import city.cs.engine.DynamicBody;
+import city.cs.engine.StaticBody;
+
 import java.io.*;
 
 public class GameSaverLoader {
@@ -9,15 +12,32 @@ public class GameSaverLoader {
         FileWriter writer = null;
         try {
             writer = new FileWriter(fileName, append);
+
             writer.write(level.getLevelName() + "\n");
+
             for (int i=0; i< level.getStaticBodies().size(); i++){
-                writer.write(level.getStaticBodies().get(i).getClass().getSimpleName() + "," + level.getStaticBodies().get(i).getPosition().x + "," + level.getStaticBodies().get(i).getPosition().y + "\n");
+                StaticBody sb = level.getStaticBodies().get(i);
+
+                writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "\n");
             }
 
             for (int i=0; i<level.getDynamicBodies().size(); i++){
-                if (level.getDynamicBodies().get(i) instanceof Character){
-                    writer.write(level.getDynamicBodies().get(i).getClass().getSimpleName() + "," + level.getDynamicBodies().get(i).getPosition().x + "," + level.getDynamicBodies().get(i).getPosition().y + "," + ((Character) level.getDynamicBodies().get(i)).getPoints() + "," + ((Character) level.getDynamicBodies().get(i)).getHealth() + "," + ((Character) level.getDynamicBodies().get(i)).getDirection() + "," + ((Character) level.getDynamicBodies().get(i)).getSpeed() + "," + ((Character) level.getDynamicBodies().get(i)).getChangeGravity() + "," + ((Character) level.getDynamicBodies().get(i)).getEnemiesKilled() + "\n");
-                } else {
+                DynamicBody db = level.getDynamicBodies().get(i);
+
+                if (db instanceof Character){
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((Character) db).getHealth() + "," + ((Character) db).getDirection() + "," + ((Character) db).getPoints() + "," + ((Character) db).getSpeed() + "," + ((Character) db).getChangeGravity() + "," + ((Character) db).getEnemiesKilled() + "\n");
+                } else if ( db instanceof BombThrower){
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((BombThrower) db).getHealth() + "\n");
+                } else if ( db instanceof Mummy){
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((Mummy) db).getHealth() + "," + ((Mummy) db).getDirection() + "," + ((Mummy) db).getDoesMove() + "\n");
+                } else if ( db instanceof MummyBoss){
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((MummyBoss) db).getHealth() + "," + ((MummyBoss) db).getDirection() + "\n");
+                } else if ( db instanceof Ninja){
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((Ninja) db).getHealth() + "," + ((Ninja) db).getDirection() + "\n");
+                } else if ( db instanceof NinjaBoss){
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((NinjaBoss) db).getHealth() + "," + ((NinjaBoss) db).getDirection() + "\n");
+                }
+                else {
                     writer.write(level.getDynamicBodies().get(i).getClass().getSimpleName() + "," + level.getDynamicBodies().get(i).getPosition().x + "," + level.getDynamicBodies().get(i).getPosition().y + "\n");
                 }
 

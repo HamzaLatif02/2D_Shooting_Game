@@ -34,6 +34,10 @@ public class MummyBoss extends Walker {
         this.direction = direction;
     }
 
+    public String getDirection() {
+        return direction;
+    }
+
     public Boolean isAlive(){
         if (health <= 0 || this.getPosition().y < -25){
             this.destroy();

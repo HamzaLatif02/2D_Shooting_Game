@@ -49,6 +49,8 @@ public class Mummy extends Walker {
         this.speed = speed;
     }
 
+
+
     public Boolean isAlive(){
         if (health <= 0 || this.getPosition().y < -25){
             this.destroy();

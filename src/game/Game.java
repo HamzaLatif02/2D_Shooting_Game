@@ -127,6 +127,23 @@ public class Game {
         }
     }
 
+    public void setNewLevel(GameLevel l){
+        level.stop();
+        level = l;
+        level.startBackgroundMusic();
+        if (level instanceof LevelTwo){
+            view.addEnemies(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
+        } else {
+            view.addEnemies(((LevelThree)level).getBombThrowers());
+        }
+        view.setWorld(level);
+        view.updateLevel(level);
+        view.updateCharacter(level.getCharacter());
+        characterController.updateCharacter(level.getCharacter());
+        level.addStepListener(new Tracker(view, level.getCharacter(), level));
+        level.start();
+    }
+
     public void goToNextLevel(){
         if (level instanceof LevelOne){
             level.getBackgroundMusic().stop();

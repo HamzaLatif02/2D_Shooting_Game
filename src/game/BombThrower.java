@@ -21,8 +21,8 @@ public class BombThrower extends Walker implements StepListener {
         this.health = 50;
         this.killAdded = Boolean.FALSE;
         getWorld().addStepListener(this);
-
     }
+
 
     public int getHealth() {
         return health;

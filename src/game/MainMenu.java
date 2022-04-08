@@ -30,7 +30,8 @@ public class MainMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    new GameSaverLoader().load("data/gamesaved.txt");
+                    GameLevel loadedLevel = new GameSaverLoader().load("data/gamesaved.txt");
+                    game.setNewLevel(loadedLevel);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
