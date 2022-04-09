@@ -32,7 +32,6 @@ public class MainMenu {
                 try {
                     GameLevel loadedLevel = new GameSaverLoader().load("data/gamesaved.txt");
                     game.getBgMusic().stop();
-                    //game.getLevel().startBackgroundMusic();
                     game.setNewLevel(loadedLevel);
                 } catch (IOException ex) {
                     ex.printStackTrace();

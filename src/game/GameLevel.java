@@ -22,6 +22,9 @@ public abstract class GameLevel extends World {
             character.setPosition(new Vec2(0f, -8f));
             this.completed = Boolean.FALSE;
             portal = new Portal(this);
+        } else {
+            character = new Character(this);
+            this.completed = Boolean.FALSE;
         }
     }
 

@@ -10,11 +10,13 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class LevelThree extends GameLevel implements StepListener {
 
     private Image background;
-    private BombThrower[] bombThrowers = new BombThrower[10];
+    //private BombThrower[] bombThrowers = new BombThrower[10];
+    private ArrayList<BombThrower> bombThrowers = new ArrayList<>();
     private static SoundClip bgMusic;
 
     public LevelThree(String populate){
@@ -28,10 +30,10 @@ public class LevelThree extends GameLevel implements StepListener {
             placeMinusCoins();
             placeExplosivesMines();
             placeHealthPotions();
+            addStepListener(this);
         }
 
         setBackground();
-        addStepListener(this);
 
     }
 
@@ -47,7 +49,7 @@ public class LevelThree extends GameLevel implements StepListener {
         this.background = new ImageIcon("data/level3/background3.png").getImage();
     }
 
-    public BombThrower[] getBombThrowers() {
+    public ArrayList<BombThrower> getBombThrowers() {
         return bombThrowers;
     }
 
@@ -158,20 +160,21 @@ public class LevelThree extends GameLevel implements StepListener {
 
     public void placeBombThrowers(){
 
+
         for (int i=0; i<10; i++){
-            bombThrowers[i] = new BombThrower(this);
+            bombThrowers.set(i, new BombThrower(this));
         }
 
-        bombThrowers[0].setPosition(new Vec2(30f, 29f));
-        bombThrowers[1].setPosition(new Vec2(50f, 29f));
-        bombThrowers[2].setPosition(new Vec2(70f, 29f));
-        bombThrowers[3].setPosition(new Vec2(107f, 29f));
-        bombThrowers[4].setPosition(new Vec2(190f, 36f));
-        bombThrowers[5].setPosition(new Vec2(208f, 30f));
-        bombThrowers[6].setPosition(new Vec2(260f, 30f));
-        bombThrowers[7].setPosition(new Vec2(278f, 36f));
-        bombThrowers[8].setPosition(new Vec2(339f, 25f));
-        bombThrowers[9].setPosition(new Vec2(351f, 33f));
+        bombThrowers.get(0).setPosition(new Vec2(30f, 29f));
+        bombThrowers.get(1).setPosition(new Vec2(50f, 29f));
+        bombThrowers.get(2).setPosition(new Vec2(70f, 29f));
+        bombThrowers.get(3).setPosition(new Vec2(107f, 29f));
+        bombThrowers.get(4).setPosition(new Vec2(190f, 36f));
+        bombThrowers.get(5).setPosition(new Vec2(208f, 30f));
+        bombThrowers.get(6).setPosition(new Vec2(260f, 30f));
+        bombThrowers.get(7).setPosition(new Vec2(278f, 36f));
+        bombThrowers.get(8).setPosition(new Vec2(339f, 25f));
+        bombThrowers.get(9).setPosition(new Vec2(351f, 33f));
 
     }
 

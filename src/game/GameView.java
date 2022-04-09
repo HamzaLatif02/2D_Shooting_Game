@@ -7,6 +7,7 @@ import org.jbox2d.common.Vec2;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GameView extends UserView {
 
@@ -17,7 +18,7 @@ public class GameView extends UserView {
     private GameLevel level;
     private Mummy[] mummy;
     private MummyBoss mummyBoss;
-    private BombThrower[] bombThrowers;
+    private ArrayList<BombThrower> bombThrowers;
 
 
     public GameView(Game g, GameLevel l, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
@@ -34,10 +35,9 @@ public class GameView extends UserView {
         mummyBoss = mb;
     }
 
-    public void addEnemies(BombThrower[] bt){
+    public void addEnemies(ArrayList<BombThrower> bt){
         bombThrowers = bt;
     }
-
 
     public void updateCharacter(Character character){
         this.character = character;

@@ -130,6 +130,10 @@ public class Game {
     public void setNewLevel(GameLevel l){
         level.stop();
         level = l;
+        mainMenuVisible = Boolean.FALSE;
+        frame.remove(mainMenu.getMainPanel());
+        frame.add(view);
+        frame.pack();
         level.startBackgroundMusic();
         if (level instanceof LevelTwo){
             view.addEnemies(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
@@ -141,10 +145,6 @@ public class Game {
         view.updateCharacter(level.getCharacter());
         characterController.updateCharacter(level.getCharacter());
         level.addStepListener(new Tracker(view, level.getCharacter(), level));
-        mainMenuVisible = Boolean.FALSE;
-        frame.remove(mainMenu.getMainPanel());
-        frame.add(view);
-        frame.pack();
         level.start();
 
     }

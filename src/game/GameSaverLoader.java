@@ -121,7 +121,7 @@ public class GameSaverLoader {
                     coin.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
                 } else if (tokens[0].equals("DoublePlatform")){
                     DoublePlatform doublePlatform;
-                    if (tokens[3].equals(null)){
+                    if (tokens[3].equals("null")){
                         doublePlatform = new DoublePlatform(level);
                     } else {
                         doublePlatform = new DoublePlatform(level, tokens[3]);
@@ -166,7 +166,7 @@ public class GameSaverLoader {
                     poisonProjectile.setTime(Integer.parseInt(tokens[3]));
                 } else if (tokens[0].equals("Portal")){
                     Portal portal;
-                    if (tokens[3].equals(null) && tokens[4].equals(null)){
+                    if (tokens[3].equals("null") && tokens[4].equals("null")){
                         portal = new Portal(level);
                     } else {
                         portal = new Portal(level, tokens[3], tokens[4]);
@@ -181,7 +181,7 @@ public class GameSaverLoader {
                     shuriken.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
                 } else if (tokens[0].equals("SinglePlatform")){
                     SinglePlatform singlePlatform;
-                    if (tokens[3].equals(null)){
+                    if (tokens[3].equals("null")){
                         singlePlatform = new SinglePlatform(level);
                     } else {
                         singlePlatform = new SinglePlatform(level, tokens[3]);
