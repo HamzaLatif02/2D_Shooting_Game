@@ -3,7 +3,7 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
-public class Mummy extends Walker {
+public class Mummy extends Walker implements StepListener{
 
     private static final Shape mummyShape = new CircleShape(2);
     private static final BodyImage imageLeft = new BodyImage("data/level2/mummy-left.png", 4f);
@@ -13,6 +13,7 @@ public class Mummy extends Walker {
     private String direction;
     private int speed;
     private String doesMove;
+    private int time;
 
     public Mummy (World world, String Movement){
         super(world, mummyShape);
@@ -20,8 +21,9 @@ public class Mummy extends Walker {
         this.health = 50;
         this.direction = "left";
         this.speed = 2;
+        this.time = 0;
         this.doesMove = Movement;
-        getWorld().addStepListener(new MummyController(this));
+        getWorld().addStepListener(this);
     }
 
     public String getDoesMove() {
@@ -49,7 +51,12 @@ public class Mummy extends Walker {
         this.speed = speed;
     }
 
-
+    public int getTime() {
+        return time;
+    }
+    public void setTime(int time) {
+        this.time = time;
+    }
 
     public Boolean isAlive(){
         if (health <= 0 || this.getPosition().y < -25){
@@ -89,4 +96,26 @@ public class Mummy extends Walker {
 
     }
 
+    @Override
+    public void preStep(StepEvent stepEvent) {
+        if (this.isAlive() == Boolean.TRUE){
+            if(this.getDoesMove().equals("yes")){
+                if (time % 480 < 240){
+                    this.moveLeft();
+                } else {
+                    this.moveRight();
+                }
+            }
+
+            if (time % 60 == 0){
+                this.shoot();
+            }
+            time++;
+        }
+    }
+
+    @Override
+    public void postStep(StepEvent stepEvent) {
+
+    }
 }

@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class LevelThree extends GameLevel implements StepListener {
 
     private Image background;
-    //private BombThrower[] bombThrowers = new BombThrower[10];
     private ArrayList<BombThrower> bombThrowers = new ArrayList<>();
     private static SoundClip bgMusic;
 
@@ -30,11 +29,10 @@ public class LevelThree extends GameLevel implements StepListener {
             placeMinusCoins();
             placeExplosivesMines();
             placeHealthPotions();
-            addStepListener(this);
         }
 
         setBackground();
-
+        addStepListener(this);
     }
 
     static {
@@ -301,7 +299,7 @@ public class LevelThree extends GameLevel implements StepListener {
     public void placeExplosivesMines(){
         new ExplosiveMine(this).setPosition(new Vec2(60f, 35f));
 
-        for (int i=0; i<10; i++){
+        for (int i=0; i<9; i++){
             new ExplosiveMine(this).setPosition(new Vec2(111.5f + i*35f, 29f));
         }
 

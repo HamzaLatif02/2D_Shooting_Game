@@ -47,13 +47,13 @@ public class GameSaverLoader {
                 } else if ( db instanceof BombThrower){
                     writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((BombThrower) db).getHealth() + "\n");
                 } else if ( db instanceof Mummy){
-                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((Mummy) db).getHealth() + "," + ((Mummy) db).getDirection() + "," + ((Mummy) db).getDoesMove() + "\n");
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((Mummy) db).getHealth() + "," + ((Mummy) db).getDirection() + "," + ((Mummy) db).getDoesMove() + "," + ((Mummy) db).getTime() + "\n");
                 } else if ( db instanceof MummyBoss){
-                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((MummyBoss) db).getHealth() + "," + ((MummyBoss) db).getDirection() + "\n");
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((MummyBoss) db).getHealth() + "," + ((MummyBoss) db).getDirection() + "," + ((MummyBoss) db).getTime() + "\n");
                 } else if ( db instanceof Ninja){
-                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((Ninja) db).getHealth() + "," + ((Ninja) db).getDirection() + "\n");
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((Ninja) db).getHealth() + "," + ((Ninja) db).getDirection() + "," + ((Ninja) db).getTime() + "\n");
                 } else if ( db instanceof NinjaBoss){
-                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((NinjaBoss) db).getHealth() + "," + ((NinjaBoss) db).getDirection() + "\n");
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((NinjaBoss) db).getHealth() + "," + ((NinjaBoss) db).getDirection() + "," + ((NinjaBoss) db).getTime() +"\n");
                 } else if (db instanceof Projectile){
                     writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((Projectile) db).getTime() + "\n");
                 } else if (db instanceof PoisonProjectile){
@@ -91,6 +91,7 @@ public class GameSaverLoader {
                 level = new LevelTwo("no");
             } else if (line.equals("LevelThree")){
                 level = new LevelThree("no");
+                //level.addStepListener((LevelThree)level);
             }
 
             line = reader.readLine();
@@ -105,17 +106,17 @@ public class GameSaverLoader {
                     bomb.setTime(Integer.parseInt(tokens[3]));
                 } else if (tokens[0].equals("BombThrower")){
                     BombThrower bombThrower = new BombThrower(level);
+                    ((LevelThree)level).getBombThrowers().add(bombThrower);
                     bombThrower.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
                     bombThrower.setHealth(Integer.parseInt(tokens[3]));
                 } else if (tokens[0].equals("Character")){
-                    Character character = new Character(level);
-                    character.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
-                    character.setHealth(Integer.parseInt(tokens[3]));
-                    character.setDirection(tokens[4]);
-                    character.setPoints(Integer.parseInt(tokens[5]));
-                    character.setSpeed(Float.parseFloat(tokens[6]));
-                    character.setChangeGravity(Boolean.parseBoolean(tokens[7]));
-                    character.setEnemiesKilled(Integer.parseInt(tokens[8]));
+                    level.getCharacter().setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    level.getCharacter().setHealth(Integer.parseInt(tokens[3]));
+                    level.getCharacter().setDirection(tokens[4]);
+                    level.getCharacter().setPoints(Integer.parseInt(tokens[5]));
+                    level.getCharacter().setSpeed(Float.parseFloat(tokens[6]));
+                    level.getCharacter().setChangeGravity(Boolean.parseBoolean(tokens[7]));
+                    level.getCharacter().setEnemiesKilled(Integer.parseInt(tokens[8]));
                 } else if (tokens[0].equals("Coin")){
                     Coin coin = new Coin(level, tokens[3]);
                     coin.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
@@ -142,36 +143,47 @@ public class GameSaverLoader {
                     minusCoin.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
                 } else if (tokens[0].equals("Mummy")){
                     Mummy mummy = new Mummy(level, tokens[5]);
+                    ((LevelTwo)level).getMummies().add(mummy);
                     mummy.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    mummy.setTime(Integer.parseInt(tokens[6]));
                     mummy.setHealth(Integer.parseInt(tokens[3]));
                     mummy.setDirection(tokens[4]);
                 } else if (tokens[0].equals("MummyBoss")){
                     MummyBoss mummyBoss = new MummyBoss(level);
+                    ((LevelTwo)level).getMummyBoss().add(mummyBoss);
                     mummyBoss.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    mummyBoss.setTime(Integer.parseInt(tokens[5]));
                     mummyBoss.setHealth(Integer.parseInt(tokens[3]));
                     mummyBoss.setDirection(tokens[4]);
                 } else if (tokens[0].equals("Ninja")){
                     Ninja ninja = new Ninja(level);
+                    ((LevelOne)level).getNinja().add(ninja);
                     ninja.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    ninja.setTime(Integer.parseInt(tokens[5]));
                     ninja.setHealth(Integer.parseInt(tokens[3]));
                     ninja.setDirection(tokens[4]);
                 } else if (tokens[0].equals("NinjaBoss")){
                     NinjaBoss ninjaBoss = new NinjaBoss(level);
+                    ((LevelOne)level).getNinjaBoss().add(ninjaBoss);
                     ninjaBoss.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    ninjaBoss.setTime(Integer.parseInt(tokens[5]));
                     ninjaBoss.setHealth(Integer.parseInt(tokens[3]));
                     ninjaBoss.setDirection(tokens[4]);
                 } else if (tokens[0].equals("PoisonProjectile")){
                     PoisonProjectile poisonProjectile = new PoisonProjectile(level);
                     poisonProjectile.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
                     poisonProjectile.setTime(Integer.parseInt(tokens[3]));
+                    PoisonProjectileImpact poisonProjectileImpact = new PoisonProjectileImpact(poisonProjectile);
+                    poisonProjectile.addCollisionListener(poisonProjectileImpact);
                 } else if (tokens[0].equals("Portal")){
                     Portal portal;
                     if (tokens[3].equals("null") && tokens[4].equals("null")){
-                        portal = new Portal(level);
+                        level.getPortal().setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
                     } else {
                         portal = new Portal(level, tokens[3], tokens[4]);
+                        portal.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
                     }
-                    portal.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+
                 } else if (tokens[0].equals("Projectile")){
                     Projectile projectile = new Projectile(level);
                     projectile.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
@@ -179,6 +191,8 @@ public class GameSaverLoader {
                 } else if (tokens[0].equals("Shuriken")){
                     Shuriken shuriken = new Shuriken(level);
                     shuriken.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    ShurikenImpact shurikenImpact = new ShurikenImpact(shuriken);
+                    shuriken.addCollisionListener(shurikenImpact);
                 } else if (tokens[0].equals("SinglePlatform")){
                     SinglePlatform singlePlatform;
                     if (tokens[3].equals("null")){

@@ -117,11 +117,11 @@ public class Game {
     }
 
     public void checkLevelCompletition(){
-        while (this.level.isRunning()){
+        while (level.isRunning()){
             /*if (level.getCompleted()){
                 goToNextLevel();
             }*/
-            if (this.level.objectivesDone()){
+            if (level.objectivesDone()){
                 goToNextLevel();
             }
         }
@@ -135,10 +135,12 @@ public class Game {
         frame.add(view);
         frame.pack();
         level.startBackgroundMusic();
-        if (level instanceof LevelTwo){
-            view.addEnemies(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
-        } else {
-            view.addEnemies(((LevelThree)level).getBombThrowers());
+        if (level instanceof LevelOne){
+            view.addEnemiesLevelOne(((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
+        } else if (level instanceof LevelTwo){
+            view.addEnemiesLevelTwo(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
+        } else if (level instanceof LevelThree){
+            view.addEnemiesLevelThree(((LevelThree)level).getBombThrowers());
         }
         view.setWorld(level);
         view.updateLevel(level);
@@ -146,6 +148,7 @@ public class Game {
         characterController.updateCharacter(level.getCharacter());
         level.addStepListener(new Tracker(view, level.getCharacter(), level));
         level.start();
+        //checkLevelCompletition();
 
     }
 
@@ -155,7 +158,7 @@ public class Game {
             level.stop();
             level = new LevelTwo("yes");
             level.startBackgroundMusic();
-            view.addEnemies(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
+            view.addEnemiesLevelTwo(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
             updateLevelElements();
 
 
@@ -164,7 +167,7 @@ public class Game {
             level.stop();
             level = new LevelThree("yes");
             level.startBackgroundMusic();
-            view.addEnemies(((LevelThree)level).getBombThrowers());
+            view.addEnemiesLevelThree(((LevelThree)level).getBombThrowers());
             updateLevelElements();
         } else if (level instanceof LevelThree){
             level.stop();

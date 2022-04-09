@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class LevelOne extends GameLevel{
 
     private ArrayList<Ninja> ninjas = new ArrayList<>();
-    private NinjaBoss ninjaBoss;
+    private ArrayList<NinjaBoss> ninjaBoss = new ArrayList<>();
     private Image background;
     private static SoundClip bgMusic;
 
@@ -42,7 +42,7 @@ public class LevelOne extends GameLevel{
 
 
     public ArrayList<Ninja> getNinja(){return ninjas;}
-    public NinjaBoss getNinjaBoss(){return ninjaBoss;}
+    public ArrayList<NinjaBoss> getNinjaBoss(){return ninjaBoss;}
 
     public void setBackground(){
         background = new ImageIcon("data/level1/background.png").getImage();
@@ -118,16 +118,13 @@ public class LevelOne extends GameLevel{
         ninjas.get(8).setPosition(new Vec2(246f,-15f));
         ninjas.get(9).setPosition(new Vec2(283f,1f));
 
-        for (Ninja ninja : ninjas){
-            ninja.getWorld().addStepListener(new NinjaController(ninja));
-        }
     }
 
     public void placeNinjaBoss(){
 
-        ninjaBoss = new NinjaBoss(this);
-        ninjaBoss.setPosition(new Vec2(319f,5f));
-        ninjaBoss.getWorld().addStepListener(new NinjaBossController(ninjaBoss));
+        ninjaBoss.add(new NinjaBoss(this));
+        ninjaBoss.get(0).setPosition(new Vec2(319f, 5f));
+        //ninjaBoss.get(0).getWorld().addStepListener(new NinjaBossController(ninjaBoss.get(0)));
 
     }
 
@@ -163,7 +160,7 @@ public class LevelOne extends GameLevel{
             new Coin(this, "single").setPosition(new Vec2(145f + i*5,-8f));
         }
 
-        for (int i=0; i<6; i++){
+        for (int i=0; i<5; i++){
             new Coin(this, "single").setPosition(new Vec2(176f + i*8,-13f));
         }
 
@@ -213,10 +210,19 @@ public class LevelOne extends GameLevel{
         getPortal().setPosition(new Vec2(327f, 4.5f));
     }
 
+    public Boolean checkBossAlive(){
+        for (NinjaBoss ninjaBoss : ninjaBoss){
+            if (ninjaBoss.isAlive() == Boolean.FALSE){
+                return Boolean.FALSE;
+            }
+        }
+        return Boolean.TRUE;
+    }
+
 
     @Override
     public Boolean objectivesDone() {
-        if (getCharacter().getPoints() > 0 || getNinjaBoss().isAlive() == Boolean.FALSE){
+        if (getCharacter().getPoints() > 0 || checkBossAlive() == Boolean.FALSE){
             return Boolean.TRUE;
         } else return Boolean.FALSE;
     }

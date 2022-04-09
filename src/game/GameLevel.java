@@ -24,6 +24,7 @@ public abstract class GameLevel extends World {
             portal = new Portal(this);
         } else {
             character = new Character(this);
+            portal = new Portal(this);
             this.completed = Boolean.FALSE;
         }
     }

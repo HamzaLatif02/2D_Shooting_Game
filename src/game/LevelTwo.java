@@ -14,7 +14,7 @@ public class LevelTwo extends GameLevel{
 
     private Image background;
     private ArrayList<Mummy> mummies = new ArrayList<>();
-    private MummyBoss mummyBoss;
+    private ArrayList<MummyBoss> mummyBoss = new ArrayList<>();
     private static SoundClip bgMusic;
 
 
@@ -46,7 +46,7 @@ public class LevelTwo extends GameLevel{
         return mummies;
     }
 
-    public MummyBoss getMummyBoss() {
+    public ArrayList<MummyBoss> getMummyBoss() {
         return mummyBoss;
     }
 
@@ -129,8 +129,8 @@ public class LevelTwo extends GameLevel{
     }
 
     public void placeMummyBoss(){
-        mummyBoss = new MummyBoss(this);
-        mummyBoss.setPosition(new Vec2(340f,39f));
+        mummyBoss.add(new MummyBoss(this));
+        mummyBoss.get(0).setPosition(new Vec2(340f,39f));
     }
 
     public void placeHealthPotions(){
@@ -238,9 +238,18 @@ public class LevelTwo extends GameLevel{
         getPortal().setPosition(new Vec2(344f, 45.5f));
     }
 
+    public Boolean checkBossAlive(){
+        for (MummyBoss mummyBoss : mummyBoss){
+            if (mummyBoss.isAlive() == Boolean.FALSE){
+                return Boolean.FALSE;
+            }
+        }
+        return Boolean.TRUE;
+    }
+
     @Override
     public Boolean objectivesDone() {
-        if (getCharacter().getPoints() > 0 || getMummyBoss().isAlive() == Boolean.FALSE){
+        if (getCharacter().getPoints() > 0 || checkBossAlive() == Boolean.FALSE){
             return Boolean.TRUE;
         }
         return Boolean.FALSE;

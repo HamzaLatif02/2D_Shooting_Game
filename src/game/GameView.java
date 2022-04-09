@@ -14,14 +14,14 @@ public class GameView extends UserView {
     private Game game;
     private Character character;
     private ArrayList<Ninja> ninja;
-    private NinjaBoss ninjaBoss;
+    private ArrayList<NinjaBoss> ninjaBoss;
     private GameLevel level;
     private ArrayList<Mummy> mummy;
-    private MummyBoss mummyBoss;
+    private ArrayList<MummyBoss> mummyBoss;
     private ArrayList<BombThrower> bombThrowers;
 
 
-    public GameView(Game g, GameLevel l, int width, int height, Character c, ArrayList<Ninja> n, NinjaBoss nb){
+    public GameView(Game g, GameLevel l, int width, int height, Character c, ArrayList<Ninja> n, ArrayList<NinjaBoss> nb){
         super (l,width,height);
         game = g;
         ninja = n;
@@ -30,12 +30,16 @@ public class GameView extends UserView {
         level = l;
     }
 
-    public void addEnemies(ArrayList<Mummy> m, MummyBoss mb){
+    public void addEnemiesLevelTwo(ArrayList<Mummy> m, ArrayList<MummyBoss> mb){
         mummy = m;
         mummyBoss = mb;
     }
 
-    public void addEnemies(ArrayList<BombThrower> bt){
+    public void addEnemiesLevelOne(ArrayList<Ninja> n, ArrayList<NinjaBoss> nb){
+        ninja = n;
+        ninjaBoss = nb;
+    }
+    public void addEnemiesLevelThree(ArrayList<BombThrower> bt){
         bombThrowers = bt;
     }
 
@@ -111,11 +115,11 @@ public class GameView extends UserView {
                 }
             }
 
-            if (ninjaBoss.isAlive()){
+            if (ninjaBoss.get(0).isAlive()){
                 g.setColor(Color.black);
-                g.drawRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110),200, 5);
+                g.drawRect(Math.round(this.worldToView(ninjaBoss.get(0).getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.get(0).getPosition()).y-110),200, 5);
                 g.setColor(new Color(147,3,140));
-                g.fillRect(Math.round(this.worldToView(ninjaBoss.getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.getPosition()).y-110), Math.round(ninjaBoss.getHealth()), 5);
+                g.fillRect(Math.round(this.worldToView(ninjaBoss.get(0).getPosition()).x-100),Math.round(this.worldToView(ninjaBoss.get(0).getPosition()).y-110), Math.round(ninjaBoss.get(0).getHealth()), 5);
             }
 
         } else if (level instanceof LevelTwo){
@@ -128,11 +132,11 @@ public class GameView extends UserView {
                 }
             }
 
-            if (mummyBoss.isAlive()){
+            if (mummyBoss.get(0).isAlive()){
                 g.setColor(Color.black);
-                g.drawRect(Math.round(this.worldToView(mummyBoss.getPosition()).x-100),Math.round(this.worldToView(mummyBoss.getPosition()).y-110),200, 5);
+                g.drawRect(Math.round(this.worldToView(mummyBoss.get(0).getPosition()).x-100),Math.round(this.worldToView(mummyBoss.get(0).getPosition()).y-110),200, 5);
                 g.setColor(new Color(0,255,176));
-                g.fillRect(Math.round(this.worldToView(mummyBoss.getPosition()).x-100),Math.round(this.worldToView(mummyBoss.getPosition()).y-110), Math.round(mummyBoss.getHealth()/2), 5);
+                g.fillRect(Math.round(this.worldToView(mummyBoss.get(0).getPosition()).x-100),Math.round(this.worldToView(mummyBoss.get(0).getPosition()).y-110), Math.round(mummyBoss.get(0).getHealth()/2), 5);
             }
         } else if (level instanceof LevelThree){
             for (BombThrower bombThrower : bombThrowers){

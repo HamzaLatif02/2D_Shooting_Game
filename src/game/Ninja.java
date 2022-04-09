@@ -3,7 +3,7 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
-public class Ninja extends Walker {
+public class Ninja extends Walker implements StepListener {
 
     private static final Shape ninjaShape = new CircleShape(2);
     private static final BodyImage imageLeft = new BodyImage("data/level1/ninja-left.png", 4f);
@@ -12,14 +12,16 @@ public class Ninja extends Walker {
     private int health;
     private String direction;
     private int speed;
+    private int time;
 
     public Ninja(World world) {
         super(world, ninjaShape);
         addImage(imageLeft);
         this.health = 20;
-        this.direction = "left";
         this.speed = 3;
-        //setAlwaysOutline(true);
+        this.time = 0;
+        this.direction = "left";
+        getWorld().addStepListener(this);
     }
 
     public void setHealth(int health){this.health = health;}
@@ -27,6 +29,14 @@ public class Ninja extends Walker {
 
     public void setDirection(String direction){this.direction = direction;}
     public String getDirection(){return direction;}
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
 
     public Boolean isAlive(){
         if (health <= 0 || this.getPosition().y < -25){
@@ -62,5 +72,28 @@ public class Ninja extends Walker {
         this.setDirection("right");
         this.removeAllImages();
         this.addImage(imageRight);
+    }
+
+    @Override
+    public void preStep(StepEvent stepEvent) {
+        if (this.isAlive() == Boolean.TRUE) {
+            if (time % 240 < 120){
+                this.moveRight();
+            } else {
+                this.moveLeft();
+            }
+
+            if (time % 30 == 0){
+                this.shoot();
+            }
+
+            time++;
+        }
+
+    }
+
+    @Override
+    public void postStep(StepEvent stepEvent) {
+
     }
 }
