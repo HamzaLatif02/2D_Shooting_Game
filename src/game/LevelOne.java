@@ -8,10 +8,11 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class LevelOne extends GameLevel{
 
-    private Ninja[] ninjas = new Ninja[10];
+    private ArrayList<Ninja> ninjas = new ArrayList<>();
     private NinjaBoss ninjaBoss;
     private Image background;
     private static SoundClip bgMusic;
@@ -40,7 +41,7 @@ public class LevelOne extends GameLevel{
     }
 
 
-    public Ninja[] getNinja(){return ninjas;}
+    public ArrayList<Ninja> getNinja(){return ninjas;}
     public NinjaBoss getNinjaBoss(){return ninjaBoss;}
 
     public void setBackground(){
@@ -102,20 +103,20 @@ public class LevelOne extends GameLevel{
 
     public void placeNinjas(){
 
-        for (int i=0; i< ninjas.length; i++){
-            ninjas[i] = new Ninja(this);
+        for (int i=0; i< 10; i++){
+            ninjas.add(new Ninja(this));
         }
 
-        ninjas[0].setPosition(new Vec2(32f,1f));
-        ninjas[1].setPosition(new Vec2(60f,1f));
-        ninjas[2].setPosition(new Vec2(100f,1f));
-        ninjas[3].setPosition(new Vec2(130f,1f));
-        ninjas[4].setPosition(new Vec2(160f,1f));
-        ninjas[5].setPosition(new Vec2(62f,-15f));
-        ninjas[6].setPosition(new Vec2(129f,5f));
-        ninjas[7].setPosition(new Vec2(204f,1f));
-        ninjas[8].setPosition(new Vec2(246f,-15f));
-        ninjas[9].setPosition(new Vec2(283f,1f));
+        ninjas.get(0).setPosition(new Vec2(32f,1f));
+        ninjas.get(1).setPosition(new Vec2(60f,1f));
+        ninjas.get(2).setPosition(new Vec2(100f,1f));
+        ninjas.get(3).setPosition(new Vec2(130f,1f));
+        ninjas.get(4).setPosition(new Vec2(160f,1f));
+        ninjas.get(5).setPosition(new Vec2(62f,-15f));
+        ninjas.get(6).setPosition(new Vec2(129f,5f));
+        ninjas.get(7).setPosition(new Vec2(204f,1f));
+        ninjas.get(8).setPosition(new Vec2(246f,-15f));
+        ninjas.get(9).setPosition(new Vec2(283f,1f));
 
         for (Ninja ninja : ninjas){
             ninja.getWorld().addStepListener(new NinjaController(ninja));

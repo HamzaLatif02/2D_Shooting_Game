@@ -162,7 +162,7 @@ public class LevelThree extends GameLevel implements StepListener {
 
 
         for (int i=0; i<10; i++){
-            bombThrowers.set(i, new BombThrower(this));
+            bombThrowers.add (new BombThrower(this));
         }
 
         bombThrowers.get(0).setPosition(new Vec2(30f, 29f));

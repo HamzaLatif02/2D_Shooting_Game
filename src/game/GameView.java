@@ -13,15 +13,15 @@ public class GameView extends UserView {
 
     private Game game;
     private Character character;
-    private Ninja[] ninja;
+    private ArrayList<Ninja> ninja;
     private NinjaBoss ninjaBoss;
     private GameLevel level;
-    private Mummy[] mummy;
+    private ArrayList<Mummy> mummy;
     private MummyBoss mummyBoss;
     private ArrayList<BombThrower> bombThrowers;
 
 
-    public GameView(Game g, GameLevel l, int width, int height, Character c, Ninja[] n, NinjaBoss nb){
+    public GameView(Game g, GameLevel l, int width, int height, Character c, ArrayList<Ninja> n, NinjaBoss nb){
         super (l,width,height);
         game = g;
         ninja = n;
@@ -30,7 +30,7 @@ public class GameView extends UserView {
         level = l;
     }
 
-    public void addEnemies(Mummy[] m, MummyBoss mb){
+    public void addEnemies(ArrayList<Mummy> m, MummyBoss mb){
         mummy = m;
         mummyBoss = mb;
     }
