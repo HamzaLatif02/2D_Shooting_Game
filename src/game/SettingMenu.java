@@ -11,6 +11,8 @@ public class SettingMenu {
     private JButton backButton;
     private JComboBox VolumeSelector;
     private JCheckBox muteVolumeCheckBox;
+    private JLabel settingText;
+    private JLabel volumeSelectText;
 
     private Game game;
 

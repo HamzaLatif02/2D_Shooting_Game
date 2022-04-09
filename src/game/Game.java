@@ -40,8 +40,8 @@ public class Game {
 
 
         level = new LevelOne("yes");
-        view = new GameView(this, level, 800,800, level.getCharacter(), ((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
-
+        view = new GameView(this, level, 800,800, level.getCharacter());
+        view.addEnemiesLevelOne(((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
         //1. make an empty game world
         //GameWorld world = new GameWorld();
 
@@ -89,7 +89,7 @@ public class Game {
         level.start();
 
 
-        checkLevelCompletition();
+        checkLevelCompletion();
     }
 
     public JFrame getFrame() {
@@ -116,7 +116,7 @@ public class Game {
         return mainMenuVisible;
     }
 
-    public void checkLevelCompletition(){
+    public void checkLevelCompletion(){
         while (level.isRunning()){
             /*if (level.getCompleted()){
                 goToNextLevel();
@@ -148,7 +148,8 @@ public class Game {
         characterController.updateCharacter(level.getCharacter());
         level.addStepListener(new Tracker(view, level.getCharacter(), level));
         level.start();
-        //checkLevelCompletition();
+
+
 
     }
 

@@ -21,12 +21,10 @@ public class GameView extends UserView {
     private ArrayList<BombThrower> bombThrowers;
 
 
-    public GameView(Game g, GameLevel l, int width, int height, Character c, ArrayList<Ninja> n, ArrayList<NinjaBoss> nb){
+    public GameView(Game g, GameLevel l, int width, int height, Character c){
         super (l,width,height);
         game = g;
-        ninja = n;
         character = c;
-        ninjaBoss = nb;
         level = l;
     }
 
