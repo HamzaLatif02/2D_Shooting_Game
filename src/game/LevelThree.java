@@ -17,17 +17,20 @@ public class LevelThree extends GameLevel implements StepListener {
     private BombThrower[] bombThrowers = new BombThrower[10];
     private static SoundClip bgMusic;
 
-    public LevelThree(){
-        super();
+    public LevelThree(String populate){
+        super(populate);
+
+        if (populate.equals("yes")){
+            placePlatforms();
+            placePortal();
+            placeBombThrowers();
+            placeCoins();
+            placeMinusCoins();
+            placeExplosivesMines();
+            placeHealthPotions();
+        }
 
         setBackground();
-        placePlatforms();
-        placePortal();
-        placeBombThrowers();
-        placeCoins();
-        placeMinusCoins();
-        placeExplosivesMines();
-        placeHealthPotions();
         addStepListener(this);
 
     }

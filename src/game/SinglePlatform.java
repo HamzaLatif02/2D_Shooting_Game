@@ -45,6 +45,22 @@ public class SinglePlatform extends StaticBody implements StepListener {
         return movement;
     }
 
+    public int getTime1() {
+        return time1;
+    }
+
+    public int getTime2() {
+        return time2;
+    }
+
+    public void setTime1(int time1) {
+        this.time1 = time1;
+    }
+
+    public void setTime2(int time2) {
+        this.time2 = time2;
+    }
+
     @Override
     public void preStep(StepEvent stepEvent) {
 

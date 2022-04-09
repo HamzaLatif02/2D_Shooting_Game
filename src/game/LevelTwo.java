@@ -17,20 +17,20 @@ public class LevelTwo extends GameLevel{
     private static SoundClip bgMusic;
 
 
-    public LevelTwo(){
-        super();
+    public LevelTwo(String populate){
+        super(populate);
 
+        if (populate.equals("yes")){
+            placePlatforms();
+            placeMummies();
+            placeMummyBoss();
+            placeHealthPotions();
+            placeSpeedpotions();
+            placeCoins();
+            placeMinusCoins();
+            placePortal();
+        }
         setBackground();
-        placePlatforms();
-        placeMummies();
-        placeMummyBoss();
-        placeHealthPotions();
-        placeSpeedpotions();
-        placeCoins();
-        placeMinusCoins();
-        placePortal();
-
-
     }
 
     static {

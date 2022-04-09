@@ -12,13 +12,17 @@ public abstract class GameLevel extends World {
     private Character character;
     private Portal portal;
     private Boolean completed;
+    private String populate;
 
-    public GameLevel(){
-        character = new Character(this);
-        character.setPosition(new Vec2(0f, -8f));
-        this.completed = Boolean.FALSE;
-        portal = new Portal(this);
+    public GameLevel(String populate){
+        this.populate = populate;
 
+        if (populate.equals("yes")){
+            character = new Character(this);
+            character.setPosition(new Vec2(0f, -8f));
+            this.completed = Boolean.FALSE;
+            portal = new Portal(this);
+        }
     }
 
     public Boolean getCompleted() {
@@ -37,6 +41,10 @@ public abstract class GameLevel extends World {
 
     public void setPortal(Portal portal) {
         this.portal = portal;
+    }
+
+    public String getPopulate() {
+        return populate;
     }
 
     public abstract Boolean objectivesDone();

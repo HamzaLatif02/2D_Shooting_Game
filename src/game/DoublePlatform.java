@@ -49,6 +49,14 @@ public class DoublePlatform extends StaticBody implements StepListener{
         return direction;
     }
 
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
     @Override
     public void preStep(StepEvent stepEvent) {
         if (direction.equals("horizontal")){

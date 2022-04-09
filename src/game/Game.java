@@ -39,7 +39,7 @@ public class Game {
 
 
 
-        level = new LevelOne();
+        level = new LevelOne("yes");
         view = new GameView(this, level, 800,800, level.getCharacter(), ((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
 
         //1. make an empty game world
@@ -141,14 +141,19 @@ public class Game {
         view.updateCharacter(level.getCharacter());
         characterController.updateCharacter(level.getCharacter());
         level.addStepListener(new Tracker(view, level.getCharacter(), level));
+        mainMenuVisible = Boolean.FALSE;
+        frame.remove(mainMenu.getMainPanel());
+        frame.add(view);
+        frame.pack();
         level.start();
+
     }
 
     public void goToNextLevel(){
         if (level instanceof LevelOne){
             level.getBackgroundMusic().stop();
             level.stop();
-            level = new LevelTwo();
+            level = new LevelTwo("yes");
             level.startBackgroundMusic();
             view.addEnemies(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
             updateLevelElements();
@@ -157,7 +162,7 @@ public class Game {
         } else if (level instanceof LevelTwo){
             level.getBackgroundMusic().stop();
             level.stop();
-            level = new LevelThree();
+            level = new LevelThree("yes");
             level.startBackgroundMusic();
             view.addEnemies(((LevelThree)level).getBombThrowers());
             updateLevelElements();

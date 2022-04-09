@@ -2,6 +2,8 @@ package game;
 
 import city.cs.engine.DynamicBody;
 import city.cs.engine.StaticBody;
+import city.cs.engine.Walker;
+import org.jbox2d.common.Vec2;
 
 import java.io.*;
 
@@ -21,13 +23,15 @@ public class GameSaverLoader {
                 if (sb instanceof Coin){
                     writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((Coin) sb).getValue() + "\n");
                 } else if (sb instanceof DoublePlatform){
-                    writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((DoublePlatform) sb).getDirection() + "\n");
+                    writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((DoublePlatform) sb).getDirection() + "," + ((DoublePlatform) sb).getTime() + "\n");
                 } else if (sb instanceof HealthPotion){
                     writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((HealthPotion) sb).getType() + "\n");
                 } else if (sb instanceof Portal){
                     writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((Portal) sb).getType() + "," + ((Portal) sb).getDirection() + "\n");
                 } else if (sb instanceof SinglePlatform){
-                    writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((SinglePlatform) sb).getMovement() + "\n");
+                    writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((SinglePlatform) sb).getMovement() + "," + ((SinglePlatform) sb).getTime1() + "," + ((SinglePlatform) sb).getTime2() + "\n");
+                } else if (sb instanceof SpeedPotion){
+                    writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((SpeedPotion) sb).getType() + "\n");
                 }
                 else {
                     writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "\n");
@@ -50,6 +54,12 @@ public class GameSaverLoader {
                     writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((Ninja) db).getHealth() + "," + ((Ninja) db).getDirection() + "\n");
                 } else if ( db instanceof NinjaBoss){
                     writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((NinjaBoss) db).getHealth() + "," + ((NinjaBoss) db).getDirection() + "\n");
+                } else if (db instanceof Projectile){
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((Projectile) db).getTime() + "\n");
+                } else if (db instanceof PoisonProjectile){
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((PoisonProjectile) db).getTime() + "\n");
+                }  else if (db instanceof Bomb){
+                    writer.write(db.getClass().getSimpleName() + "," + db.getPosition().x + "," + db.getPosition().y + "," + ((Bomb) db).getTime() + "\n");
                 }
                 else {
                     writer.write(level.getDynamicBodies().get(i).getClass().getSimpleName() + "," + level.getDynamicBodies().get(i).getPosition().x + "," + level.getDynamicBodies().get(i).getPosition().y + "\n");
@@ -62,7 +72,6 @@ public class GameSaverLoader {
                 writer.close();
             }
         }
-        System.out.println("game saved");
     }
 
 
@@ -70,21 +79,127 @@ public class GameSaverLoader {
         FileReader fr = null;
         BufferedReader reader = null;
         try {
-            System.out.println("Reading " + fileName + " ...");
             fr = new FileReader(fileName);
             reader = new BufferedReader(fr);
+
             String line = reader.readLine();
+
+            GameLevel level = null;
+            if (line.equals("LevelOne")){
+                level = new LevelOne("no");
+            } else if (line.equals("LevelTwo")){
+                level = new LevelTwo("no");
+            } else if (line.equals("LevelThree")){
+                level = new LevelThree("no");
+            }
+
+            line = reader.readLine();
+
             while (line != null) {
-                // file is assumed to contain one name, score pair per line
+
                 String[] tokens = line.split(",");
-                String level = tokens[0];
-                float positionX = Float.parseFloat(tokens[1]);
-                float positionY = Float.parseFloat(tokens[2]);
-                int points = Integer.parseInt(tokens[3]);
-                System.out.println("Level: " + level + ", PositionX: " + positionX + ", PositionY: " + positionY + ", Points: " + points);
+
+                if (tokens[0].equals("Bomb")){
+                    Bomb bomb = new Bomb(level);
+                    bomb.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    bomb.setTime(Integer.parseInt(tokens[3]));
+                } else if (tokens[0].equals("BombThrower")){
+                    BombThrower bombThrower = new BombThrower(level);
+                    bombThrower.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    bombThrower.setHealth(Integer.parseInt(tokens[3]));
+                } else if (tokens[0].equals("Character")){
+                    Character character = new Character(level);
+                    character.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    character.setHealth(Integer.parseInt(tokens[3]));
+                    character.setDirection(tokens[4]);
+                    character.setPoints(Integer.parseInt(tokens[5]));
+                    character.setSpeed(Float.parseFloat(tokens[6]));
+                    character.setChangeGravity(Boolean.parseBoolean(tokens[7]));
+                    character.setEnemiesKilled(Integer.parseInt(tokens[8]));
+                } else if (tokens[0].equals("Coin")){
+                    Coin coin = new Coin(level, tokens[3]);
+                    coin.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                } else if (tokens[0].equals("DoublePlatform")){
+                    DoublePlatform doublePlatform;
+                    if (tokens[3].equals(null)){
+                        doublePlatform = new DoublePlatform(level);
+                    } else {
+                        doublePlatform = new DoublePlatform(level, tokens[3]);
+                    }
+                    doublePlatform.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    doublePlatform.setTime(Integer.parseInt(tokens[4]));
+                } else if (tokens[0].equals("ExplosiveMine")){
+                    ExplosiveMine explosiveMine = new ExplosiveMine(level);
+                    explosiveMine.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                } else if (tokens[0].equals("GroundPlatform")){
+                    GroundPlatform groundPlatform = new GroundPlatform(level);
+                    groundPlatform.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                } else if (tokens[0].equals("HealthPotion")){
+                    HealthPotion healthPotion = new HealthPotion(level, tokens[3]);
+                    healthPotion.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                } else if (tokens[0].equals("MinusCoin")){
+                    MinusCoin minusCoin = new MinusCoin(level);
+                    minusCoin.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                } else if (tokens[0].equals("Mummy")){
+                    Mummy mummy = new Mummy(level, tokens[5]);
+                    mummy.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    mummy.setHealth(Integer.parseInt(tokens[3]));
+                    mummy.setDirection(tokens[4]);
+                } else if (tokens[0].equals("MummyBoss")){
+                    MummyBoss mummyBoss = new MummyBoss(level);
+                    mummyBoss.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    mummyBoss.setHealth(Integer.parseInt(tokens[3]));
+                    mummyBoss.setDirection(tokens[4]);
+                } else if (tokens[0].equals("Ninja")){
+                    Ninja ninja = new Ninja(level);
+                    ninja.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    ninja.setHealth(Integer.parseInt(tokens[3]));
+                    ninja.setDirection(tokens[4]);
+                } else if (tokens[0].equals("NinjaBoss")){
+                    NinjaBoss ninjaBoss = new NinjaBoss(level);
+                    ninjaBoss.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    ninjaBoss.setHealth(Integer.parseInt(tokens[3]));
+                    ninjaBoss.setDirection(tokens[4]);
+                } else if (tokens[0].equals("PoisonProjectile")){
+                    PoisonProjectile poisonProjectile = new PoisonProjectile(level);
+                    poisonProjectile.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    poisonProjectile.setTime(Integer.parseInt(tokens[3]));
+                } else if (tokens[0].equals("Portal")){
+                    Portal portal;
+                    if (tokens[3].equals(null) && tokens[4].equals(null)){
+                        portal = new Portal(level);
+                    } else {
+                        portal = new Portal(level, tokens[3], tokens[4]);
+                    }
+                    portal.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                } else if (tokens[0].equals("Projectile")){
+                    Projectile projectile = new Projectile(level);
+                    projectile.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    projectile.setTime(Integer.parseInt(tokens[3]));
+                } else if (tokens[0].equals("Shuriken")){
+                    Shuriken shuriken = new Shuriken(level);
+                    shuriken.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                } else if (tokens[0].equals("SinglePlatform")){
+                    SinglePlatform singlePlatform;
+                    if (tokens[3].equals(null)){
+                        singlePlatform = new SinglePlatform(level);
+                    } else {
+                        singlePlatform = new SinglePlatform(level, tokens[3]);
+                    }
+                    singlePlatform.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                    singlePlatform.setTime1(Integer.parseInt(tokens[4]));
+                    singlePlatform.setTime2(Integer.parseInt(tokens[5]));
+                } else if (tokens[0].equals("SpeedPotion")){
+                    SpeedPotion speedPotion = new SpeedPotion(level, tokens[3]);
+                    speedPotion.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                } else if (tokens[0].equals("WallPlatform")){
+                    WallPlatform wallPlatform = new WallPlatform(level);
+                    wallPlatform.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                }
+
                 line = reader.readLine();
             }
-            System.out.println("...done.");
+            return level;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

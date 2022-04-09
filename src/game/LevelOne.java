@@ -16,19 +16,19 @@ public class LevelOne extends GameLevel{
     private Image background;
     private static SoundClip bgMusic;
 
-    public LevelOne(){
-        super();
-
+    public LevelOne(String populate){
+        super(populate);
+        if (getPopulate().equals("yes")){
+            placePlatforms();
+            placeNinjas();
+            placeNinjaBoss();
+            placeCoins();
+            placeMinusCoins();
+            placeHealthPotion();
+            placeSpeedPotion();
+            placePortal();
+        }
         setBackground();
-        placePlatforms();
-        placeNinjas();
-        placeNinjaBoss();
-        placeCoins();
-        placeMinusCoins();
-        placeHealthPotion();
-        placeSpeedPotion();
-        placePortal();
-
     }
 
     static {

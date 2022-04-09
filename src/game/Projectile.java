@@ -36,6 +36,14 @@ public class Projectile extends DynamicBody implements StepListener {
     public void setDamage(int damage){this.damage = damage;}
     public int getDamage(){return damage;}
 
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
     @Override
     public void preStep(StepEvent stepEvent) {
         time++;

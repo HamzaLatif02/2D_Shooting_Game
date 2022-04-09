@@ -29,5 +29,9 @@ public class SpeedPotion extends StaticBody {
 
         //setAlwaysOutline(true);
     }
+
+    public String getType() {
+        return type;
+    }
 }
 

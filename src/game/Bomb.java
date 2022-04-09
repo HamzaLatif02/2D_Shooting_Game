@@ -44,6 +44,10 @@ public class Bomb extends DynamicBody implements StepListener{
         return explosionImage;
     }
 
+    public int getTime() {
+        return time;
+    }
+
     public void setTime(int time) {
         this.time = time;
     }
