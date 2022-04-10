@@ -63,11 +63,12 @@ public class GameView extends UserView {
         g.drawString("Coins: " + character.getPoints(),20,50);
 
         g.drawString("Controls", 350,50);
-        g.drawString("Move: Arrows or WASD", 350, 65);
-        g.drawString("Shoot: C or K", 350, 80);
+        g.drawString("Pause: Esc", 350, 65);
+        g.drawString("Move: Arrows or WASD", 350, 80);
+        g.drawString("Shoot: C or K", 350, 95);
 
         if (level instanceof LevelThree && character.getChangeGravity()){
-            g.drawString("Gravity: Spacebar", 350, 95);
+            g.drawString("Gravity: Spacebar", 350, 110);
         }
 
         g.drawString("To Win", 600, 50);
