@@ -118,16 +118,14 @@ public class Game {
 
     public void checkLevelCompletion(){
         while (level.isRunning()){
-            //System.out.println(level.getLevelName());
-            //System.out.println(level.getLevelName() + "," + level.objectivesDone());
 
-            /*if (level.getCompleted()){
+            if (level.getCompleted()){
                 System.out.println("yes");
                 goToNextLevel();
-            }*/
-            if (level.objectivesDone()){
-                goToNextLevel();
             }
+            /*if (level.objectivesDone()){
+                goToNextLevel();
+            }*/
         }
     }
 
