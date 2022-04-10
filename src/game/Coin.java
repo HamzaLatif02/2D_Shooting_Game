@@ -2,6 +2,10 @@ package game;
 
 import city.cs.engine.*;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 
 public class Coin extends StaticBody {
 
@@ -14,6 +18,19 @@ public class Coin extends StaticBody {
     private static final BodyImage starImage = new BodyImage("data/level2/star2.png", 3f);
 
     private String value;
+    private static SoundClip soundCoin;
+
+    static {
+        try {
+            soundCoin = new SoundClip("data/coinsound.wav");
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Coin(World w, String value){
         super(w);
@@ -37,5 +54,12 @@ public class Coin extends StaticBody {
 
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public void destroy() {
+        soundCoin.setVolume(0.5);
+        soundCoin.play();
+        super.destroy();
     }
 }

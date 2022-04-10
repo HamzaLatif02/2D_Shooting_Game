@@ -4,7 +4,10 @@ import city.cs.engine.*;
 import city.cs.engine.Shape;
 import org.jbox2d.common.Vec2;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
+import java.io.IOException;
 
 public class Character extends Walker {
     private static final Shape characterShape = new CircleShape(2);
@@ -25,7 +28,6 @@ public class Character extends Walker {
     private static final BodyImage imageLeft3UpsideDown = new BodyImage("data/level3/character3-left-upsidedown.png",6f);
     private static final BodyImage imageRightMoving3UpsideDown = new BodyImage("data/level3/character3-right-upsidedown-flame.png",6f);
     private static final BodyImage imageLeftMoving3UpsideDown = new BodyImage("data/level3/character3-left-upsidedown-flame.png",6f);
-
 
     private int points, health;
     private float speed;
@@ -225,8 +227,5 @@ public class Character extends Walker {
         }
         else return Boolean.TRUE;
     }
-
-
-
 
 }
