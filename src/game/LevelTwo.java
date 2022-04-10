@@ -251,8 +251,7 @@ public class LevelTwo extends GameLevel{
     public Boolean objectivesDone() {
         if (getCharacter().getPoints() > 0 || checkBossAlive() == Boolean.FALSE){
             return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
+        } else {return Boolean.FALSE;}
     }
 
     @Override

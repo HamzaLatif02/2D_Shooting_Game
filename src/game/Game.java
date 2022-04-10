@@ -118,7 +118,11 @@ public class Game {
 
     public void checkLevelCompletion(){
         while (level.isRunning()){
+            //System.out.println(level.getLevelName());
+            //System.out.println(level.getLevelName() + "," + level.objectivesDone());
+
             /*if (level.getCompleted()){
+                System.out.println("yes");
                 goToNextLevel();
             }*/
             if (level.objectivesDone()){
@@ -151,6 +155,8 @@ public class Game {
 
 
 
+
+
     }
 
     public void goToNextLevel(){
@@ -161,8 +167,6 @@ public class Game {
             level.startBackgroundMusic();
             view.addEnemiesLevelTwo(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
             updateLevelElements();
-
-
         } else if (level instanceof LevelTwo){
             level.getBackgroundMusic().stop();
             level.stop();

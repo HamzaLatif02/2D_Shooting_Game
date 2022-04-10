@@ -319,8 +319,7 @@ public class LevelThree extends GameLevel implements StepListener {
     public Boolean objectivesDone() {
         if (getCharacter().getPoints() > 120 && getCharacter().getEnemiesKilled() == 10){
             return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
+        } else {return Boolean.FALSE;}
     }
 
     @Override

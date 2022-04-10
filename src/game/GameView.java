@@ -6,6 +6,7 @@ import city.cs.engine.WorldView;
 import org.jbox2d.common.Vec2;
 
 import javax.swing.*;
+import javax.swing.text.Style;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -57,6 +58,8 @@ public class GameView extends UserView {
     @Override
     protected void paintForeground(Graphics2D g){
 
+        g.setFont(new Font("JetBrains Mono", 0, 12));
+
         g.drawString("Coins: " + character.getPoints(),20,50);
 
         g.drawString("Controls", 350,50);
@@ -68,15 +71,13 @@ public class GameView extends UserView {
         }
 
         g.drawString("To Win", 600, 50);
-        g.drawString("Collect min 45 coins AND", 600, 65);
-
         if (level instanceof LevelOne || level instanceof LevelTwo){
+            g.drawString("Collect min 45 coins AND", 600, 65);
             g.drawString("Defeat the final boss", 600, 80);
         } else if (level instanceof LevelThree){
+            g.drawString("Collect min 120 coins AND", 600, 65);
             g.drawString("Defeat all enemies", 600, 80);
         }
-
-
 
         g.drawString("Health:" , 100,50);
         g.drawRect(150,40,100, 10);
@@ -101,6 +102,17 @@ public class GameView extends UserView {
         if (level instanceof LevelThree){
             g.setColor(Color.black);
             g.drawString("Enemies killed: " + character.getEnemiesKilled() + "/10", 20, 70);
+        }
+
+        if (level instanceof LevelThree){
+            g.setFont(new Font("JetBrains Mono", Font.BOLD, 35));
+            g.setColor(Color.black);
+            g.drawString("PRESS SPACEBAR", Math.round(this.worldToView(new Vec2(85f, 0f)).x), Math.round(this.worldToView(new Vec2(0f, 22f)).y));
+            g.drawString("TO CHANGE GRAVITY", Math.round(this.worldToView(new Vec2(85f, 0f)).x), Math.round(this.worldToView(new Vec2(0f, 20f)).y));
+            g.setFont(new Font("JetBrains Mono", Font.BOLD, 35));
+            g.setColor(new Color(146, 239, 143));
+            g.drawString("PRESS SPACEBAR", Math.round(this.worldToView(new Vec2(84.9f, 0f)).x), Math.round(this.worldToView(new Vec2(0f, 21.9f)).y));
+            g.drawString("TO CHANGE GRAVITY", Math.round(this.worldToView(new Vec2(84.9f, 0f)).x), Math.round(this.worldToView(new Vec2(0f, 19.9f)).y));
         }
 
         if (level instanceof LevelOne){
@@ -149,26 +161,26 @@ public class GameView extends UserView {
 
 
         if (!character.isAlive()){
-            g.setFont(new Font("Arial", Font.BOLD, 100));
+            g.setFont(new Font("JetBrains Mono", Font.BOLD, 100));
             g.setColor(Color.black);
             g.drawString("YOU LOST", 203, 403);
-            g.setFont(new Font("Arial", Font.BOLD, 100));
+            g.setFont(new Font("JetBrains Mono", Font.BOLD, 100));
             g.setColor(new Color(181,40,2));
             g.drawString("YOU LOST", 200,400);
         }
 
         if (level.objectivesDone() && (level instanceof LevelOne || level instanceof LevelTwo)){
-            g.setFont(new Font("Arial", Font.BOLD, 40));
+            g.setFont(new Font("JetBrains Mono", Font.BOLD, 40));
             g.setColor(Color.black);
             g.drawString("LEVEL COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-150), Math.round(this.worldToView(level.getPortal().getPosition()).y+200));
-            g.setFont(new Font("Arial", Font.BOLD, 40));
+            g.setFont(new Font("JetBrains Mono", Font.BOLD, 40));
             g.setColor(new Color(73,152,183));
             g.drawString("LEVEL COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-148),Math.round(this.worldToView(level.getPortal().getPosition()).y+198));
         } else if (level.objectivesDone() && level instanceof LevelThree){
-            g.setFont(new Font("Arial", Font.BOLD, 40));
+            g.setFont(new Font("JetBrains Mono", Font.BOLD, 40));
             g.setColor(Color.black);
             g.drawString("GAME COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-150), Math.round(this.worldToView(level.getPortal().getPosition()).y+200));
-            g.setFont(new Font("Arial", Font.BOLD, 40));
+            g.setFont(new Font("JetBrains Mono", Font.BOLD, 40));
             g.setColor(new Color(73,152,183));
             g.drawString("GAME COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-148),Math.round(this.worldToView(level.getPortal().getPosition()).y+198));
         }

@@ -91,7 +91,6 @@ public class GameSaverLoader {
                 level = new LevelTwo("no");
             } else if (line.equals("LevelThree")){
                 level = new LevelThree("no");
-                //level.addStepListener((LevelThree)level);
             }
 
             line = reader.readLine();

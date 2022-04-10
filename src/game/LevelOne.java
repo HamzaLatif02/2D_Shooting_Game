@@ -222,9 +222,9 @@ public class LevelOne extends GameLevel{
 
     @Override
     public Boolean objectivesDone() {
-        if (getCharacter().getPoints() > 0 || checkBossAlive() == Boolean.FALSE){
+        if (getCharacter().getPoints() > 00 || checkBossAlive() == Boolean.FALSE){
             return Boolean.TRUE;
-        } else return Boolean.FALSE;
+        } else {return Boolean.FALSE;}
     }
 
     @Override

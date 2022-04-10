@@ -20,7 +20,7 @@ public class SpeedPotionPickup implements SensorListener {
                     ((Character) e.getContactBody()).setSpeed(6);
                 }
             } else {
-                ((Character) e.getContactBody()).setSpeed(4);
+                ((Character) e.getContactBody()).setSpeed(5);
             }
 
             speedPotion.destroy();
