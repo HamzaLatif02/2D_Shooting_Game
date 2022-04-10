@@ -13,6 +13,7 @@ public abstract class GameLevel extends World {
     private Portal portal;
     private Boolean completed;
     private String populate;
+    private Boolean playSoundEffects;
 
     public GameLevel(String populate){
         this.populate = populate;
@@ -22,10 +23,12 @@ public abstract class GameLevel extends World {
             character.setPosition(new Vec2(0f, -8f));
             this.completed = Boolean.FALSE;
             portal = new Portal(this);
+            this.playSoundEffects = Boolean.TRUE;
         } else {
             character = new Character(this);
             portal = new Portal(this);
             this.completed = Boolean.FALSE;
+            this.playSoundEffects = Boolean.TRUE;
         }
     }
 
@@ -49,6 +52,14 @@ public abstract class GameLevel extends World {
 
     public String getPopulate() {
         return populate;
+    }
+
+    public Boolean getPlaySoundEffects() {
+        return playSoundEffects;
+    }
+
+    public void setPlaySoundEffects(Boolean playSoundEffects) {
+        this.playSoundEffects = playSoundEffects;
     }
 
     public abstract Boolean objectivesDone();

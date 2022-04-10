@@ -19,6 +19,7 @@ public class Coin extends StaticBody {
 
     private String value;
     private static SoundClip soundCoin;
+    private GameLevel level;
 
     static {
         try {
@@ -34,6 +35,7 @@ public class Coin extends StaticBody {
 
     public Coin(World w, String value){
         super(w);
+        this.level = (GameLevel)w;
         this.value = value;
         if (value.equals("single")){
             addImage(coinImage);
@@ -58,8 +60,10 @@ public class Coin extends StaticBody {
 
     @Override
     public void destroy() {
-        soundCoin.setVolume(0.5);
-        soundCoin.play();
+        if (level.getPlaySoundEffects()){
+            soundCoin.setVolume(0.5);
+            soundCoin.play();
+        }
         super.destroy();
     }
 }

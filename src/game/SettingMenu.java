@@ -13,11 +13,13 @@ public class SettingMenu {
     private JCheckBox muteVolumeCheckBox;
     private JLabel settingText;
     private JLabel volumeSelectText;
+    private JCheckBox muteSoundEffectsCheckBox;
 
     private Game game;
 
     public SettingMenu(Game g){
         this.game = g;
+
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -96,6 +98,19 @@ public class SettingMenu {
                         game.getLevel().getBackgroundMusic().resume();
                         game.getLevel().getBackgroundMusic().setVolume(0.5);
                     }
+                }
+            }
+        });
+
+        muteSoundEffectsCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean muted = muteSoundEffectsCheckBox.isSelected();
+
+                if (muted){
+                    game.getLevel().setPlaySoundEffects(Boolean.FALSE);
+                } else {
+                    game.getLevel().setPlaySoundEffects(Boolean.TRUE);
                 }
             }
         });
