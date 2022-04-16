@@ -51,7 +51,7 @@ public class LevelTwo extends GameLevel{
     }
 
     public void setBackground(){
-        background = new ImageIcon("data/level2/background2.png").getImage();
+        background = new ImageIcon("data/level2/background2.gif").getImage();
     }
 
     public void placePlatforms(){
