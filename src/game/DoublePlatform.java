@@ -8,7 +8,7 @@ public class DoublePlatform extends StaticBody implements StepListener{
     private static final Shape doubleShape = new PolygonShape(-3.65f,2.0f, 3.75f,2.00f, 4.0f,1.70f, 4.0f,-1.70f, 3.75f,-2.0f, -3.65f,-2.0f, -4.0f,-1.70f, -4.0f,1.70f);
     private static final BodyImage image = new BodyImage("data/level1/platform-double.png",8f);
     private static final BodyImage image2 = new BodyImage("data/level2/sandstone-platform-double.png", 8f);
-    private static final BodyImage image3 = new BodyImage("data/level3/stone-platform-double.png", 8f);
+    private static final BodyImage image3 = new BodyImage("data/level3/stone-platform-double.gif", 8f);
 
     private int time;
     private String direction;

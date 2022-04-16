@@ -10,7 +10,7 @@ public class GroundPlatform extends StaticBody {
     private static final Shape groundShape = new PolygonShape(-14.0f,7.5f, 14.0f,7.5f, 15.0f,6.5f, 15.0f,-6.5f, 14.0f,-7.5f, -14.0f,-7.5f, -15.0f,-6.5f, -15.0f,6.5f);
     private static final BodyImage image = new BodyImage("data/level1/platform-long.png",30f);
     private static final BodyImage image2 = new BodyImage("data/level2/sandstone-platform-long.png", 30f);
-    private static final BodyImage image3 = new BodyImage("data/level3/stone-platform-long.png", 30f);
+    private static final BodyImage image3 = new BodyImage("data/level3/stone-platform-long.gif", 30f);
 
     public GroundPlatform(World w){
         super(w,groundShape);

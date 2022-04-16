@@ -8,7 +8,7 @@ public class SinglePlatform extends StaticBody implements StepListener {
     private static final Shape singleShape = new PolygonShape(-1.65f,2.00f, 1.65f,2.00f, 2.0f,1.65f, 2.0f,-1.65f, 1.65f,-2.00f, -1.65f,-2.00f, -2.00f,-1.65f, -2.00f,1.65f);
     private static final BodyImage image = new BodyImage("data/level1/platform-single.png",4f);
     private static final BodyImage image2 = new BodyImage("data/level2/sandstone-platform-single.png",4f);
-    private static final BodyImage image3 = new BodyImage("data/level3/stone-platform-single.png", 4f);
+    private static final BodyImage image3 = new BodyImage("data/level3/stone-platform-single.gif", 4f);
 
     private int time1, time2 ,delay;
     private String movement;
