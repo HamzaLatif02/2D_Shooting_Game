@@ -119,13 +119,13 @@ public class Game {
     public void checkLevelCompletion(){
         while (level.isRunning()){
 
-            if (level.getCompleted()){
+            /*if (level.getCompleted()){
                 System.out.println("yes");
                 goToNextLevel();
-            }
-            /*if (level.objectivesDone()){
-                goToNextLevel();
             }*/
+            if (level.objectivesDone()){
+                goToNextLevel();
+            }
         }
     }
 

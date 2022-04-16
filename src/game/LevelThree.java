@@ -44,7 +44,7 @@ public class LevelThree extends GameLevel implements StepListener {
     }
 
     public void setBackground() {
-        this.background = new ImageIcon("data/level3/background3.png").getImage();
+        this.background = new ImageIcon("data/level3/background3.gif").getImage();
     }
 
     public ArrayList<BombThrower> getBombThrowers() {
