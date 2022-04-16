@@ -45,7 +45,7 @@ public class LevelOne extends GameLevel{
     public ArrayList<NinjaBoss> getNinjaBoss(){return ninjaBoss;}
 
     public void setBackground(){
-        background = new ImageIcon("data/level1/background.png").getImage();
+        background = new ImageIcon("data/level1/background.gif").getImage();
     }
 
     public void placePlatforms(){
