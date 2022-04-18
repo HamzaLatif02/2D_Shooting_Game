@@ -14,6 +14,7 @@ public class InGameMenu {
     private JLabel gameText;
     private JLabel pausedText;
     private JPanel gamePausedPanel;
+    private JButton controlsButton;
 
     private Game game;
 
@@ -38,6 +39,18 @@ public class InGameMenu {
             }
         });
 
+        controlsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (game.getLevel() instanceof LevelOne || game.getLevel() instanceof LevelTwo){
+                    game.getControlsMenu().getChangeGravityText().setVisible(false);
+                } else if (game.getLevel() instanceof LevelThree){
+                    game.getControlsMenu().getChangeGravityText().setVisible(true);
+                }
+                game.transitionToControlsMenu();
+            }
+        });
+
         settingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,6 +64,7 @@ public class InGameMenu {
                 System.exit(0);
             }
         });
+
 
     }
 
