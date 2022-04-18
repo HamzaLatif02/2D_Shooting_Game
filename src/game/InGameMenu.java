@@ -15,6 +15,7 @@ public class InGameMenu {
     private JLabel pausedText;
     private JPanel gamePausedPanel;
     private JButton controlsButton;
+    private JButton objectivesButton;
 
     private Game game;
 
@@ -36,6 +37,24 @@ public class InGameMenu {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
+            }
+        });
+
+        objectivesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (game.getLevel() instanceof LevelOne || game.getLevel() instanceof LevelTwo){
+                    game.getObjectivesMenu().getCoinsTextLevelOneTwo().setVisible(true);
+                    game.getObjectivesMenu().getKillTextLevelOneTwo().setVisible(true);
+                    game.getObjectivesMenu().getCoinTextLevelThree().setVisible(false);
+                    game.getObjectivesMenu().getKillTextLevelThree().setVisible(false);
+                } else if (game.getLevel() instanceof LevelThree){
+                    game.getObjectivesMenu().getCoinsTextLevelOneTwo().setVisible(false);
+                    game.getObjectivesMenu().getKillTextLevelOneTwo().setVisible(false);
+                    game.getObjectivesMenu().getCoinTextLevelThree().setVisible(true);
+                    game.getObjectivesMenu().getKillTextLevelThree().setVisible(true);
+                }
+                game.transitionToObjectivesMenu();
             }
         });
 
@@ -64,7 +83,6 @@ public class InGameMenu {
                 System.exit(0);
             }
         });
-
 
     }
 

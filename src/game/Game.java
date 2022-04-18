@@ -22,6 +22,7 @@ public class Game {
     private InGameMenu inGameMenu;
     private SettingMenu settingMenu;
     private ControlsMenu controlsMenu;
+    private ObjectivesMenu objectivesMenu;
     private Boolean menuVisible, mainMenuVisible;
     private SoundClip bgMusic;
 
@@ -38,6 +39,7 @@ public class Game {
         inGameMenu = new InGameMenu(this);
         settingMenu = new SettingMenu(this);
         controlsMenu = new ControlsMenu(this);
+        objectivesMenu = new ObjectivesMenu(this);
 
 
 
@@ -120,6 +122,10 @@ public class Game {
 
     public ControlsMenu getControlsMenu() {
         return controlsMenu;
+    }
+
+    public ObjectivesMenu getObjectivesMenu() {
+        return objectivesMenu;
     }
 
     public void checkLevelCompletion(){
@@ -244,6 +250,18 @@ public class Game {
 
     public void transitionToInGameMenuFromControls(){
         frame.remove(controlsMenu.getMainPanel());
+        frame.add(inGameMenu.getMainPanel(), BorderLayout.WEST);
+        frame.pack();
+    }
+
+    public void transitionToObjectivesMenu(){
+        frame.remove(inGameMenu.getMainPanel());
+        frame.add(objectivesMenu.getMainPanel(), BorderLayout.WEST);
+        frame.pack();
+    }
+
+    public void transitionToInGameMenuFromObjectives(){
+        frame.remove(objectivesMenu.getMainPanel());
         frame.add(inGameMenu.getMainPanel(), BorderLayout.WEST);
         frame.pack();
     }
