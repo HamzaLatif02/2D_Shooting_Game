@@ -62,23 +62,28 @@ public class GameView extends UserView {
 
         g.drawString("Coins: " + character.getPoints(),20,50);
 
-        g.drawString("Controls", 350,50);
-        g.drawString("Pause: Esc", 350, 65);
-        g.drawString("Move: Arrows or WASD", 350, 80);
-        g.drawString("Shoot: C or K", 350, 95);
+        if (game.getShowControls()){
+            g.drawString("Controls", 350,50);
+            g.drawString("Pause: Esc", 350, 65);
+            g.drawString("Move: Arrows or WASD", 350, 80);
+            g.drawString("Shoot: C or K", 350, 95);
 
-        if (level instanceof LevelThree && character.getChangeGravity()){
-            g.drawString("Gravity: Spacebar", 350, 110);
+            if (level instanceof LevelThree && character.getChangeGravity()){
+                g.drawString("Gravity: Spacebar", 350, 110);
+            }
         }
 
-        g.drawString("To Win", 600, 50);
-        if (level instanceof LevelOne || level instanceof LevelTwo){
-            g.drawString("Collect min 45 coins AND", 600, 65);
-            g.drawString("Defeat the final boss", 600, 80);
-        } else if (level instanceof LevelThree){
-            g.drawString("Collect min 120 coins AND", 600, 65);
-            g.drawString("Defeat all enemies", 600, 80);
+        if (game.getShowObjectives()){
+            g.drawString("To Win", 600, 50);
+            if (level instanceof LevelOne || level instanceof LevelTwo){
+                g.drawString("Collect min 45 coins AND", 600, 65);
+                g.drawString("Defeat the final boss", 600, 80);
+            } else if (level instanceof LevelThree){
+                g.drawString("Collect min 120 coins AND", 600, 65);
+                g.drawString("Defeat all enemies", 600, 80);
+            }
         }
+
 
         g.drawString("Health:" , 100,50);
         g.drawRect(150,40,100, 10);

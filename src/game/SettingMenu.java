@@ -14,6 +14,8 @@ public class SettingMenu {
     private JLabel settingText;
     private JLabel volumeSelectText;
     private JCheckBox muteSoundEffectsCheckBox;
+    private JCheckBox showControlsCheckBox;
+    private JCheckBox showObjectivesCheckBox;
 
     private Game game;
 
@@ -111,6 +113,32 @@ public class SettingMenu {
                     game.getLevel().setPlaySoundEffects(Boolean.FALSE);
                 } else {
                     game.getLevel().setPlaySoundEffects(Boolean.TRUE);
+                }
+            }
+        });
+        showControlsCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean show = showControlsCheckBox.isSelected();
+
+                if (show){
+                    game.setShowControls(Boolean.TRUE);
+                } else {
+                    game.setShowControls(Boolean.FALSE);
+                }
+            }
+        });
+
+
+        showObjectivesCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean show = showObjectivesCheckBox.isSelected();
+
+                if (show){
+                    game.setShowObjectives(Boolean.TRUE);
+                } else {
+                    game.setShowObjectives(Boolean.FALSE);
                 }
             }
         });

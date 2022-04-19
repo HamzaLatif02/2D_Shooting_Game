@@ -23,7 +23,7 @@ public class Game {
     private SettingMenu settingMenu;
     private ControlsMenu controlsMenu;
     private ObjectivesMenu objectivesMenu;
-    private Boolean menuVisible, mainMenuVisible;
+    private Boolean menuVisible, mainMenuVisible, showControls, showObjectives;
     private SoundClip bgMusic;
 
 
@@ -32,6 +32,9 @@ public class Game {
 
         mainMenuVisible = Boolean.TRUE;
         menuVisible = Boolean.FALSE;
+
+        showControls = Boolean.FALSE;
+        showObjectives = Boolean.FALSE;
 
 
         frame = new JFrame("City Game");
@@ -118,6 +121,22 @@ public class Game {
 
     public Boolean getMainMenuVisible() {
         return mainMenuVisible;
+    }
+
+    public Boolean getShowControls() {
+        return showControls;
+    }
+
+    public void setShowControls(Boolean showControls) {
+        this.showControls = showControls;
+    }
+
+    public Boolean getShowObjectives() {
+        return showObjectives;
+    }
+
+    public void setShowObjectives(Boolean showObjectives) {
+        this.showObjectives = showObjectives;
     }
 
     public ControlsMenu getControlsMenu() {
