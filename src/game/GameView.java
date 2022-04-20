@@ -167,6 +167,7 @@ public class GameView extends UserView {
 
 
         if (!character.isAlive()){
+            game.transitionToGameLostMenu();
             g.setFont(new Font("JetBrains Mono", Font.BOLD, 100));
             g.setColor(Color.black);
             g.drawString("YOU LOST", 203, 403);
@@ -190,5 +191,13 @@ public class GameView extends UserView {
             g.setColor(new Color(73,152,183));
             g.drawString("GAME COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-148),Math.round(this.worldToView(level.getPortal().getPosition()).y+198));
         }
+
+        if (level.getCompleted()){
+            game.goToNextLevel();
+        }
+
+            /*if (level.objectivesDone()){
+                goToNextLevel();
+            }*/
     }
 }

@@ -48,23 +48,23 @@ public class Game {
 
 
 
-        level = new LevelOne("yes");
-        view = new GameView(this, level, 800,800, level.getCharacter());
-        view.addEnemiesLevelOne(((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
+        //level = new LevelOne("yes");
+        //view = new GameView(this, level, 800,800, level.getCharacter());
+        //view.addEnemiesLevelOne(((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
         //1. make an empty game world
         //GameWorld world = new GameWorld();
 
 
-        characterController = new CharacterController(this, level.getCharacter());
+        //characterController = new CharacterController(this, level.getCharacter());
 
         //3. make a view to look into the game world
         //GameView view = new GameView(world, 800, 800, world.getCharacter(), world.getNinja(), world.getNinjaBoss());
 
-        view.addMouseListener(new GiveFocus(view));
+        //view.addMouseListener(new GiveFocus(view));
 
-        view.addKeyListener(characterController);
+        //view.addKeyListener(characterController);
 
-        level.addStepListener(new Tracker(view, level.getCharacter(), level));
+        //level.addStepListener(new Tracker(view, level.getCharacter(), level));
 
 
         //optional: draw a 1-metre grid over the view
@@ -73,11 +73,9 @@ public class Game {
         //4. create a Java window (frame) and add the game
         //   view to it
         //final JFrame frame = new JFrame("City Game");
-
-        if (mainMenuVisible){
             playBackgroundMusic();
             frame.add(mainMenu.getMainPanel());
-        }
+
         //frame.add(view);
 
         // enable the frame to quit the application
@@ -95,10 +93,10 @@ public class Game {
         //JFrame debugView = new DebugViewer(world, 500, 500);
 
         // start our game world simulation!
-        level.start();
+        //level.start();
 
 
-        checkLevelCompletion();
+        //checkLevelCompletion();
     }
 
     public JFrame getFrame() {
@@ -149,30 +147,11 @@ public class Game {
         return objectivesMenu;
     }
 
-    public void setMainMenuVisible(Boolean mainMenuVisible) {
-        this.mainMenuVisible = mainMenuVisible;
-    }
-
-    public void checkLevelCompletion(){
-        while (level.isRunning()){
-            if (level.getCompleted()){
-                System.out.println("yes");
-                goToNextLevel();
-            }
-            /*if (level.objectivesDone()){
-                goToNextLevel();
-            }*/
-
-            if (!level.getCharacter().isAlive()){
-                transitionToGameLostMenu();
-            }
-        }
-
-    }
 
     public void setNewLevel(GameLevel l){
-        level.stop();
+        //level.stop();
         level = l;
+        view = new GameView(this, level, 800,800, level.getCharacter());
         mainMenuVisible = Boolean.FALSE;
         frame.remove(mainMenu.getMainPanel());
         frame.add(view);
@@ -185,12 +164,16 @@ public class Game {
         } else if (level instanceof LevelThree){
             view.addEnemiesLevelThree(((LevelThree)level).getBombThrowers());
         }
-        view.setWorld(level);
-        view.updateLevel(level);
-        view.updateCharacter(level.getCharacter());
-        characterController.updateCharacter(level.getCharacter());
+        characterController = new CharacterController(this, level.getCharacter());
+        view.addMouseListener(new GiveFocus(view));
+        view.addKeyListener(characterController);
         level.addStepListener(new Tracker(view, level.getCharacter(), level));
+        level.startBackgroundMusic();
         level.start();
+        frame.remove(mainMenu.getMainPanel());
+        frame.add(view);
+        frame.pack();
+
     }
 
     public void goToNextLevel(){
@@ -296,11 +279,30 @@ public class Game {
         level.stop();
     }
 
+    public void transitionToMainMenu(){
+        frame.remove(view);
+        frame.remove(gameLostMenu.getMainPanel());
+        mainMenuVisible = Boolean.TRUE;
+        frame.add(mainMenu.getMainPanel());
+        frame.pack();
+    }
+
     public void startNewGame(){
+
         mainMenuVisible = Boolean.FALSE;
+        level = new LevelOne("yes");
+        view = new GameView(this, level, 800,800, level.getCharacter());
+        view.addEnemiesLevelOne(((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
+        characterController = new CharacterController(this, level.getCharacter());
+        view.addMouseListener(new GiveFocus(view));
+        view.addKeyListener(characterController);
+        level.addStepListener(new Tracker(view, level.getCharacter(), level));
+        level.startBackgroundMusic();
+        level.start();
         frame.remove(mainMenu.getMainPanel());
         frame.add(view);
         frame.pack();
+
     }
 
     public void playBackgroundMusic(){
@@ -322,19 +324,17 @@ public class Game {
             level.startBackgroundMusic();
             view.addEnemiesLevelOne(((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
             updateLevelElements();
-            checkLevelCompletion();
         } else if (l instanceof LevelTwo){
             level = new LevelTwo("yes");
             level.startBackgroundMusic();
             view.addEnemiesLevelTwo(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
             updateLevelElements();
-            checkLevelCompletion();
         } else if (l instanceof LevelThree){
             level = new LevelThree("yes");
             level.startBackgroundMusic();
             view.addEnemiesLevelThree(((LevelThree)level).getBombThrowers());
             updateLevelElements();
-            checkLevelCompletion();
+
         }
     }
 

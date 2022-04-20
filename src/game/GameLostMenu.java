@@ -27,8 +27,7 @@ public class GameLostMenu {
         mainMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                game.setMainMenuVisible(Boolean.TRUE);
-                //new Game();
+                game.transitionToMainMenu();
             }
         });
 

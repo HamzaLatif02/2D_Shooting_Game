@@ -21,7 +21,7 @@ public class MainMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 game.getBgMusic().stop();
-                game.getLevel().startBackgroundMusic();
+                //game.getLevel().startBackgroundMusic();
                 game.startNewGame();
             }
         });

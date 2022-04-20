@@ -223,6 +223,7 @@ public class Character extends Walker {
     public Boolean isAlive(){
         if (health <= 0 || this.getPosition().y < -25 || (getWorld() instanceof LevelThree && this.getPosition().y > 54)){
             this.destroy();
+            getWorld().stop();
             return Boolean.FALSE;
         }
         else return Boolean.TRUE;
