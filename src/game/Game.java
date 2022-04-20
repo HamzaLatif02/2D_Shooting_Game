@@ -23,6 +23,7 @@ public class Game {
     private SettingMenu settingMenu;
     private ControlsMenu controlsMenu;
     private ObjectivesMenu objectivesMenu;
+    private GameLostMenu gameLostMenu;
     private Boolean menuVisible, mainMenuVisible, showControls, showObjectives;
     private SoundClip bgMusic;
 
@@ -43,6 +44,7 @@ public class Game {
         settingMenu = new SettingMenu(this);
         controlsMenu = new ControlsMenu(this);
         objectivesMenu = new ObjectivesMenu(this);
+        gameLostMenu = new GameLostMenu(this);
 
 
 
@@ -147,17 +149,25 @@ public class Game {
         return objectivesMenu;
     }
 
+    public void setMainMenuVisible(Boolean mainMenuVisible) {
+        this.mainMenuVisible = mainMenuVisible;
+    }
+
     public void checkLevelCompletion(){
         while (level.isRunning()){
-
-            /*if (level.getCompleted()){
+            if (level.getCompleted()){
                 System.out.println("yes");
                 goToNextLevel();
-            }*/
-            if (level.objectivesDone()){
+            }
+            /*if (level.objectivesDone()){
                 goToNextLevel();
+            }*/
+
+            if (!level.getCharacter().isAlive()){
+                transitionToGameLostMenu();
             }
         }
+
     }
 
     public void setNewLevel(GameLevel l){
@@ -181,11 +191,6 @@ public class Game {
         characterController.updateCharacter(level.getCharacter());
         level.addStepListener(new Tracker(view, level.getCharacter(), level));
         level.start();
-
-
-
-
-
     }
 
     public void goToNextLevel(){
@@ -285,6 +290,12 @@ public class Game {
         frame.pack();
     }
 
+    public void transitionToGameLostMenu(){
+        frame.add(gameLostMenu.getMainPanel(), BorderLayout.WEST);
+        frame.pack();
+        level.stop();
+    }
+
     public void startNewGame(){
         mainMenuVisible = Boolean.FALSE;
         frame.remove(mainMenu.getMainPanel());
@@ -299,6 +310,31 @@ public class Game {
             bgMusic.loop();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             System.out.println(e);
+        }
+    }
+
+    public void restartLevel(GameLevel l){
+        level.stop();
+        frame.remove(gameLostMenu.getMainPanel());
+        frame.pack();
+        if (l instanceof LevelOne){
+            level = new LevelOne("yes");
+            level.startBackgroundMusic();
+            view.addEnemiesLevelOne(((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
+            updateLevelElements();
+            checkLevelCompletion();
+        } else if (l instanceof LevelTwo){
+            level = new LevelTwo("yes");
+            level.startBackgroundMusic();
+            view.addEnemiesLevelTwo(((LevelTwo)level).getMummies(), ((LevelTwo)level).getMummyBoss());
+            updateLevelElements();
+            checkLevelCompletion();
+        } else if (l instanceof LevelThree){
+            level = new LevelThree("yes");
+            level.startBackgroundMusic();
+            view.addEnemiesLevelThree(((LevelThree)level).getBombThrowers());
+            updateLevelElements();
+            checkLevelCompletion();
         }
     }
 
