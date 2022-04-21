@@ -24,6 +24,7 @@ public class Game {
     private ControlsMenu controlsMenu;
     private ObjectivesMenu objectivesMenu;
     private GameLostMenu gameLostMenu;
+    private GameWonMenu gameWonMenu;
     private Boolean menuVisible, mainMenuVisible, showControls, showObjectives;
     private SoundClip bgMusic;
 
@@ -45,6 +46,7 @@ public class Game {
         controlsMenu = new ControlsMenu(this);
         objectivesMenu = new ObjectivesMenu(this);
         gameLostMenu = new GameLostMenu(this);
+        gameWonMenu = new GameWonMenu(this);
 
 
 
@@ -73,8 +75,8 @@ public class Game {
         //4. create a Java window (frame) and add the game
         //   view to it
         //final JFrame frame = new JFrame("City Game");
-            playBackgroundMusic();
-            frame.add(mainMenu.getMainPanel());
+        playBackgroundMusic();
+        frame.add(mainMenu.getMainPanel());
 
         //frame.add(view);
 
@@ -192,6 +194,7 @@ public class Game {
             view.addEnemiesLevelThree(((LevelThree)level).getBombThrowers());
             updateLevelElements();
         } else if (level instanceof LevelThree){
+            transitiontoGameWonMenu();
             level.stop();
         }
     }
@@ -279,9 +282,16 @@ public class Game {
         level.stop();
     }
 
+    public void transitiontoGameWonMenu(){
+        frame.add(gameWonMenu.getMainPanel(), BorderLayout.WEST);
+        frame.pack();
+        level.stop();
+    }
+
     public void transitionToMainMenu(){
         frame.remove(view);
         frame.remove(gameLostMenu.getMainPanel());
+        frame.remove(gameWonMenu.getMainPanel());
         mainMenuVisible = Boolean.TRUE;
         frame.add(mainMenu.getMainPanel());
         frame.pack();
