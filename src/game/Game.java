@@ -149,6 +149,9 @@ public class Game {
         return objectivesMenu;
     }
 
+    public InGameMenu getInGameMenu() {
+        return inGameMenu;
+    }
 
     public void setNewLevel(GameLevel l){
         //level.stop();

@@ -79,6 +79,8 @@ public class GameSaverLoader {
                 writer.close();
             }
         }
+
+        JOptionPane.showMessageDialog(game.getView(), "Game successfully saved", "Game Saved", JOptionPane.INFORMATION_MESSAGE);
     }
 
 
