@@ -1,9 +1,11 @@
 package game;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 public class MainMenu {
@@ -32,12 +34,24 @@ public class MainMenu {
         loadgameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    GameLevel loadedLevel = new GameSaverLoader().load("data/gamesaved.txt");
-                    game.getBgMusic().stop();
-                    game.setNewLevel(loadedLevel);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+                fileChooser.setAcceptAllFileFilterUsed(false);
+                fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(".txt","txt"));
+                fileChooser.showOpenDialog(mainPanel);
+
+
+                if (fileChooser.getSelectedFile() != null){
+                    try {
+                        GameLevel loadedLevel = new GameSaverLoader(game).load(fileChooser.getSelectedFile().getAbsolutePath());
+                        if (loadedLevel != null){
+                            game.getBgMusic().stop();
+                            game.setNewLevel(loadedLevel);
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
         });

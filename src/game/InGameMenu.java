@@ -34,7 +34,7 @@ public class InGameMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    new GameSaverLoader().save("data/gamesaved.txt", game.getLevel());
+                    new GameSaverLoader(game).save("data/gamesaved.txt", game.getLevel());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

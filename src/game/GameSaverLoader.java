@@ -5,9 +5,16 @@ import city.cs.engine.StaticBody;
 import city.cs.engine.Walker;
 import org.jbox2d.common.Vec2;
 
+import javax.swing.*;
 import java.io.*;
 
 public class GameSaverLoader {
+
+    private static Game game;
+    public GameSaverLoader(Game g){
+        this.game = g;
+    }
+
 
     public static void save(String fileName, GameLevel level) throws IOException {
         boolean append = false;
@@ -91,9 +98,17 @@ public class GameSaverLoader {
                 level = new LevelTwo("no");
             } else if (line.equals("LevelThree")){
                 level = new LevelThree("no");
+            } else {
+                JOptionPane.showMessageDialog(game.getMainMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
+                return null;
             }
 
             line = reader.readLine();
+
+            if (line == null){
+                JOptionPane.showMessageDialog(game.getMainMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
 
             while (line != null) {
 
@@ -208,6 +223,9 @@ public class GameSaverLoader {
                 } else if (tokens[0].equals("WallPlatform")){
                     WallPlatform wallPlatform = new WallPlatform(level);
                     wallPlatform.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
+                } else {
+                    JOptionPane.showMessageDialog(game.getMainMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
+                    return null;
                 }
 
                 line = reader.readLine();
