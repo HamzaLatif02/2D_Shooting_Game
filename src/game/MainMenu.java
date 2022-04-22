@@ -26,7 +26,6 @@ public class MainMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 game.getBgMusic().stop();
-                //game.getLevel().startBackgroundMusic();
                 game.startNewGame();
             }
         });
@@ -40,6 +39,8 @@ public class MainMenu {
                 fileChooser.setAcceptAllFileFilterUsed(false);
                 fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(".txt","txt"));
                 fileChooser.showOpenDialog(mainPanel);
+
+
 
 
                 if (fileChooser.getSelectedFile() != null){

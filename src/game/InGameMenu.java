@@ -1,8 +1,10 @@
 package game;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 public class InGameMenu {
@@ -33,8 +35,21 @@ public class InGameMenu {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+                fileChooser.setAcceptAllFileFilterUsed(false);
+                fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(".txt","txt"));
+                fileChooser.showSaveDialog(mainPanel);
+
+                String path = fileChooser.getSelectedFile().getAbsolutePath();
+
+                if (!path.endsWith(".txt")){
+                    path += ".txt";
+                }
+
                 try {
-                    new GameSaverLoader(game).save("data/gamesaved.txt", game.getLevel());
+                    new GameSaverLoader(game).save(path, game.getLevel());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
