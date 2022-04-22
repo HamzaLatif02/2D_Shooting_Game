@@ -13,9 +13,10 @@ public class InGameMenu {
     private JButton saveButton;
     private JLabel gameText;
     private JLabel pausedText;
-    private JPanel gamePausedPanel;
+    private JPanel titlePanel;
     private JButton controlsButton;
     private JButton objectivesButton;
+    private JPanel controlsPanel;
 
     private Game game;
 

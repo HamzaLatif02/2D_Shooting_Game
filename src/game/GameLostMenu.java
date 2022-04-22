@@ -10,6 +10,8 @@ public class GameLostMenu {
     private JButton restartButton;
     private JButton exitGameButton;
     private JButton mainMenuButton;
+    private JPanel titlePanel;
+    private JPanel controlsPanel;
 
     private Game game;
 

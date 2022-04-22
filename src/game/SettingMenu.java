@@ -1,6 +1,8 @@
 package game;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -16,6 +18,10 @@ public class SettingMenu {
     private JCheckBox muteSoundEffectsCheckBox;
     private JCheckBox showControlsCheckBox;
     private JCheckBox showObjectivesCheckBox;
+    private JPanel backButtonPanel;
+    private JPanel controlsPanel;
+    private JPanel titlePanel;
+    private JSlider volumeSlider;
 
     private Game game;
 
@@ -26,58 +32,6 @@ public class SettingMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 game.transitionToInGameMenu();
-            }
-        });
-
-
-        VolumeSelector.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int i = VolumeSelector.getSelectedIndex();
-                muteVolumeCheckBox.setSelected(false);
-                switch (i) {
-                    case 0:
-                        if (game.getMainMenuVisible()){
-                            game.getBgMusic().resume();
-                            game.getBgMusic().setVolume(2);
-                        } else {
-                            game.getLevel().getBackgroundMusic().resume();
-                            game.getLevel().getBackgroundMusic().setVolume(2);
-                        }
-                        break;
-
-                    case 1:
-                        if (game.getMainMenuVisible()){
-                            game.getBgMusic().resume();
-                            game.getBgMusic().setVolume(1.5);
-                        } else {
-                            game.getLevel().getBackgroundMusic().resume();
-                            game.getLevel().getBackgroundMusic().setVolume(1.5);
-                        }
-                        break;
-                    case 2:
-                        if (game.getMainMenuVisible()){
-                            game.getBgMusic().resume();
-                            game.getBgMusic().setVolume(1);
-                        } else {
-                            game.getLevel().getBackgroundMusic().resume();
-                            game.getLevel().getBackgroundMusic().setVolume(1);
-                        }
-                        break;
-                    case 3:
-                        if (game.getMainMenuVisible()){
-                            game.getBgMusic().resume();
-                            game.getBgMusic().setVolume(0.5);
-                        } else {
-                            game.getLevel().getBackgroundMusic().resume();
-                            game.getLevel().getBackgroundMusic().setVolume(0.5);
-                        }
-                        break;
-                    default:
-                        throw new IllegalStateException("Unexpected value: " + i);
-                }
-
-
             }
         });
 
@@ -95,10 +49,10 @@ public class SettingMenu {
                 } else {
                     if (game.getMainMenuVisible()){
                         game.getBgMusic().resume();
-                        game.getBgMusic().setVolume(0.5);
+                        game.getBgMusic().setVolume((float)volumeSlider.getValue()/50);
                     } else {
                         game.getLevel().getBackgroundMusic().resume();
-                        game.getLevel().getBackgroundMusic().setVolume(0.5);
+                        game.getLevel().getBackgroundMusic().setVolume((float)volumeSlider.getValue()/50);
                     }
                 }
             }
@@ -142,6 +96,30 @@ public class SettingMenu {
                 }
             }
         });
+
+
+        volumeSlider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (!volumeSlider.getValueIsAdjusting()){
+                    if (game.getMainMenuVisible()){
+                        if (muteVolumeCheckBox.isSelected()){
+                            muteVolumeCheckBox.setSelected(false);
+                            game.getBgMusic().resume();
+                        }
+                        game.getBgMusic().setVolume((float)volumeSlider.getValue()/50);
+                    } else {
+                        if (muteVolumeCheckBox.isSelected()){
+                            muteVolumeCheckBox.setSelected(false);
+                            game.getLevel().getBackgroundMusic().resume();
+                        }
+                        game.getLevel().getBackgroundMusic().setVolume((float)volumeSlider.getValue()/50);
+                    }
+                    System.out.println(((float) (volumeSlider.getValue())/50));
+                }
+            }
+        });
+
     }
 
     public JPanel getMainPanel() {

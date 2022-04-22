@@ -12,6 +12,9 @@ public class ObjectivesMenu {
     private JLabel killTextLevelOneTwo;
     private JLabel coinTextLevelThree;
     private JLabel killTextLevelThree;
+    private JPanel backButtonPanel;
+    private JPanel textPanel;
+    private JPanel titlePanel;
 
     private Game game;
 

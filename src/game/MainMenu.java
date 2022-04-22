@@ -1,6 +1,7 @@
 package game;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -12,6 +13,8 @@ public class MainMenu {
     private JButton newgameButton;
     private JButton loadgameButton;
     private JLabel mainMenuText;
+    private JPanel controlsPanel;
+    private JPanel titlePanel;
 
     private Game game;
 

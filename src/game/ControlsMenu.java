@@ -12,6 +12,9 @@ public class ControlsMenu {
     private JLabel shootText;
     private JLabel changeGravityText;
     private JLabel pauseGameText;
+    private JPanel textPanel;
+    private JPanel backButtonPanel;
+    private JPanel titlePanel;
 
     private Game game;
 

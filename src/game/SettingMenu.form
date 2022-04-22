@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="game.SettingMenu">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="300" left="10" bottom="300" right="10"/>
     <constraints>
-      <xy x="20" y="20" width="1173" height="901"/>
+      <xy x="20" y="20" width="1173" height="1114"/>
     </constraints>
     <properties>
       <background color="-5384206"/>
@@ -11,48 +11,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="94bda" class="javax.swing.JButton" binding="backButton">
-        <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-14131856"/>
-          <font name="JetBrains Mono" size="16"/>
-          <foreground color="-14131856"/>
-          <hideActionText value="true"/>
-          <text value="Back"/>
-        </properties>
-      </component>
-      <component id="9b3ae" class="javax.swing.JComboBox" binding="VolumeSelector">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-5384206"/>
-          <font name="JetBrains Mono" size="16"/>
-          <foreground color="-14131856"/>
-          <model>
-            <item value="100"/>
-            <item value="75"/>
-            <item value="50"/>
-            <item value="25"/>
-          </model>
-          <selectedIndex value="3"/>
-          <verifyInputWhenFocusTarget value="false"/>
-        </properties>
-      </component>
-      <component id="2fcaa" class="javax.swing.JCheckBox" binding="muteVolumeCheckBox">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-12024416"/>
-          <font name="JetBrains Mono" size="16"/>
-          <foreground color="-12024416"/>
-          <text value="Mute Volume"/>
-        </properties>
-      </component>
-      <grid id="d55b1" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="d55b1" binding="titlePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -76,50 +35,117 @@
           </component>
         </children>
       </grid>
-      <component id="d5114" class="javax.swing.JLabel" binding="volumeSelectText">
+      <grid id="296a6" binding="controlsPanel" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-14131856"/>
-          <font name="JetBrains Mono" size="16"/>
-          <foreground color="-14131856"/>
-          <text value="Volume Level"/>
+          <background color="-5384206"/>
+          <foreground color="-5384206"/>
         </properties>
-      </component>
-      <component id="97be1" class="javax.swing.JCheckBox" binding="muteSoundEffectsCheckBox">
+        <border type="none"/>
+        <children>
+          <component id="d5114" class="javax.swing.JLabel" binding="volumeSelectText">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-14131856"/>
+              <font name="JetBrains Mono" size="16"/>
+              <foreground color="-14131856"/>
+              <text value="Volume Level"/>
+            </properties>
+          </component>
+          <component id="2fcaa" class="javax.swing.JCheckBox" binding="muteVolumeCheckBox">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12024416"/>
+              <font name="JetBrains Mono" size="16"/>
+              <foreground color="-12024416"/>
+              <text value="Mute Volume"/>
+            </properties>
+          </component>
+          <component id="97be1" class="javax.swing.JCheckBox" binding="muteSoundEffectsCheckBox">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12024416"/>
+              <font name="JetBrains Mono" size="16"/>
+              <foreground color="-12024416"/>
+              <text value="Mute Sound Effects"/>
+            </properties>
+          </component>
+          <component id="c7084" class="javax.swing.JCheckBox" binding="showControlsCheckBox">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12024416"/>
+              <font name="JetBrains Mono" size="16"/>
+              <foreground color="-12024416"/>
+              <text value="Display Controls"/>
+            </properties>
+          </component>
+          <component id="16e65" class="javax.swing.JCheckBox" binding="showObjectivesCheckBox">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12024416"/>
+              <font name="JetBrains Mono" size="16"/>
+              <foreground color="-12024416"/>
+              <text value="Display Objectives"/>
+            </properties>
+          </component>
+          <component id="2a3d9" class="javax.swing.JSlider" binding="volumeSlider">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-14131856"/>
+              <enabled value="true"/>
+              <font name="JetBrains Mono" size="16"/>
+              <foreground color="-14131856"/>
+              <maximum value="100"/>
+              <minimum value="0"/>
+              <orientation value="0"/>
+              <paintLabels value="false"/>
+              <paintTicks value="false"/>
+              <paintTrack value="true"/>
+              <value value="50"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="c256c" binding="backButtonPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-12024416"/>
-          <font name="JetBrains Mono" size="16"/>
-          <foreground color="-12024416"/>
-          <text value="Mute Sound Effects"/>
+          <background color="-5384206"/>
+          <foreground color="-5384206"/>
         </properties>
-      </component>
-      <component id="c7084" class="javax.swing.JCheckBox" binding="showControlsCheckBox">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-12024416"/>
-          <font name="JetBrains Mono" size="16"/>
-          <foreground color="-12024416"/>
-          <text value="Display Controls"/>
-        </properties>
-      </component>
-      <component id="16e65" class="javax.swing.JCheckBox" binding="showObjectivesCheckBox">
-        <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-12024416"/>
-          <font name="JetBrains Mono" size="16"/>
-          <foreground color="-12024416"/>
-          <text value="Display Objectives"/>
-        </properties>
-      </component>
+        <border type="none"/>
+        <children>
+          <component id="94bda" class="javax.swing.JButton" binding="backButton">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-14131856"/>
+              <font name="JetBrains Mono" size="16"/>
+              <foreground color="-14131856"/>
+              <hideActionText value="true"/>
+              <text value="Back"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>

@@ -10,6 +10,8 @@ public class GameWonMenu {
     private JButton playAgainButton;
     private JButton mainMenuButton;
     private JButton exitGameButton;
+    private JPanel titlePanel;
+    private JPanel controlsPanel;
 
     private Game game;
 
