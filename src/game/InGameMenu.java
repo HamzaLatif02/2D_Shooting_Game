@@ -48,11 +48,14 @@ public class InGameMenu {
                     path += ".txt";
                 }
 
-                try {
-                    new GameSaverLoader(game).save(path, game.getLevel());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                if (fileChooser.getSelectedFile() != null){
+                    try {
+                        new GameSaverLoader(game).save(path, game.getLevel());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
+
             }
         });
 

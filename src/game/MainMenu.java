@@ -34,6 +34,8 @@ public class MainMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                game.transitionToLoadGameSelectorMenu();
+                /*
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
                 fileChooser.setAcceptAllFileFilterUsed(false);
@@ -53,7 +55,7 @@ public class MainMenu {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                }
+                } */
             }
         });
 

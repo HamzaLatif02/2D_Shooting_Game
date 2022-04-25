@@ -25,6 +25,7 @@ public class Game {
     private ObjectivesMenu objectivesMenu;
     private GameLostMenu gameLostMenu;
     private GameWonMenu gameWonMenu;
+    private LoadGameSelectorMenu loadGameSelectorMenu;
     private Boolean menuVisible, mainMenuVisible, showControls, showObjectives;
     private SoundClip bgMusic;
 
@@ -47,6 +48,8 @@ public class Game {
         objectivesMenu = new ObjectivesMenu(this);
         gameLostMenu = new GameLostMenu(this);
         gameWonMenu = new GameWonMenu(this);
+        loadGameSelectorMenu = new LoadGameSelectorMenu(this);
+
 
 
 
@@ -154,11 +157,10 @@ public class Game {
     }
 
     public void setNewLevel(GameLevel l){
-        //level.stop();
         level = l;
         view = new GameView(this, level, 800,800, level.getCharacter());
         mainMenuVisible = Boolean.FALSE;
-        frame.remove(mainMenu.getMainPanel());
+        frame.remove(loadGameSelectorMenu.getMainPanel());
         frame.add(view);
         frame.pack();
         level.startBackgroundMusic();
@@ -178,7 +180,6 @@ public class Game {
         frame.remove(mainMenu.getMainPanel());
         frame.add(view);
         frame.pack();
-
     }
 
     public void goToNextLevel(){
@@ -300,8 +301,19 @@ public class Game {
         frame.pack();
     }
 
-    public void startNewGame(){
+    public void transitionToLoadGameSelectorMenu(){
+        frame.remove(mainMenu.getMainPanel());
+        frame.add(loadGameSelectorMenu.getMainPanel());
+        frame.pack();
+    }
 
+    public void transitionToMainMenuFromLoadGame(){
+        frame.remove(loadGameSelectorMenu.getMainPanel());
+        frame.add(mainMenu.getMainPanel());
+        frame.pack();
+    }
+
+    public void startNewGame(){
         mainMenuVisible = Boolean.FALSE;
         level = new LevelOne("yes");
         view = new GameView(this, level, 800,800, level.getCharacter());
@@ -315,7 +327,6 @@ public class Game {
         frame.remove(mainMenu.getMainPanel());
         frame.add(view);
         frame.pack();
-
     }
 
     public void playBackgroundMusic(){
