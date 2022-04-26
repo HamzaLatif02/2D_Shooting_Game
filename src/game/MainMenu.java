@@ -33,29 +33,7 @@ public class MainMenu {
         loadgameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 game.transitionToLoadGameSelectorMenu();
-                /*
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-                fileChooser.setAcceptAllFileFilterUsed(false);
-                fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(".txt","txt"));
-                fileChooser.showOpenDialog(mainPanel);
-
-
-
-
-                if (fileChooser.getSelectedFile() != null){
-                    try {
-                        GameLevel loadedLevel = new GameSaverLoader(game).load(fileChooser.getSelectedFile().getAbsolutePath());
-                        if (loadedLevel != null){
-                            game.getBgMusic().stop();
-                            game.setNewLevel(loadedLevel);
-                        }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                } */
             }
         });
 

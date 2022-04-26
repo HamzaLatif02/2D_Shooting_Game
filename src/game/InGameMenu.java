@@ -35,27 +35,7 @@ public class InGameMenu {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-                fileChooser.setAcceptAllFileFilterUsed(false);
-                fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(".txt","txt"));
-                fileChooser.showSaveDialog(mainPanel);
-
-                String path = fileChooser.getSelectedFile().getAbsolutePath();
-
-                if (!path.endsWith(".txt")){
-                    path += ".txt";
-                }
-
-                if (fileChooser.getSelectedFile() != null){
-                    try {
-                        new GameSaverLoader(game).save(path, game.getLevel());
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-
+                game.transitionToSaveGameSelectorMenu();
             }
         });
 

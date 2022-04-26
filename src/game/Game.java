@@ -26,6 +26,7 @@ public class Game {
     private GameLostMenu gameLostMenu;
     private GameWonMenu gameWonMenu;
     private LoadGameSelectorMenu loadGameSelectorMenu;
+    private SaveGameSelectorMenu saveGameSelectorMenu;
     private Boolean menuVisible, mainMenuVisible, showControls, showObjectives;
     private SoundClip bgMusic;
 
@@ -49,6 +50,7 @@ public class Game {
         gameLostMenu = new GameLostMenu(this);
         gameWonMenu = new GameWonMenu(this);
         loadGameSelectorMenu = new LoadGameSelectorMenu(this);
+        saveGameSelectorMenu = new SaveGameSelectorMenu(this);
 
 
 
@@ -310,6 +312,18 @@ public class Game {
     public void transitionToMainMenuFromLoadGame(){
         frame.remove(loadGameSelectorMenu.getMainPanel());
         frame.add(mainMenu.getMainPanel());
+        frame.pack();
+    }
+
+    public void transitionToSaveGameSelectorMenu(){
+        frame.remove(inGameMenu.getMainPanel());
+        frame.add(saveGameSelectorMenu.getMainPanel(), BorderLayout.WEST);
+        frame.pack();
+    }
+
+    public void transitionToInGameMenuFromSaveGame(){
+        frame.remove(saveGameSelectorMenu.getMainPanel());
+        frame.add(inGameMenu.getMainPanel(), BorderLayout.WEST);
         frame.pack();
     }
 

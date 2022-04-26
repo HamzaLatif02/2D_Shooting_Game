@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="game.LoadGameSelectorMenu">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="300" left="150" bottom="300" right="150"/>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="game.SaveGameSelectorMenu">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="300" left="10" bottom="300" right="10"/>
     <constraints>
-      <xy x="20" y="20" width="913" height="932"/>
+      <xy x="20" y="20" width="500" height="932"/>
     </constraints>
     <properties>
       <background color="-5384206"/>
@@ -11,7 +11,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="3fd92" binding="titlePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="f6e6b" binding="titlePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -22,7 +22,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="ebcc0" class="javax.swing.JLabel" binding="selectOneGameText">
+          <component id="d4e36" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -30,12 +30,12 @@
               <background color="-14131856"/>
               <font name="JetBrains Mono" size="48" style="1"/>
               <foreground color="-14131856"/>
-              <text value="SELECT ONE GAME"/>
+              <text value="QUICK SAVE"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="bb322" binding="controlsPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="34ca5" binding="controlsPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -46,43 +46,42 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="15ba7" class="javax.swing.JButton" binding="game1Button" default-binding="true">
+          <component id="871c4" class="javax.swing.JButton" binding="game1Button" default-binding="true">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-9328183"/>
+              <background color="-12024416"/>
               <font name="JetBrains Mono" size="16"/>
-              <foreground color="-9328183"/>
+              <foreground color="-12024416"/>
               <text value="Game 1"/>
             </properties>
           </component>
-          <component id="7d121" class="javax.swing.JButton" binding="game2Button" default-binding="true">
+          <component id="77c6b" class="javax.swing.JButton" binding="game2Button" default-binding="true">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-9328183"/>
-              <enabled value="true"/>
+              <background color="-12024416"/>
               <font name="JetBrains Mono" size="16"/>
-              <foreground color="-9328183"/>
+              <foreground color="-12024416"/>
               <text value="Game 2"/>
             </properties>
           </component>
-          <component id="88a96" class="javax.swing.JButton" binding="game3Button" default-binding="true">
+          <component id="2ff9e" class="javax.swing.JButton" binding="game3Button" default-binding="true">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-9328183"/>
+              <background color="-12024416"/>
               <font name="JetBrains Mono" size="16"/>
-              <foreground color="-9328183"/>
+              <foreground color="-12024416"/>
               <text value="Game 3"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="c527b" binding="titlePanel2" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="74449" binding="titlePanel2" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -93,7 +92,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="7c1b6" class="javax.swing.JLabel" binding="loadYourOwnText">
+          <component id="2a132" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -101,12 +100,12 @@
               <background color="-14131856"/>
               <font name="JetBrains Mono" size="48" style="1"/>
               <foreground color="-14131856"/>
-              <text value="LOAD OWN GAME"/>
+              <text value="SELECT OWN"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="90747" binding="controlsPanel2" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="630f0" binding="controlsPanel2" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -117,7 +116,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="382c3" class="javax.swing.JButton" binding="selectGameButton" default-binding="true">
+          <component id="2ef96" class="javax.swing.JButton" binding="selectGameButton" default-binding="true">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -125,12 +124,12 @@
               <background color="-12024416"/>
               <font name="JetBrains Mono" size="16"/>
               <foreground color="-12024416"/>
-              <text value="Select Game"/>
+              <text value="Save Game"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="45dc4" binding="backButtonPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="12d43" binding="backButtonPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -141,7 +140,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="272b7" class="javax.swing.JButton" binding="backButton" default-binding="true">
+          <component id="a2048" class="javax.swing.JButton" binding="backButton" default-binding="true">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -149,7 +148,6 @@
               <background color="-14131856"/>
               <font name="JetBrains Mono" size="16"/>
               <foreground color="-14131856"/>
-              <hideActionText value="true"/>
               <text value="Back"/>
             </properties>
           </component>
