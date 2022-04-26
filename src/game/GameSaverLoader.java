@@ -93,6 +93,11 @@ public class GameSaverLoader {
 
             String line = reader.readLine();
 
+            if (line == null){
+                JOptionPane.showMessageDialog(game.getMainMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+
             GameLevel level = null;
             if (line.equals("LevelOne")){
                 level = new LevelOne("no");
