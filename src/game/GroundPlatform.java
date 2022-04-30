@@ -11,6 +11,7 @@ public class GroundPlatform extends StaticBody {
     private static final BodyImage image = new BodyImage("data/level1/platform-long.png",30f);
     private static final BodyImage image2 = new BodyImage("data/level2/sandstone-platform-long.png", 30f);
     private static final BodyImage image3 = new BodyImage("data/level3/stone-platform-long.gif", 30f);
+    private static final BodyImage image4 = new BodyImage("data/level4/moon-platform-long.png", 30f);
 
     public GroundPlatform(World w){
         super(w,groundShape);
@@ -21,6 +22,8 @@ public class GroundPlatform extends StaticBody {
             addImage(image2);
         } else if (w instanceof LevelThree){
             addImage(image3);
+        } else if (w instanceof LevelFour){
+            addImage(image4);
         }
         //setAlwaysOutline(true);
     }

@@ -9,6 +9,7 @@ public class SinglePlatform extends StaticBody implements StepListener {
     private static final BodyImage image = new BodyImage("data/level1/platform-single.png",4f);
     private static final BodyImage image2 = new BodyImage("data/level2/sandstone-platform-single.png",4f);
     private static final BodyImage image3 = new BodyImage("data/level3/stone-platform-single.gif", 4f);
+    private static final BodyImage image4 = new BodyImage("data/level4/moon-platform-single.png", 4f);
 
     private int time1, time2 ,delay;
     private String movement;
@@ -21,6 +22,8 @@ public class SinglePlatform extends StaticBody implements StepListener {
             addImage(image2);
         } else if (w instanceof LevelThree){
             addImage(image3);
+        } else if (w instanceof LevelFour){
+            addImage(image4);
         }
         //setAlwaysOutline(true);
     }

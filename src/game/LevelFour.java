@@ -11,12 +11,17 @@ public class LevelFour extends GameLevel{
 
     public LevelFour(String populate){
         super(populate);
-
+        if (getPopulate().equals("yes")){
+            placePlatforms();
+        }
 
         setBackground();
 
     }
 
+    public void placePlatforms(){
+
+    }
 
     public void setBackground(){
         background = new ImageIcon("data/level4/background4.gif").getImage();

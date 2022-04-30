@@ -297,14 +297,14 @@ public class LevelThree extends GameLevel implements StepListener {
     }
 
     public void placeExplosivesMines(){
-        new ExplosiveMine(this).setPosition(new Vec2(60f, 35f));
+        new ExplosiveMine(this, "single").setPosition(new Vec2(60f, 35f));
 
         for (int i=0; i<9; i++){
-            new ExplosiveMine(this).setPosition(new Vec2(111.5f + i*35f, 29f));
+            new ExplosiveMine(this, "single").setPosition(new Vec2(111.5f + i*35f, 29f));
         }
 
-        new ExplosiveMine(this).setPosition(new Vec2(164f, 33f));
-        new ExplosiveMine(this).setPosition(new Vec2(304f, 25f));
+        new ExplosiveMine(this, "single").setPosition(new Vec2(164f, 33f));
+        new ExplosiveMine(this, "single").setPosition(new Vec2(304f, 25f));
     }
 
     public void placeHealthPotions(){
