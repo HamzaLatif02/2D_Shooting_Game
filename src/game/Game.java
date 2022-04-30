@@ -200,6 +200,11 @@ public class Game {
             view.addEnemiesLevelThree(((LevelThree)level).getBombThrowers());
             updateLevelElements();
         } else if (level instanceof LevelThree){
+            level.getBackgroundMusic().stop();
+            level.stop();
+            level = new LevelFour("yes");
+            updateLevelElements();
+        } else if (level instanceof LevelFour){
             transitiontoGameWonMenu();
             level.stop();
         }
