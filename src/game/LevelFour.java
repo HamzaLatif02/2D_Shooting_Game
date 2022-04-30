@@ -19,7 +19,7 @@ public class LevelFour extends GameLevel{
 
 
     public void setBackground(){
-        background = new ImageIcon("data/level4/background4.png").getImage();
+        background = new ImageIcon("data/level4/background4.gif").getImage();
     }
 
     @Override
