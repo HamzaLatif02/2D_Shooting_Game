@@ -43,9 +43,6 @@ public class ExplosiveMine extends StaticBody {
             explosiveMineContact = new ExplosiveMineContact(this);
             mineSensor.addSensorListener(explosiveMineContact);
         }
-
-
-
     }
 
     public BodyImage getExplosionImage() {
@@ -65,5 +62,9 @@ public class ExplosiveMine extends StaticBody {
 
     public int getDamage() {
         return damage;
+    }
+
+    public String getDamageValue() {
+        return damageValue;
     }
 }

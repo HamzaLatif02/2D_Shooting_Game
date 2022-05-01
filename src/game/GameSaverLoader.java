@@ -39,6 +39,8 @@ public class GameSaverLoader {
                     writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((SinglePlatform) sb).getMovement() + "," + ((SinglePlatform) sb).getTime1() + "," + ((SinglePlatform) sb).getTime2() + "\n");
                 } else if (sb instanceof SpeedPotion){
                     writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((SpeedPotion) sb).getType() + "\n");
+                } else if (sb instanceof ExplosiveMine){
+                    writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "," + ((ExplosiveMine) sb).getDamageValue() + "\n");
                 }
                 else {
                     writer.write(sb.getClass().getSimpleName() + "," + sb.getPosition().x + "," + sb.getPosition().y + "\n");
@@ -105,7 +107,9 @@ public class GameSaverLoader {
                 level = new LevelTwo("no");
             } else if (line.equals("LevelThree")){
                 level = new LevelThree("no");
-            } else {
+            } else if (line.equals("LevelFour")){
+                level = new LevelFour("no");
+            }else {
                 JOptionPane.showMessageDialog(game.getMainMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
                 return null;
             }
@@ -151,7 +155,7 @@ public class GameSaverLoader {
                     doublePlatform.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
                     doublePlatform.setTime(Integer.parseInt(tokens[4]));
                 } else if (tokens[0].equals("ExplosiveMine")){
-                    ExplosiveMine explosiveMine = new ExplosiveMine(level);
+                    ExplosiveMine explosiveMine = new ExplosiveMine(level, tokens[3]);
                     explosiveMine.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
                 } else if (tokens[0].equals("GroundPlatform")){
                     GroundPlatform groundPlatform = new GroundPlatform(level);

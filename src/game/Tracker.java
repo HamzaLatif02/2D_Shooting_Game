@@ -39,6 +39,8 @@ public class Tracker implements StepListener {
             } else {
                 view.setCentre(new Vec2(character.getPosition().x, 0f));
             }
+        } else if (level instanceof LevelFour){
+            view.setCentre(new Vec2(character.getPosition().x, 0f));
         }
     }
 }

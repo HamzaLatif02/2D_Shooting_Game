@@ -66,12 +66,10 @@ public class CharacterController implements KeyListener, StepListener {
                     }
                 }
             } else if (code == KeyEvent.VK_SPACE){
-                if (character.getWorld() instanceof LevelThree){
                     if (character.getChangeGravity() == Boolean.TRUE){
                         character.jump(0);
                         character.setGravityScale(-character.getGravityScale());
                     }
-                }
             } else if (code == KeyEvent.VK_ESCAPE){
                 game.toggleMenu();
             }

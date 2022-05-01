@@ -12,14 +12,17 @@ import java.io.IOException;
 public class Character extends Walker {
     private static final Shape characterShape = new CircleShape(2);
 
+    //character images level one
     private static final BodyImage imageRight = new BodyImage("data/level1/character-right.png", 6f);
     private static final BodyImage imageLeft = new BodyImage("data/level1/character-left.png",6f);
     private static final BodyImage imageRightMoving = new BodyImage("data/level1/character-right-flame.png",6f);
     private static final BodyImage imageLeftMoving = new BodyImage("data/level1/character-left-flame.png",6f);
+    //character images level two
     private static final BodyImage imageRight2 = new BodyImage("data/level2/character2-right.png", 6f);
     private static final BodyImage imageLeft2 = new BodyImage("data/level2/character2-left.png",6f);
     private static final BodyImage imageRightMoving2 = new BodyImage("data/level2/character2-right-flame.png",6f);
     private static final BodyImage imageLeftMoving2 = new BodyImage("data/level2/character2-left-flame.png",6f);
+    //character images level three
     private static final BodyImage imageRight3 = new BodyImage("data/level3/character3-right.png", 6f);
     private static final BodyImage imageLeft3 = new BodyImage("data/level3/character3-left.png",6f);
     private static final BodyImage imageRightMoving3 = new BodyImage("data/level3/character3-right-flame.png",6f);
@@ -28,6 +31,15 @@ public class Character extends Walker {
     private static final BodyImage imageLeft3UpsideDown = new BodyImage("data/level3/character3-left-upsidedown.png",6f);
     private static final BodyImage imageRightMoving3UpsideDown = new BodyImage("data/level3/character3-right-upsidedown-flame.png",6f);
     private static final BodyImage imageLeftMoving3UpsideDown = new BodyImage("data/level3/character3-left-upsidedown-flame.png",6f);
+    //character images level four
+    private static final BodyImage imageRight4 = new BodyImage("data/level4/character4-right.png", 6f);
+    private static final BodyImage imageLeft4 = new BodyImage("data/level4/character4-left.png",6f);
+    private static final BodyImage imageRightMoving4 = new BodyImage("data/level4/character4-right-flame.png",6f);
+    private static final BodyImage imageLeftMoving4 = new BodyImage("data/level4/character4-left-flame.png",6f);
+    private static final BodyImage imageRight4UpsideDown = new BodyImage("data/level4/character4-right-upsidedown.png", 6f);
+    private static final BodyImage imageLeft4UpsideDown = new BodyImage("data/level4/character4-left-upsidedown.png",6f);
+    private static final BodyImage imageRightMoving4UpsideDown = new BodyImage("data/level4/character4-right-flame-upsidedown.png",6f);
+    private static final BodyImage imageLeftMoving4UpsideDown = new BodyImage("data/level4/character4-left-flame-upsidedown.png",6f);
 
     private int points, health;
     private float speed;
@@ -45,6 +57,8 @@ public class Character extends Walker {
             this.addImage(imageRight2);
         } else if (getWorld() instanceof LevelThree){
             this.addImage(imageRight3);
+        } else if (getWorld() instanceof LevelFour){
+            this.addImage(imageRight4);
         }
 
         this.points = 0;
@@ -115,6 +129,12 @@ public class Character extends Walker {
                 } else {
                     this.addImage(imageLeftMoving3UpsideDown);
                 }
+            } else if (getWorld() instanceof LevelFour){
+                if (getGravityScale() > 0){
+                    this.addImage(imageLeftMoving4);
+                } else {
+                    this.addImage(imageLeftMoving4UpsideDown);
+                }
             }
 
             this.setDirection("left");
@@ -130,6 +150,12 @@ public class Character extends Walker {
                     this.addImage(imageRightMoving3);
                 } else {
                     this.addImage(imageRightMoving3UpsideDown);
+                }
+            } else if (getWorld() instanceof LevelFour){
+                if (getGravityScale() > 0){
+                    this.addImage(imageRightMoving4);
+                } else {
+                    this.addImage(imageRightMoving4UpsideDown);
                 }
             }
             this.setDirection("right");
@@ -152,6 +178,12 @@ public class Character extends Walker {
                 } else {
                     this.addImage(imageLeftMoving3UpsideDown);
                 }
+            } else if (getWorld() instanceof LevelFour){
+                if (getGravityScale() > 0){
+                    this.addImage(imageLeftMoving4);
+                } else {
+                    this.addImage(imageLeftMoving4UpsideDown);
+                }
             }
 
         } else {
@@ -165,6 +197,12 @@ public class Character extends Walker {
                     this.addImage(imageRightMoving3);
                 } else {
                     this.addImage(imageRightMoving3UpsideDown);
+                }
+            } else if (getWorld() instanceof LevelFour){
+                if (getGravityScale() > 0){
+                    this.addImage(imageRightMoving4);
+                } else {
+                    this.addImage(imageRightMoving4UpsideDown);
                 }
             }
 
@@ -187,6 +225,12 @@ public class Character extends Walker {
                 } else {
                     this.addImage(imageLeft3UpsideDown);
                 }
+            } else if (getWorld() instanceof LevelFour){
+                if (getGravityScale() > 0){
+                    this.addImage(imageLeft4);
+                } else {
+                    this.addImage(imageLeft4UpsideDown);
+                }
             }
 
         } else {
@@ -200,6 +244,12 @@ public class Character extends Walker {
                     this.addImage(imageRight3);
                 } else {
                     this.addImage(imageRight3UpsideDown);
+                }
+            } else if (getWorld() instanceof LevelFour){
+                if (getGravityScale() > 0){
+                    this.addImage(imageRight4);
+                } else {
+                    this.addImage(imageRight4UpsideDown);
                 }
             }
         }

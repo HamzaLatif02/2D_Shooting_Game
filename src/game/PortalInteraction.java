@@ -45,7 +45,7 @@ public class PortalInteraction implements CollisionListener, SensorListener {
                     if (((Character) e.getContactBody()).getGravityScale() < 0){
                         ((Character) e.getContactBody()).setGravityScale(-((Character) e.getContactBody()).getGravityScale());
                     }
-                    e.getContactBody().setPosition(new Vec2(e.getContactBody().getPosition().x-8f, 29f));
+                    e.getContactBody().setPosition(new Vec2(e.getContactBody().getPosition().x-8f, e.getContactBody().getPosition().y));
                 }
 
             } else if (this.type.equals("gravity") && this.direction.equals("right")){
@@ -58,7 +58,7 @@ public class PortalInteraction implements CollisionListener, SensorListener {
                 } else {
                     ((Character) e.getContactBody()).setChangeGravity(Boolean.TRUE);
                     ((Character) e.getContactBody()).setGravityScale(-((Character) e.getContactBody()).getGravityScale());
-                    e.getContactBody().setPosition(new Vec2(e.getContactBody().getPosition().x-8f, 29f));
+                    e.getContactBody().setPosition(new Vec2(e.getContactBody().getPosition().x-8f, e.getContactBody().getPosition().y));
                 }
             }
 
