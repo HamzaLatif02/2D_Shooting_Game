@@ -58,11 +58,22 @@ public class GameView extends UserView {
     @Override
     protected void paintForeground(Graphics2D g){
 
+        g.setColor(new Color(255,255,255,75));
+        g.fillRect(10,35,80,20);
+        g.setColor(Color.white);
+        g.drawRect(10, 35, 80, 20);
+
         g.setFont(new Font("JetBrains Mono", 0, 12));
 
+        g.setColor(Color.black);
         g.drawString("Coins: " + character.getPoints(),20,50);
 
+        g.setColor(new Color(255,255,255,75));
         if (game.getShowControls()){
+            g.fillRect(340, 35, 160, 80);
+            g.setColor(Color.white);
+            g.drawRect(340, 35, 160, 80);
+            g.setColor(Color.black);
             g.drawString("Controls", 350,50);
             g.drawString("Pause: Esc", 350, 65);
             g.drawString("Move: Arrows or WASD", 350, 80);
@@ -73,7 +84,12 @@ public class GameView extends UserView {
             }
         }
 
+        g.setColor(new Color(255,255,255,75));
         if (game.getShowObjectives()){
+            g.fillRect(590, 35, 190, 50);
+            g.setColor(Color.white);
+            g.drawRect(590, 35, 190, 50);
+            g.setColor(Color.black);
             g.drawString("To Win", 600, 50);
             if (level instanceof LevelOne || level instanceof LevelTwo){
                 g.drawString("Collect min 45 coins AND", 600, 65);
@@ -85,6 +101,12 @@ public class GameView extends UserView {
         }
 
 
+
+        g.setColor(new Color(255,255,255,75));
+        g.fillRect(90, 35, 170, 20);
+        g.setColor(Color.white);
+        g.drawRect(90, 35, 170, 20);
+        g.setColor(Color.black);
         g.drawString("Health:" , 100,50);
         g.drawRect(150,40,100, 10);
         if (level instanceof LevelOne){
@@ -98,6 +120,10 @@ public class GameView extends UserView {
         g.fillRect(150,40,character.getHealth(),10);
 
         if (level instanceof LevelTwo){
+            g.setColor(new Color(255,255,255,75));
+            g.fillRect(90, 55, 130, 20);
+            g.setColor(Color.white);
+            g.drawRect(90, 55, 130, 20);
             g.setColor(Color.black);
             g.drawString("Speed: ", 100, 70);
             g.drawRect(150, 60, 60, 10);
@@ -106,6 +132,10 @@ public class GameView extends UserView {
         }
 
         if (level instanceof LevelThree){
+            g.setColor(new Color(255,255,255,75));
+            g.fillRect(10, 55, 160, 20);
+            g.setColor(Color.white);
+            g.drawRect(10, 55, 160, 20);
             g.setColor(Color.black);
             g.drawString("Enemies killed: " + character.getEnemiesKilled() + "/10", 20, 70);
         }
