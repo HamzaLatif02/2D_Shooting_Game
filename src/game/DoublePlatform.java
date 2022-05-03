@@ -13,6 +13,7 @@ public class DoublePlatform extends StaticBody implements StepListener{
 
     private int time;
     private String direction;
+    private GameLevel level;
 
 
     public DoublePlatform(World w){
@@ -38,11 +39,13 @@ public class DoublePlatform extends StaticBody implements StepListener{
         super(w, doubleShape);
         this.time=0;
         this.direction = direction;
-
+        this.level = (GameLevel) w;
         if (w instanceof LevelTwo){
             addImage(image2);
         } else if (w instanceof LevelThree){
             addImage(image3);
+        } else if (w instanceof LevelFour){
+            addImage(image4);
         }
 
         getWorld().addStepListener(this);

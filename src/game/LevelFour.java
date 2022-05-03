@@ -44,6 +44,49 @@ public class LevelFour extends GameLevel{
             new GroundPlatform(this).setPosition(new Vec2(50f + i*35, 17.5f));
         }
 
+        //ground1 35-65
+        for (int i=0; i<5; i++){
+            new SinglePlatform(this).setPosition(new Vec2(47 + i*4, 0f));
+        }
+
+        //ground2 70-100
+        new DoublePlatform(this).setPosition(new Vec2(85, 0f));
+
+        //ground3 105-135
+        new SinglePlatform(this).setPosition(new Vec2(120f, -8f));
+        new SinglePlatform(this).setPosition(new Vec2(120f, 8f));
+
+        //ground4 140-170
+        new DoublePlatform(this, "horizontal").setPosition(new Vec2(162.5f, 6f));
+        new DoublePlatform(this, "horizontal").setPosition(new Vec2(162.5f, -6f));
+
+        //ground5 175-205
+
+        //ground6 210-240
+        new SinglePlatform(this).setPosition(new Vec2(212f, 8f));
+        new SinglePlatform(this).setPosition(new Vec2(212f, 4f));
+
+        new SinglePlatform(this).setPosition(new Vec2(238f, 8f));
+        new SinglePlatform(this).setPosition(new Vec2(238f, 4f));
+
+        //ground7 245-275
+        new DoublePlatform(this, "horizontal").setPosition(new Vec2(272.5f, 6f));
+        new DoublePlatform(this, "horizontal").setPosition(new Vec2(272.5f, -6f));
+
+        //ground8 280-310
+        new SinglePlatform(this, "vertical").setPosition(new Vec2(282f, 6f));
+        new SinglePlatform(this, "vertical").setPosition(new Vec2(290f, 6f));
+
+        new SinglePlatform(this,"vertical").setPosition(new Vec2(300f, 6f));
+        new SinglePlatform(this,"vertical").setPosition(new Vec2(308f, 6f));
+
+        //ground9 315-345
+
+        //ground10 350-380
+        for (int i=0; i<5; i++){
+            new SinglePlatform(this).setPosition(new Vec2(356 + i*4, 0f));
+        }
+
         new SinglePlatform(this).setPosition(new Vec2(376f, -8f));
         new SinglePlatform(this).setPosition(new Vec2(376f, 8f));
 
@@ -81,7 +124,7 @@ public class LevelFour extends GameLevel{
         //ground7 245-275
 
         //ground8 280-310
-        new ExplosiveMine(this, "double").setPosition(new Vec2(292f, 0f));
+        new ExplosiveMine(this, "double").setPosition(new Vec2(295f, 0f));
 
         //ground9 315-345
         new ExplosiveMine(this, "single").setPosition(new Vec2(320f, -6f));

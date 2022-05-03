@@ -40,6 +40,10 @@ public class SinglePlatform extends StaticBody implements StepListener {
                 this.delay = (int)Math.floor(Math.random()*100);
                 addImage(image3);
                 getWorld().addStepListener(this);
+            } else if (w instanceof LevelFour){
+                this.delay = (int)Math.floor(Math.random()*100);
+                addImage(image4);
+                getWorld().addStepListener(this);
             }
         }
     }
