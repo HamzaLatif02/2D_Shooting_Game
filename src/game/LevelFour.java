@@ -101,18 +101,22 @@ public class LevelFour extends GameLevel{
         //ground3 105-135
 
         //ground4 140-170
+        new HealthPotion(this, "positive").setPosition(new Vec2(155f, 0f));
 
         //ground5 175-205
 
         //ground6 210-240
 
         //ground7 245-275
+        new HealthPotion(this, "negative").setPosition(new Vec2(260f, 0f));
 
         //ground8 280-310
 
         //ground9 315-345
+        new HealthPotion(this, "negative").setPosition(new Vec2(330f, 0f));
 
         //ground10 350-380
+        new HealthPotion(this, "positive").setPosition(new Vec2(365f, 0f));
     }
 
     public void placeSpeedPotions(){

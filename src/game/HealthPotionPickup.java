@@ -26,6 +26,12 @@ public class HealthPotionPickup implements SensorListener {
                     } else {
                         ((Character) e.getContactBody()).setHealth(100);
                     }
+                } else if (e.getContactBody().getWorld() instanceof LevelFour){
+                    if (((Character) e.getContactBody()).getHealth() < 91){
+                        ((Character) e.getContactBody()).setHealth(((Character) e.getContactBody()).getHealth() + 10);
+                    } else {
+                        ((Character) e.getContactBody()).setHealth(100);
+                    }
                 }
 
             } else {
