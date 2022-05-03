@@ -115,6 +115,8 @@ public class GameView extends UserView {
             g.setColor(new Color(88,219,109));
         } else if (level instanceof LevelThree){
             g.setColor(new Color(246,216,172));
+        } else if (level instanceof LevelFour){
+            g.setColor(new Color(83,105,122));
         }
 
         g.fillRect(150,40,character.getHealth(),10);

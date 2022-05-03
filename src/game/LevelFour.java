@@ -14,6 +14,9 @@ public class LevelFour extends GameLevel{
         super(populate);
         if (getPopulate().equals("yes")){
             placePlatforms();
+            placeExplosiveMines();
+            placeHealthPotions();
+            placeSpeedPotions();
             placePortal();
         }
 
@@ -52,6 +55,86 @@ public class LevelFour extends GameLevel{
         new GroundPlatform(this).setPosition(new Vec2(415f, -17.5f));
         new WallPlatform(this).setPosition(new Vec2(431f, 0f));
 
+    }
+
+    public void placeExplosiveMines(){
+        //ground1 35-65
+
+        //ground2 70-100
+        new ExplosiveMine(this, "double").setPosition(new Vec2(73f, 0f));
+        new ExplosiveMine(this, "double").setPosition(new Vec2(97f, 0f));
+
+        //ground3 105-135
+        new ExplosiveMine(this, "single").setPosition(new Vec2(111f, 0f));
+        new ExplosiveMine(this, "single").setPosition(new Vec2(129f, 0f));
+
+        //ground4 140-170
+
+        //ground5 175-205
+        new ExplosiveMine(this, "double").setPosition(new Vec2(180f, 0f));
+        new ExplosiveMine(this, "double").setPosition(new Vec2(200f, 0f));
+
+        //ground6 210-240
+        new ExplosiveMine(this, "single").setPosition(new Vec2(225f, -6f));
+        new ExplosiveMine(this, "single").setPosition(new Vec2(225f, 0f));
+
+        //ground7 245-275
+
+        //ground8 280-310
+        new ExplosiveMine(this, "double").setPosition(new Vec2(292f, 0f));
+
+        //ground9 315-345
+        new ExplosiveMine(this, "single").setPosition(new Vec2(320f, -6f));
+        new ExplosiveMine(this, "single").setPosition(new Vec2(320f, 0f));
+
+        new ExplosiveMine(this, "single").setPosition(new Vec2(340f, 0f));
+        new ExplosiveMine(this, "single").setPosition(new Vec2(340f, 6f));
+
+        //ground10 350-380
+    }
+
+    public void placeHealthPotions(){
+        //ground1 35-65
+
+        //ground2 70-100
+
+        //ground3 105-135
+
+        //ground4 140-170
+
+        //ground5 175-205
+
+        //ground6 210-240
+
+        //ground7 245-275
+
+        //ground8 280-310
+
+        //ground9 315-345
+
+        //ground10 350-380
+    }
+
+    public void placeSpeedPotions(){
+        //ground1 35-65
+
+        //ground2 70-100
+
+        //ground3 105-135
+
+        //ground4 140-170
+
+        //ground5 175-205
+
+        //ground6 210-240
+
+        //ground7 245-275
+
+        //ground8 280-310
+
+        //ground9 315-345
+
+        //ground10 350-380
     }
 
     public void placePortal(){
