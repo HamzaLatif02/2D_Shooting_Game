@@ -125,14 +125,17 @@ public class LevelFour extends GameLevel{
         //ground2 70-100
 
         //ground3 105-135
+        new SpeedPotion(this, "positive").setPosition(new Vec2(120f, 0f));
 
         //ground4 140-170
 
         //ground5 175-205
+        new SpeedPotion(this, "positive").setPosition(new Vec2(190f, 0f));
 
         //ground6 210-240
 
         //ground7 245-275
+        new SpeedPotion(this, "positive").setPosition(new Vec2(270f, 0f));
 
         //ground8 280-310
 
