@@ -63,7 +63,7 @@ public class LevelThree extends GameLevel implements StepListener {
         new DoublePlatform(this).setPosition(new Vec2(60f, 25f));
         new DoublePlatform(this).setPosition(new Vec2(70f, 25f));
 
-        new Portal(this, "gravity", "left").setPosition(new Vec2(77f, 29f));
+        new Portal(this, "gravity", "start").setPosition(new Vec2(77f, 29f));
 
         new SinglePlatform(this).setPosition(new Vec2(81f, 21f));
         new SinglePlatform(this).setPosition(new Vec2(81f, 37f));
@@ -149,7 +149,7 @@ public class LevelThree extends GameLevel implements StepListener {
         new SinglePlatform(this).setPosition(new Vec2(422f, 21f));
         new SinglePlatform(this).setPosition(new Vec2(422f, 37f));
 
-        new Portal(this, "gravity", "right").setPosition(new Vec2(426f, 29f));
+        new Portal(this, "gravity", "end").setPosition(new Vec2(426f, 29f));
 
         new GroundPlatform(this).setPosition(new Vec2(444f, 11.5f));
         new WallPlatform(this).setPosition(new Vec2(460f, 19f));

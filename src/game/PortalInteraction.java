@@ -17,8 +17,9 @@ public class PortalInteraction implements CollisionListener, SensorListener {
         this.level = level;
     }
 
-    public PortalInteraction(Portal p, String type, String direction){
+    public PortalInteraction(Portal p, GameLevel level, String type, String direction){
         this.portal = p;
+        this.level = level;
         this.type = type;
         this.direction = direction;
     }
@@ -35,38 +36,44 @@ public class PortalInteraction implements CollisionListener, SensorListener {
     @Override
     public void beginContact(SensorEvent e) {
         if (e.getContactBody() instanceof Character){
-            if (this.type.equals("gravity") && this.direction.equals("left")){
+            if (this.type.equals("gravity") && this.direction.equals("start")){
                 if (e.getContactBody().getPosition().x < this.portal.getPosition().x){
                     ((Character) e.getContactBody()).setChangeGravity(Boolean.TRUE);
                     e.getContactBody().setPosition(new Vec2(e.getContactBody().getPosition().x+8f, e.getContactBody().getPosition().y));
                     ((Character) e.getContactBody()).setGravityScale(-((Character) e.getContactBody()).getGravityScale());
+
+                    ((LevelFour)level).getTimer().start();
                 } else {
                     ((Character) e.getContactBody()).setChangeGravity(Boolean.FALSE);
                     if (((Character) e.getContactBody()).getGravityScale() < 0){
                         ((Character) e.getContactBody()).setGravityScale(-((Character) e.getContactBody()).getGravityScale());
                     }
                     e.getContactBody().setPosition(new Vec2(e.getContactBody().getPosition().x-8f, e.getContactBody().getPosition().y));
+
+                    ((LevelFour)level).getTimer().stop();
                 }
 
-            } else if (this.type.equals("gravity") && this.direction.equals("right")){
+            } else if (this.type.equals("gravity") && this.direction.equals("end")){
                 if (e.getContactBody().getPosition().x < this.portal.getPosition().x){
                     ((Character) e.getContactBody()).setChangeGravity(Boolean.FALSE);
                     e.getContactBody().setPosition(new Vec2(e.getContactBody().getPosition().x+8f, e.getContactBody().getPosition().y));
                     if (((Character) e.getContactBody()).getGravityScale() < 0){
                         ((Character) e.getContactBody()).setGravityScale(-((Character) e.getContactBody()).getGravityScale());
                     }
+
+                    ((LevelFour)level).getTimer().stop();
                 } else {
                     ((Character) e.getContactBody()).setChangeGravity(Boolean.TRUE);
                     ((Character) e.getContactBody()).setGravityScale(-((Character) e.getContactBody()).getGravityScale());
                     e.getContactBody().setPosition(new Vec2(e.getContactBody().getPosition().x-8f, e.getContactBody().getPosition().y));
+
+                    ((LevelFour)level).getTimer().start();
                 }
             }
-
         }
     }
 
     @Override
-    public void endContact(SensorEvent sensorEvent) {
-
+    public void endContact(SensorEvent e) {
     }
 }

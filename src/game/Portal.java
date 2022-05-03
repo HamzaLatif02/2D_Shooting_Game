@@ -30,12 +30,12 @@ public class Portal extends StaticBody {
         ghostPortalShape = new GhostlyFixture(this, portalShape);
         portalSensor = new Sensor(this, portalShape);
 
-        if (type.equals("gravity") && direction.equals("left")){
+        if (type.equals("gravity") && direction.equals("start")){
             addImage(gravityPortalImageLeft);
-            this.portalInteraction = new PortalInteraction(this, "gravity", "left");
-        } else if (type.equals("gravity") && direction.equals("right")){
+            this.portalInteraction = new PortalInteraction(this, (GameLevel) w,"gravity", "start");
+        } else if (type.equals("gravity") && direction.equals("end")){
             addImage(gravityPortalImageRight);
-            this.portalInteraction = new PortalInteraction(this, "gravity", "right");
+            this.portalInteraction = new PortalInteraction(this, (GameLevel) w,"gravity", "end");
         }
 
         portalSensor.addSensorListener(portalInteraction);
