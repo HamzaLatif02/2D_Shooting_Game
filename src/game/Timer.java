@@ -6,7 +6,7 @@ import city.cs.engine.World;
 
 public class Timer implements StepListener {
 
-    int seconds, minutes, time;
+    private int seconds, minutes, time;
     private Boolean running;
 
     public Timer(World w){
