@@ -27,12 +27,13 @@ public class Game {
     private GameWonMenu gameWonMenu;
     private LoadGameSelectorMenu loadGameSelectorMenu;
     private SaveGameSelectorMenu saveGameSelectorMenu;
+    private TimeScoreDisplayMenu timeScoreDisplayMenu;
     private Boolean menuVisible, mainMenuVisible, showControls, showObjectives;
     private SoundClip bgMusic;
 
 
     /** Initialise a new Game. */
-    public Game() {
+    public Game() throws IOException {
 
         mainMenuVisible = Boolean.TRUE;
         menuVisible = Boolean.FALSE;
@@ -51,8 +52,7 @@ public class Game {
         gameWonMenu = new GameWonMenu(this);
         loadGameSelectorMenu = new LoadGameSelectorMenu(this);
         saveGameSelectorMenu = new SaveGameSelectorMenu(this);
-
-
+        timeScoreDisplayMenu = new TimeScoreDisplayMenu(this);
 
 
         //level = new LevelOne("yes");
@@ -294,7 +294,9 @@ public class Game {
     }
 
     public void transitiontoGameWonMenu(){
+        frame.remove(view);
         frame.add(gameWonMenu.getMainPanel(), BorderLayout.WEST);
+        frame.add(timeScoreDisplayMenu.getMainPanel(), BorderLayout.EAST);
         frame.pack();
         level.stop();
     }
@@ -382,7 +384,7 @@ public class Game {
     }
 
     /** Run the game. */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new Game();
     }
 }
