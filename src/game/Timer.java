@@ -8,8 +8,10 @@ public class Timer implements StepListener {
 
     private int seconds, minutes, time;
     private Boolean running;
+    private GameLevel level;
 
     public Timer(World w){
+        this.level = (GameLevel) w;
         this.seconds = 0;
         this.minutes = 0;
         this.time = 0;
@@ -29,6 +31,18 @@ public class Timer implements StepListener {
         return time;
     }
 
+    public void setSeconds(int seconds) {
+        this.seconds = seconds;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
     public void start(){
         running = Boolean.TRUE;
     }
@@ -42,7 +56,7 @@ public class Timer implements StepListener {
 
         //System.out.println("time: " + time + "\n" + "minutes: " + minutes + "\n" + "seconds: " + seconds + "\n");
 
-        if (running){
+        if (running || level.getCharacter().getChangeGravity()){
             time++;
             if (time == 60){
                 seconds++;

@@ -24,6 +24,10 @@ public class GameSaverLoader {
 
             writer.write(level.getLevelName() + "\n");
 
+            if (level instanceof LevelFour){
+                writer.write(((LevelFour) level).getTimer().getClass().getSimpleName() + "," + ((LevelFour) level).getTimer().getMinutes() + "," + ((LevelFour) level).getTimer().getSeconds() + "," + ((LevelFour) level).getTimer().getTime() + "\n");
+            }
+
             for (int i=0; i< level.getStaticBodies().size(); i++){
                 StaticBody sb = level.getStaticBodies().get(i);
 
@@ -125,7 +129,11 @@ public class GameSaverLoader {
 
                 String[] tokens = line.split(",");
 
-                if (tokens[0].equals("Bomb")){
+                if (tokens[0].equals("Timer")){
+                    ((LevelFour)level).getTimer().setMinutes(Integer.parseInt(tokens[1]));
+                    ((LevelFour)level).getTimer().setSeconds(Integer.parseInt(tokens[2]));
+                    ((LevelFour)level).getTimer().setTime(Integer.parseInt(tokens[3]));
+                } else if (tokens[0].equals("Bomb")){
                     Bomb bomb = new Bomb(level);
                     bomb.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
                     bomb.setTime(Integer.parseInt(tokens[3]));

@@ -14,7 +14,6 @@ public class LevelFour extends GameLevel{
     public LevelFour(String populate){
         super(populate);
 
-        timer = new Timer(this);
         if (getPopulate().equals("yes")){
             placePlatforms();
             placeExplosiveMines();
@@ -22,7 +21,7 @@ public class LevelFour extends GameLevel{
             placeSpeedPotions();
             placePortal();
         }
-
+        timer = new Timer(this);
         setBackground();
     }
 
@@ -203,7 +202,7 @@ public class LevelFour extends GameLevel{
 
     @Override
     public Boolean objectivesDone() {
-        if ((timer.getMinutes() < 1 && timer.getSeconds() < 60) || (timer.getMinutes() == 1 && timer.getSeconds() == 0)){
+        if ((timer.getMinutes() > 1 && timer.getSeconds() < 60 && timer.getSeconds() != 0) || (timer.getMinutes() == 1 && timer.getSeconds() == 0)){
             return Boolean.TRUE;
         }
         return Boolean.FALSE;

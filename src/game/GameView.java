@@ -143,20 +143,21 @@ public class GameView extends UserView {
         }
 
         if (level instanceof LevelFour){
-            g.setColor(new Color(255,255,255,75));
-            g.fillRect(330, 660, 200, 100);
-            g.setColor(Color.white);
-            g.drawRect(330, 660, 200, 100);
-            g.setFont(new Font("JetBrains Mono", Font.ITALIC, 40));
-            g.setColor(Color.black);
-            g.drawString("TIMER", 350, 700);
-            g.setColor(Color.white);
-            g.drawString("TIMER", 352, 702);
-            g.setFont(new Font("JetBrains Mono", 0, 40));
-            g.setColor(Color.black);
-            g.drawString(((LevelFour) level).getTimer().getMinutes() + ":" + ((LevelFour) level).getTimer().getSeconds() + ":" + ((LevelFour) level).getTimer().getTime(), 350, 750);
-            g.setColor(Color.white);
-            g.drawString(((LevelFour) level).getTimer().getMinutes() + ":" + ((LevelFour) level).getTimer().getSeconds() + ":" + ((LevelFour) level).getTimer().getTime(), 352, 752);
+                g.setColor(new Color(255,255,255,75));
+                g.fillRect(330, 660, 200, 100);
+                g.setColor(Color.white);
+                g.drawRect(330, 660, 200, 100);
+                g.setFont(new Font("JetBrains Mono", Font.ITALIC, 40));
+                g.setColor(Color.black);
+                g.drawString("TIMER", 350, 700);
+                g.setColor(Color.white);
+                g.drawString("TIMER", 352, 702);
+                g.setFont(new Font("JetBrains Mono", 0, 40));
+                g.setColor(Color.black);
+                g.drawString(((LevelFour) level).getTimer().getMinutes() + ":" + ((LevelFour) level).getTimer().getSeconds() + ":" + ((LevelFour) level).getTimer().getTime(), 350, 750);
+                g.setColor(Color.white);
+                g.drawString(((LevelFour) level).getTimer().getMinutes() + ":" + ((LevelFour) level).getTimer().getSeconds() + ":" + ((LevelFour) level).getTimer().getTime(), 352, 752);
+
         }
 
         g.setFont(new Font("JetBrains Mono", 0, 12));

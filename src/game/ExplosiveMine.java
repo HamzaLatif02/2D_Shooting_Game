@@ -20,10 +20,10 @@ public class ExplosiveMine extends StaticBody {
     private String damageValue;
     private World world;
 
-    public ExplosiveMine(World w, String damage) {
+    public ExplosiveMine(World w, String damageValue) {
         super(w);
         this.world = w;
-        this.damageValue = damage;
+        this.damageValue = damageValue;
         if (damageValue.equals("single")){
             this.damage = 10;
             if (world instanceof LevelThree){
@@ -67,4 +67,6 @@ public class ExplosiveMine extends StaticBody {
     public String getDamageValue() {
         return damageValue;
     }
+
+
 }
