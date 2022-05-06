@@ -6,7 +6,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
-
 public class Coin extends StaticBody {
 
     private static final Shape coinShape = new CircleShape(1f);
@@ -21,6 +20,7 @@ public class Coin extends StaticBody {
     private static SoundClip soundCoin;
     private GameLevel level;
 
+    //try loading coin sound effect
     static {
         try {
             soundCoin = new SoundClip("data/coinsound.wav");
@@ -50,14 +50,13 @@ public class Coin extends StaticBody {
         }
 
         coinSensor.addSensorListener(coinPickup);
-
-        //setAlwaysOutline(true);
     }
 
     public String getValue() {
         return value;
     }
 
+    //play coin sound effect when it is destroyed
     @Override
     public void destroy() {
         if (level.getPlaySoundEffects()){

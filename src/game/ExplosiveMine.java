@@ -2,6 +2,7 @@ package game;
 
 import city.cs.engine.*;
 
+//explosive mines are found in level three and four
 public class ExplosiveMine extends StaticBody {
 
     private static final Shape mineShape = new CircleShape(1.5f);
@@ -24,6 +25,8 @@ public class ExplosiveMine extends StaticBody {
         super(w);
         this.world = w;
         this.damageValue = damageValue;
+
+        //explosive mines with single damage value are smaller and deal less damage than those with double damage value
         if (damageValue.equals("single")){
             this.damage = 10;
             if (world instanceof LevelThree){

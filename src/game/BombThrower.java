@@ -3,6 +3,8 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
+//Bomb Throwers are enemies found in the third level.
+//As the name suggests they throw bomb objects.
 public class BombThrower extends Walker implements StepListener {
 
     private static final Shape bombThrowerShape = new CircleShape(2);
@@ -12,6 +14,7 @@ public class BombThrower extends Walker implements StepListener {
     private int time;
     private Bomb bomb;
     private GameLevel level;
+    //field to keep track if the death of this bomb thrower has been added to the death count of the character.
     private Boolean killAdded;
 
     public BombThrower(World w) {
@@ -40,14 +43,15 @@ public class BombThrower extends Walker implements StepListener {
         this.killAdded = killAdded;
     }
 
+    //when the bomb thrower falls out of the world or his health is equal to zero, it dies.
     public boolean isAlive(){
         if (health <= 0 || this.getPosition().y < -25){
-            //this.killAdded = Boolean.TRUE;
             this.destroy();
             return Boolean.FALSE;
         } else return Boolean.TRUE;
     }
 
+    //bomb throwers shoot bombs at an angled point
     public void shoot(){
         bomb = new Bomb(this.getWorld());
         bomb.setPosition(new Vec2(this.getPosition().x-3, this.getPosition().y));
@@ -57,6 +61,8 @@ public class BombThrower extends Walker implements StepListener {
         bomb.addCollisionListener(bombImpact);
     }
 
+    //bomb throwers shoot only if the character is close to them
+    //bomb throwers shoot every two seconds
     @Override
     public void preStep(StepEvent stepEvent) {
         if (this.isAlive() == Boolean.TRUE){

@@ -4,6 +4,7 @@ import city.cs.engine.CollisionEvent;
 import city.cs.engine.CollisionListener;
 import org.jbox2d.common.Vec2;
 
+//Check bombs collision with rest of the world.
 public class BombImpact implements CollisionListener {
 
     private Bomb bomb;
@@ -13,7 +14,7 @@ public class BombImpact implements CollisionListener {
         this.bomb = bomb;
     }
 
-
+    //if the bomb collides with the character, it explodes and deal damage to the character
     @Override
     public void collide(CollisionEvent e) {
         if (e.getOtherBody() instanceof Character){

@@ -9,6 +9,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.io.IOException;
 
+//Character class for the main characters controlled by the user
 public class Character extends Walker {
     private static final Shape characterShape = new CircleShape(2);
 
@@ -44,6 +45,7 @@ public class Character extends Walker {
     private int points, health;
     private float speed;
     private String direction;
+    //field to keep track if the character can change gravity. used in level three and four
     private Boolean changeGravity;
     private int enemiesKilled;
 
@@ -67,9 +69,6 @@ public class Character extends Walker {
         this.speed = 5;
         this.changeGravity = Boolean.FALSE;
         this.enemiesKilled = 0;
-
-        //setAlwaysOutline(true);
-
     }
 
     public int getPoints() {
@@ -110,9 +109,8 @@ public class Character extends Walker {
         this.enemiesKilled = enemiesKilled;
     }
 
-    // public Shape getHealthBar() {return healthBar;}
-    //public Shape getRemainingHealthBar() {return remainingHealthBar;}
-
+    //character movement
+    //change character image depending on whether it moves left or right
     @Override
     public void startWalking(float speed){
         super.startWalking(speed);
@@ -162,6 +160,7 @@ public class Character extends Walker {
         }
     }
 
+    //change character image depending on whether it jumps left or right
     @Override
     public void jump(float speed){
         super.jump(speed);
@@ -209,6 +208,8 @@ public class Character extends Walker {
         }
     }
 
+
+    //change character image depending on whether it stops facing left or right
     @Override
     public void stopWalking(){
         super.stopWalking();
@@ -255,6 +256,7 @@ public class Character extends Walker {
         }
     }
 
+    //character shoots left or right depending on where it is facing, left or right
     public void shoot(){
         Projectile p = new Projectile(this.getWorld());
 
@@ -270,6 +272,7 @@ public class Character extends Walker {
         p.addCollisionListener(projectileImpact);
     }
 
+    //when character is out the world the boundaries or its health is zero it dies
     public Boolean isAlive(){
         if (health <= 0 || this.getPosition().y < -25 || (getWorld() instanceof LevelThree && this.getPosition().y > 54)){
             this.destroy();

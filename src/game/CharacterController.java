@@ -8,9 +8,9 @@ import org.jbox2d.common.Vec2;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+//Class containing commands to move character in response to key events
 public class CharacterController implements KeyListener, StepListener {
 
-    //private static final float WALKING_SPEED = 5;
     private Character character;
     private int time, delay;
     private Boolean canShoot;
@@ -45,8 +45,9 @@ public class CharacterController implements KeyListener, StepListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
-        // other key commands omitted
         if (character.isAlive()){
+
+            //move with WASD or arrows
             if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A) {
                 character.startWalking(-character.getSpeed());
             } else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) {
@@ -57,6 +58,8 @@ public class CharacterController implements KeyListener, StepListener {
                 } else {
                     character.jump(-15);
                 }
+
+            //shoot with C or K
             } else if (code == KeyEvent.VK_C || code == KeyEvent.VK_K ){
                 if (character.getWorld() instanceof LevelOne){
                     character.shoot();
@@ -65,11 +68,15 @@ public class CharacterController implements KeyListener, StepListener {
                         character.shoot();
                     }
                 }
+
+            //change gravity with Spacebar
             } else if (code == KeyEvent.VK_SPACE){
                     if (character.getChangeGravity() == Boolean.TRUE){
                         character.jump(0);
                         character.setGravityScale(-character.getGravityScale());
                     }
+
+            //open in game menu with Esc
             } else if (code == KeyEvent.VK_ESCAPE){
                 game.toggleMenu();
             }
@@ -99,6 +106,7 @@ public class CharacterController implements KeyListener, StepListener {
     public void keyTyped(KeyEvent e) {
     }
 
+    //add delay to character shooting
     @Override
     public void preStep(StepEvent stepEvent) {
         if (character.getWorld() instanceof LevelTwo){

@@ -3,6 +3,7 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
+//Bombs are thrown by Bombthrowers.
 public class Bomb extends DynamicBody implements StepListener{
 
     private static final Shape bombShape = new CircleShape(0.5f);
@@ -11,7 +12,10 @@ public class Bomb extends DynamicBody implements StepListener{
 
     private SolidFixture bombFixture;
 
-    private int time, timer, damage;
+    private int time;
+    //timer field describes after how long the bomb explodes
+    private int timer;
+    private int damage;
     private Boolean exploded;
 
     public Bomb(World w) {
@@ -24,12 +28,6 @@ public class Bomb extends DynamicBody implements StepListener{
         this.damage = 5;
         this.exploded = Boolean.FALSE;
         getWorld().addStepListener(this);
-        //setAlwaysOutline(true);
-
-    }
-
-    public Boolean getExploded() {
-        return exploded;
     }
 
     public void setExploded(Boolean exploded) {
@@ -56,6 +54,8 @@ public class Bomb extends DynamicBody implements StepListener{
         return timer;
     }
 
+    //after time field reaches timer field value, the bomb explodes
+    //in this case after three seconds the bomb explodes
     @Override
     public void preStep(StepEvent stepEvent) {
         if (time > timer && time < timer+15){
@@ -63,7 +63,6 @@ public class Bomb extends DynamicBody implements StepListener{
             this.addImage(explosionImage);
             setExploded(Boolean.TRUE);
         } else if (time == timer+15){
-            //setExploded(Boolean.TRUE);
             this.destroy();
         }
         time++;

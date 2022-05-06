@@ -5,6 +5,7 @@ import city.cs.engine.SensorListener;
 import city.cs.engine.StepEvent;
 import city.cs.engine.StepListener;
 
+//check collision between explosive mines and rest of the world
 public class ExplosiveMineContact implements SensorListener, StepListener {
 
     private ExplosiveMine explosiveMine;
@@ -18,6 +19,7 @@ public class ExplosiveMineContact implements SensorListener, StepListener {
     }
 
 
+    //explosive mines explode when character collides with them
     @Override
     public void beginContact(SensorEvent e) {
         if (e.getContactBody() instanceof Character){
@@ -35,6 +37,7 @@ public class ExplosiveMineContact implements SensorListener, StepListener {
 
     }
 
+    //destroy explosive mine one second after it collided with character.
     @Override
     public void preStep(StepEvent stepEvent) {
         if (this.time == 60 && this.contactHappened == Boolean.TRUE){

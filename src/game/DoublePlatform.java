@@ -15,7 +15,7 @@ public class DoublePlatform extends StaticBody implements StepListener{
     private String direction;
     private GameLevel level;
 
-
+    //constructor for non-moving platforms
     public DoublePlatform(World w){
         super(w,doubleShape);
 
@@ -31,10 +31,9 @@ public class DoublePlatform extends StaticBody implements StepListener{
             addImage(image4);
         }
 
-        //setAlwaysOutline(true);
-
     }
 
+    //constructor for moving platforms
     public DoublePlatform(World w, String direction){
         super(w, doubleShape);
         this.time=0;
@@ -63,6 +62,7 @@ public class DoublePlatform extends StaticBody implements StepListener{
         this.time = time;
     }
 
+    //move platform horizontally or vertically
     @Override
     public void preStep(StepEvent stepEvent) {
         if (direction.equals("horizontal")){
