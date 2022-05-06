@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="300" left="10" bottom="300" right="10"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="731"/>
+      <xy x="20" y="20" width="500" height="786"/>
     </constraints>
     <properties>
       <background color="-5384206"/>
@@ -52,7 +52,9 @@
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <font name="JetBrains Mono" size="16"/>
+            </properties>
           </component>
         </children>
       </grid>

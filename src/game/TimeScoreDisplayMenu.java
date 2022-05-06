@@ -17,6 +17,14 @@ public class TimeScoreDisplayMenu {
 
     public TimeScoreDisplayMenu(Game g) throws IOException {
         this.game =g;
+        addScores();
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public void addScores(){
         DefaultListModel listModel = null;
         try {
             listModel = new TimeScoreSaverLoader(game).load("data/timescores.txt");
@@ -25,14 +33,6 @@ public class TimeScoreDisplayMenu {
         }
 
         System.out.println(listModel);
-        timeScoresList = new JList(listModel);
-
-
+        this.timeScoresList = new JList(listModel);
     }
-
-    public JPanel getMainPanel() {
-        return mainPanel;
-    }
-
-
 }
