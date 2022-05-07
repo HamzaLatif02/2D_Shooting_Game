@@ -62,24 +62,28 @@ public class GameView extends UserView {
 
         //background transparent box
         g.setColor(new Color(255,255,255,75));
-        g.fillRect(10,35,80,20);
+        g.fillRect(10,35,80,30);
         g.setColor(Color.white);
-        g.drawRect(10, 35, 80, 20);
+        g.drawRect(10, 35, 80, 30);
 
-        g.setFont(new Font("JetBrains Mono", 0, 12));
+        g.setFont(new Font("JetBrains Mono", 0, 16));
 
         //show how many coins the user has collected
         ImageIcon coinImage = new ImageIcon("data/coin.png");
         g.drawImage(coinImage.getImage(), 20, 35, 30,30,null);
         g.setColor(Color.black);
-        g.drawString(": " + character.getPoints(),50,50);
+        g.drawString(""+character.getPoints(),60,55);
+
+        g.setFont(new Font("JetBrains Mono", 0, 12));
 
         //show game controls if the option is on
         g.setColor(new Color(255,255,255,75));
         if (game.getShowControls()){
+            //background transparent box
             g.fillRect(340, 35, 160, 80);
             g.setColor(Color.white);
             g.drawRect(340, 35, 160, 80);
+            //controls text
             g.setColor(Color.black);
             g.drawString("Controls", 350,50);
             g.drawString("Pause: Esc", 350, 65);
@@ -97,9 +101,11 @@ public class GameView extends UserView {
         //show level objectives if option is on
         g.setColor(new Color(255,255,255,75));
         if (game.getShowObjectives()){
+            //background transparent box
             g.fillRect(590, 35, 190, 50);
             g.setColor(Color.white);
             g.drawRect(590, 35, 190, 50);
+            //objectives text
             g.setColor(Color.black);
             g.drawString("To Win", 600, 50);
             if (level instanceof LevelOne || level instanceof LevelTwo){
@@ -116,13 +122,16 @@ public class GameView extends UserView {
 
 
         //show character health
+        ImageIcon health = new ImageIcon("data/health.png");
+        //background transparent box
         g.setColor(new Color(255,255,255,75));
-        g.fillRect(90, 35, 170, 20);
+        g.fillRect(90, 35, 170, 30);
         g.setColor(Color.white);
-        g.drawRect(90, 35, 170, 20);
+        g.drawRect(90, 35, 170, 30);
+        //health bar
         g.setColor(Color.black);
-        g.drawString("Health:" , 100,50);
-        g.drawRect(150,40,100, 10);
+        g.drawImage(health.getImage(), 100, 35, 30, 30, null);
+        g.drawRect(140,45,100, 10);
         if (level instanceof LevelOne){
             g.setColor(new Color(73,152,183));
         } else if (level instanceof LevelTwo){
@@ -133,47 +142,54 @@ public class GameView extends UserView {
             g.setColor(new Color(83,105,122));
         }
 
-        g.fillRect(150,40,character.getHealth(),10);
+        g.fillRect(140,45,character.getHealth(),10);
 
         //show character speed in level two
         if (level instanceof LevelTwo){
+            //background transparent box
             g.setColor(new Color(255,255,255,75));
-            g.fillRect(90, 55, 130, 20);
+            g.fillRect(90, 65, 130, 30);
             g.setColor(Color.white);
-            g.drawRect(90, 55, 130, 20);
+            g.drawRect(90, 65, 130, 30);
+            //speed bar
+            ImageIcon speed = new ImageIcon("data/speed.png");
             g.setColor(Color.black);
-            g.drawString("Speed: ", 100, 70);
-            g.drawRect(150, 60, 60, 10);
+            g.drawImage(speed.getImage(), 100, 65, 30, 30, null);
+            g.drawRect(140, 75, 60, 10);
             g.setColor(new Color(181,247,189));
-            g.fillRect(150,60, (int) (character.getSpeed()*10f),10);
+            g.fillRect(140,75, (int) (character.getSpeed()*10f),10);
         }
 
+        g.setFont(new Font("JetBrains Mono", 0, 16));
         //show how many enemies the character has killed in level three
         if (level instanceof LevelThree){
+            //background transparent box
             g.setColor(new Color(255,255,255,75));
-            g.fillRect(10, 55, 160, 20);
+            g.fillRect(10, 65, 100, 30);
             g.setColor(Color.white);
-            g.drawRect(10, 55, 160, 20);
+            g.drawRect(10, 65, 100, 30);
+            //kill count
+            ImageIcon kills = new ImageIcon("data/kills.png");
+            g.drawImage(kills.getImage(), 20, 65, 30, 30, null);
             g.setColor(Color.black);
-            g.drawString("Enemies killed: " + character.getEnemiesKilled() + "/10", 20, 70);
+            g.drawString("" + character.getEnemiesKilled() + "/10", 60, 85);
         }
 
         //show timer in level four
         if (level instanceof LevelFour){
+                //background transparent box
                 g.setColor(new Color(255,255,255,75));
-                g.fillRect(330, 660, 200, 100);
+                g.fillRect(330, 630, 200, 150);
                 g.setColor(Color.white);
-                g.drawRect(330, 660, 200, 100);
-                g.setFont(new Font("JetBrains Mono", Font.ITALIC, 40));
-                g.setColor(Color.black);
-                g.drawString("TIMER", 350, 700);
-                g.setColor(Color.white);
-                g.drawString("TIMER", 352, 702);
+                g.drawRect(330, 630, 200, 150);
+                //timer text
+                ImageIcon timer = new ImageIcon("data/timer.png");
+                g.drawImage(timer.getImage(), 370, 640, 80, 80, null);
                 g.setFont(new Font("JetBrains Mono", 0, 40));
                 g.setColor(Color.black);
-                g.drawString(((LevelFour) level).getTimer().getMinutes() + ":" + ((LevelFour) level).getTimer().getSeconds() + ":" + ((LevelFour) level).getTimer().getTime(), 350, 750);
+                g.drawString(((LevelFour) level).getTimer().getMinutes() + ":" + ((LevelFour) level).getTimer().getSeconds() + ":" + ((LevelFour) level).getTimer().getTime(), 350, 760);
                 g.setColor(Color.white);
-                g.drawString(((LevelFour) level).getTimer().getMinutes() + ":" + ((LevelFour) level).getTimer().getSeconds() + ":" + ((LevelFour) level).getTimer().getTime(), 352, 752);
+                g.drawString(((LevelFour) level).getTimer().getMinutes() + ":" + ((LevelFour) level).getTimer().getSeconds() + ":" + ((LevelFour) level).getTimer().getTime(), 352, 762);
 
         }
 

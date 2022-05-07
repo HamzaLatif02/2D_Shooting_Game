@@ -260,7 +260,6 @@ public class Game {
 
     //show game won menu
     public void transitiontoGameWonMenu(){
-        frame.remove(view);
         frame.add(gameWonMenu.getMainPanel(), BorderLayout.WEST);
         frame.pack();
         level.stop();
