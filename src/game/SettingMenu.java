@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.MouseAdapter;
 
+//show game settings
 public class SettingMenu {
     private JPanel mainPanel;
     private JButton backButton;
@@ -40,12 +41,14 @@ public class SettingMenu {
             public void actionPerformed(ActionEvent e) {
                 boolean muted = muteVolumeCheckBox.isSelected();
 
+                //if mute volume is ticked then mute volume
                 if (muted){
                     if (game.getMainMenuVisible()){
                         game.getBgMusic().stop();
                     } else {
                         game.getLevel().getBackgroundMusic().pause();
                     }
+                //when unticked, resume background music
                 } else {
                     if (game.getMainMenuVisible()){
                         game.getBgMusic().resume();
@@ -70,6 +73,8 @@ public class SettingMenu {
                 }
             }
         });
+
+        //show controls in game view
         showControlsCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -83,7 +88,7 @@ public class SettingMenu {
             }
         });
 
-
+        //show objectives in game view
         showObjectivesCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,7 +102,7 @@ public class SettingMenu {
             }
         });
 
-
+        //slider used to adjust volume
         volumeSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -115,7 +120,6 @@ public class SettingMenu {
                         }
                         game.getLevel().getBackgroundMusic().setVolume((float)volumeSlider.getValue()/50);
                     }
-                    System.out.println(((float) (volumeSlider.getValue())/50));
                 }
             }
         });

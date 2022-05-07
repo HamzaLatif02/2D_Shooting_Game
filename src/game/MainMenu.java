@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+//main menu, shows when starting the application
 public class MainMenu {
     private JPanel mainPanel;
     private JButton exitButton;

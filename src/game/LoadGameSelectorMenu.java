@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+//user can choose from which file to load a game
 public class LoadGameSelectorMenu {
     private JPanel mainPanel;
     private JPanel titlePanel;
@@ -28,7 +29,7 @@ public class LoadGameSelectorMenu {
         this.game =g;
 
 
-
+        //load game from game1 file
         game1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,6 +45,7 @@ public class LoadGameSelectorMenu {
             }
         });
 
+        //load game from game2 file
         game2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,6 +61,7 @@ public class LoadGameSelectorMenu {
             }
         });
 
+        //load game from game3 file
         game3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -74,18 +77,20 @@ public class LoadGameSelectorMenu {
             }
         });
 
+        //user can browse in his computer and choose a file to load game
         selectGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();
+                //set initial directory
                 fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+                //not all files types are accepted
                 fileChooser.setAcceptAllFileFilterUsed(false);
+                //only accept txt files
                 fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(".txt","txt"));
                 fileChooser.showOpenDialog(mainPanel);
 
-
-
-
+                //if user has selected a file, try and load game
                 if (fileChooser.getSelectedFile() != null){
                     try {
                         GameLevel loadedLevel = new GameSaverLoader(game).load(fileChooser.getSelectedFile().getAbsolutePath());

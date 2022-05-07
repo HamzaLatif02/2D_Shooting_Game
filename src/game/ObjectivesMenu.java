@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//show objectives for current level
 public class ObjectivesMenu {
     private JPanel mainPanel;
     private JButton backButton;

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+//user can choose where to save the current game
 public class SaveGameSelectorMenu {
     private JPanel mainPanel;
     private JPanel titlePanel;
@@ -25,6 +26,7 @@ public class SaveGameSelectorMenu {
     public SaveGameSelectorMenu(Game g){
         this.game = g;
 
+        //save game in file game1
         game1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -36,6 +38,7 @@ public class SaveGameSelectorMenu {
             }
         });
 
+        //save game in file game2
         game2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,6 +50,7 @@ public class SaveGameSelectorMenu {
             }
         });
 
+        //save game in file game3
         game3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,21 +62,27 @@ public class SaveGameSelectorMenu {
             }
         });
 
+        //choose path where user saves file
         selectGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();
+                //set initial directory
                 fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+                //not all extension are accepted
                 fileChooser.setAcceptAllFileFilterUsed(false);
+                //only text file are accepted
                 fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(".txt","txt"));
                 fileChooser.showSaveDialog(mainPanel);
 
                 String path = fileChooser.getSelectedFile().getAbsolutePath();
 
+                //add .txt at the end of filename if not there already
                 if (!path.endsWith(".txt")){
                     path += ".txt";
                 }
 
+                //try and save file in the path chosen by user
                 if (fileChooser.getSelectedFile() != null){
                     try {
                         new GameSaverLoader(game).save(path, game.getLevel());

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//menu for when player loses
 public class GameLostMenu {
     private JPanel mainPanel;
     private JLabel gameOverText;

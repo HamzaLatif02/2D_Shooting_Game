@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//show the game controls for the current level
 public class ControlsMenu {
     private JPanel mainPanel;
     private JLabel controlsText;

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+//in game menu, can be accessed by pressing esc key
 public class InGameMenu {
     private JPanel mainPanel;
     private JButton continueButton;
@@ -42,11 +43,13 @@ public class InGameMenu {
         objectivesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //only show objectives for level one and two, which are the same
                 if (game.getLevel() instanceof LevelOne || game.getLevel() instanceof LevelTwo){
                     game.getObjectivesMenu().getCoinsTextLevelOneTwo().setVisible(true);
                     game.getObjectivesMenu().getKillTextLevelOneTwo().setVisible(true);
                     game.getObjectivesMenu().getCoinTextLevelThree().setVisible(false);
                     game.getObjectivesMenu().getKillTextLevelThree().setVisible(false);
+                //only show objectives for level three
                 } else if (game.getLevel() instanceof LevelThree){
                     game.getObjectivesMenu().getCoinsTextLevelOneTwo().setVisible(false);
                     game.getObjectivesMenu().getKillTextLevelOneTwo().setVisible(false);
@@ -60,8 +63,10 @@ public class InGameMenu {
         controlsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //only show controls for level one and two, which are the same
                 if (game.getLevel() instanceof LevelOne || game.getLevel() instanceof LevelTwo){
                     game.getControlsMenu().getChangeGravityText().setVisible(false);
+                //only show controls for level three
                 } else if (game.getLevel() instanceof LevelThree){
                     game.getControlsMenu().getChangeGravityText().setVisible(true);
                 }
