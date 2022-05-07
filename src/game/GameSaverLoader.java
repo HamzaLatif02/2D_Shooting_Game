@@ -8,15 +8,28 @@ import org.jbox2d.common.Vec2;
 import javax.swing.*;
 import java.io.*;
 
+/**
+ * Save and load games
+ */
 //class containing methods to save current game & load a game
 public class GameSaverLoader {
 
     private static Game game;
+
+    /**
+     * Initialse a new GameSaverLoader object
+     * @param g in which game the object is constructed
+     */
     public GameSaverLoader(Game g){
         this.game = g;
     }
 
-
+    /**
+     * Save game into a predefined file, or choose where to save the file
+     * @param fileName name of the file where the game will be saved
+     * @param level the level that will be saved
+     * @throws IOException
+     */
     public static void save(String fileName, GameLevel level) throws IOException {
         //overwrite the existing file
         boolean append = false;
@@ -96,7 +109,12 @@ public class GameSaverLoader {
         JOptionPane.showMessageDialog(game.getView(), "Game successfully saved", "Game Saved", JOptionPane.INFORMATION_MESSAGE);
     }
 
-
+    /**
+     * Load a playable level from a file chosen by the user
+     * @param fileName name of the file from where to load the game
+     * @return GameLevel object, a playable level
+     * @throws IOException
+     */
     public static GameLevel load(String fileName) throws IOException {
         FileReader fr = null;
         BufferedReader reader = null;

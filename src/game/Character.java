@@ -9,6 +9,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * Main character, controlled by the user
+ */
 //Character class for the main characters controlled by the user
 public class Character extends Walker {
     private static final Shape characterShape = new CircleShape(2);
@@ -49,7 +52,10 @@ public class Character extends Walker {
     private Boolean changeGravity;
     private int enemiesKilled;
 
-
+    /**
+     * Initialise a new Character
+     * @param world which game to create the character in
+     */
     public Character (World world) {
         super(world, characterShape);
 
@@ -71,46 +77,98 @@ public class Character extends Walker {
         this.enemiesKilled = 0;
     }
 
+    /**
+     * Get character points
+     * @return points field
+     */
     public int getPoints() {
         return points;
     }
 
+    /**
+     * Set character points
+     * @param points value to assign to character points
+     */
     public void setPoints(int points) {
         this.points = points;
     }
 
+    /**
+     * Get charcater direction
+     * @return direction field
+     */
     public String getDirection() {return direction;}
 
+    /**
+     * Set character direction
+     * @param direction value to assign to character direction
+     */
     public void setDirection(String direction) {this.direction = direction;}
 
+    /**
+     * Get character health
+     * @return health field
+     */
     public int getHealth() {return health;}
 
+    /**
+     * Set charcater health
+     * @param health value to assign to character health
+     */
     public void setHealth(int health) {this.health = health;}
 
+    /**
+     * Get character speed
+     * @return
+     */
     public float getSpeed() {
         return speed;
     }
 
+    /**
+     * Set character speed
+     * @param speed value to assign to character speed
+     */
     public void setSpeed(float speed){this.speed = speed;}
 
+    /**
+     * Get whether the character can change gravity
+     * @return changeGravity field
+     */
     public Boolean getChangeGravity() {
         return changeGravity;
     }
 
+    /**
+     * Set whether the character can change gravity
+     * @param changeGravity value to assign to changeGravity
+     */
     public void setChangeGravity(Boolean changeGravity) {
         this.changeGravity = changeGravity;
     }
 
+    /**
+     * Get how many enemies the character has killed
+     * @return enemiesKilled field
+     */
     public int getEnemiesKilled() {
         return enemiesKilled;
     }
 
+    /**
+     * Set how many enemies the character has killed
+     * @param enemiesKilled value to assign to enemiesKilled
+     */
     public void setEnemiesKilled(int enemiesKilled) {
         this.enemiesKilled = enemiesKilled;
     }
 
     //character movement
     //change character image depending on whether it moves left or right
+    /**
+     * Character starts moving left or right, depending on the speed
+     * @param speed speed at which the character walks
+     */
     @Override
     public void startWalking(float speed){
         super.startWalking(speed);
@@ -161,6 +219,10 @@ public class Character extends Walker {
     }
 
     //change character image depending on whether it jumps left or right
+    /**
+     * Character jumps depending on the speed
+     * @param speed speed at which the character jumps
+     */
     @Override
     public void jump(float speed){
         super.jump(speed);
@@ -210,6 +272,9 @@ public class Character extends Walker {
 
 
     //change character image depending on whether it stops facing left or right
+    /**
+     * Character stops moving left or right
+     */
     @Override
     public void stopWalking(){
         super.stopWalking();
@@ -257,6 +322,9 @@ public class Character extends Walker {
     }
 
     //character shoots left or right depending on where it is facing, left or right
+    /**
+     * Character shoot left or right, depending on his direction
+     */
     public void shoot(){
         Projectile p = new Projectile(this.getWorld());
 
@@ -273,6 +341,10 @@ public class Character extends Walker {
     }
 
     //when character is out the world the boundaries or its health is zero it dies
+    /**
+     * Check if the character is alive and inside world boundaries
+     * @return whether the character is alive
+     */
     public Boolean isAlive(){
         if (health <= 0 || this.getPosition().y < -25 || (getWorld() instanceof LevelThree && this.getPosition().y > 54)){
             this.destroy();

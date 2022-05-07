@@ -123,8 +123,7 @@ public class Game {
     }
 
     /** Setter for showControls field
-     * @param showControls whether to show controls on screen or not
-     * @return null*/
+     * @param showControls whether to show controls on screen or not*/
     public void setShowControls(Boolean showControls) {
         this.showControls = showControls;
     }
@@ -136,8 +135,7 @@ public class Game {
     }
 
     /** Setter for showObjectives field
-     * @param showObjectives whether to show objectives on screen or not
-     * @return null*/
+     * @param showObjectives whether to show objectives on screen or not*/
     public void setShowObjectives(Boolean showObjectives) {
         this.showObjectives = showObjectives;
     }
@@ -167,8 +165,7 @@ public class Game {
     }
 
     /** Create a new level based on the parameter passed
-     * @param l which level to start
-     * @return null */
+     * @param l which level to start*/
     //create a new level based on the parameter passed
     public void setNewLevel(GameLevel l){
         level = l;
@@ -196,8 +193,7 @@ public class Game {
         frame.pack();
     }
 
-    /**Go to next level after the previous one has been completed
-     * @return null*/
+    /**Go to next level after the previous one has been completed*/
     //go to the next level after the previous one has been completed
     public void goToNextLevel(){
         if (level instanceof LevelOne){
@@ -225,8 +221,7 @@ public class Game {
         }
     }
 
-    /** Update character fields and update view fields when a level changes
-     * @return null*/
+    /** Update character fields and update view fields when a level changes*/
     //update character fields & update view fields when a level changes
     public void updateLevelElements(){
         view.setWorld(level);
@@ -240,8 +235,7 @@ public class Game {
         level.start();
     }
 
-    /** Hide or show in game menu from game view
-     * @return null*/
+    /** Hide or show in game menu from game view*/
     //hide or show in game menu from game view
     public void toggleMenu(){
         if (menuVisible){
@@ -258,8 +252,7 @@ public class Game {
     }
 
     /** Hide main menu or in game menu and show settings menu
-     * @param menu describes from which menu to transit, main menu or in game menu
-     * @return null*/
+     * @param menu describes from which menu to transit, main menu or in game menu*/
     //hide main menu or in game menu & show settings menu
     public void transitionToSettings(String menu){
         if (menu.equals("main")){
@@ -274,8 +267,7 @@ public class Game {
 
     }
 
-    /** Hide main menu or in game menu and show settings menu
-     * @return null*/
+    /** Hide main menu or in game menu and show settings menu*/
     //hide main menu or in game menu & show settings menu
     public void transitionToInGameMenu(){
         if (mainMenuVisible){
@@ -289,8 +281,7 @@ public class Game {
         }
     }
 
-    /** Hide in game menu and show controls menu
-     * @return null*/
+    /** Hide in game menu and show controls menu*/
     //hide in game menu & show controls menu
     public void transitionToControlsMenu(){
         frame.remove(inGameMenu.getMainPanel());
@@ -298,8 +289,7 @@ public class Game {
         frame.pack();
     }
 
-    /** Hide controls menu & show in game menu
-     * @return null*/
+    /** Hide controls menu & show in game menu*/
     //hide controls menu & show in game menu
     public void transitionToInGameMenuFromControls(){
         frame.remove(controlsMenu.getMainPanel());
@@ -307,8 +297,7 @@ public class Game {
         frame.pack();
     }
 
-    /** Hide in game menu and show objectives menu
-     * @return null*/
+    /** Hide in game menu and show objectives menu*/
     //hide in game menu & show objectives menu
     public void transitionToObjectivesMenu(){
         frame.remove(inGameMenu.getMainPanel());
@@ -316,8 +305,7 @@ public class Game {
         frame.pack();
     }
 
-    /** Hide objectives menu and show in game menu
-     * @return null*/
+    /** Hide objectives menu and show in game menu*/
     //hide objectives menu & show in game menu
     public void transitionToInGameMenuFromObjectives(){
         frame.remove(objectivesMenu.getMainPanel());
@@ -325,8 +313,7 @@ public class Game {
         frame.pack();
     }
 
-    /** Show game lost menu
-     * @return null*/
+    /** Show game lost menu*/
     //show game lost menu
     public void transitionToGameLostMenu(){
         frame.add(gameLostMenu.getMainPanel(), BorderLayout.WEST);
@@ -334,8 +321,7 @@ public class Game {
         level.stop();
     }
 
-    /** Show game won menu
-     * @return null*/
+    /** Show game won menu*/
     //show game won menu
     public void transitiontoGameWonMenu(){
         frame.add(gameWonMenu.getMainPanel(), BorderLayout.WEST);
@@ -343,8 +329,7 @@ public class Game {
         level.stop();
     }
 
-    /** Show main menu and hide other visible menu
-     * @return null*/
+    /** Show main menu and hide other visible menu*/
     //show main menu & hide any other visible menu
     public void transitionToMainMenu(){
         frame.remove(view);
@@ -355,8 +340,7 @@ public class Game {
         frame.pack();
     }
 
-    /** Hide main menu and show load game menu
-     * @return null*/
+    /** Hide main menu and show load game menu*/
     //hide main menu & show load game menu
     public void transitionToLoadGameSelectorMenu(){
         frame.remove(mainMenu.getMainPanel());
@@ -364,8 +348,7 @@ public class Game {
         frame.pack();
     }
 
-    /** hide laod game menu and show main menu
-     * @return null*/
+    /** hide laod game menu and show main menu*/
     //hide load game menu & show main menu
     public void transitionToMainMenuFromLoadGame(){
         frame.remove(loadGameSelectorMenu.getMainPanel());
@@ -373,8 +356,7 @@ public class Game {
         frame.pack();
     }
 
-    /** Hide in game menu and show save game menu
-     * @return null*/
+    /** Hide in game menu and show save game menu*/
     //hide in game menu & show save game menu
     public void transitionToSaveGameSelectorMenu(){
         frame.remove(inGameMenu.getMainPanel());
@@ -382,8 +364,7 @@ public class Game {
         frame.pack();
     }
 
-    /** Hide save game menu and show in game menu
-     * @return null*/
+    /** Hide save game menu and show in game menu*/
     //hide save game menu & show in game menu
     public void transitionToInGameMenuFromSaveGame(){
         frame.remove(saveGameSelectorMenu.getMainPanel());
@@ -391,8 +372,7 @@ public class Game {
         frame.pack();
     }
 
-    /** Start a new game from level one
-     * @return null*/
+    /** Start a new game from level one*/
     //start a new game from level one
     public void startNewGame(){
         mainMenuVisible = Boolean.FALSE;
@@ -410,9 +390,7 @@ public class Game {
         frame.pack();
     }
 
-    /** Play background music
-     * @return null
-     * */
+    /** Play background music*/
     //play background music
     public void playBackgroundMusic(){
         try {
@@ -425,9 +403,7 @@ public class Game {
     }
 
     /** Restart current level
-     * @param l level to restart
-     * @return null
-     * */
+     * @param l level to restart*/
     //restart current level
     public void restartLevel(GameLevel l){
         level.stop();
