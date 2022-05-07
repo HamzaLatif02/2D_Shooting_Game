@@ -24,7 +24,6 @@ public class NinjaController implements StepListener {
 
     @Override
     public void preStep(StepEvent e) {
-
         if (ninja.isAlive() == Boolean.TRUE) {
             if (time % 240 < 120){
                 ninja.moveRight();
@@ -32,13 +31,12 @@ public class NinjaController implements StepListener {
                 ninja.moveLeft();
             }
 
+            //shoot every half second
             if (time % 30 == 0){
                 ninja.shoot();
             }
-
             time++;
         }
-
     }
 
     @Override

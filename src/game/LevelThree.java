@@ -157,8 +157,6 @@ public class LevelThree extends GameLevel implements StepListener {
     }
 
     public void placeBombThrowers(){
-
-
         for (int i=0; i<10; i++){
             bombThrowers.add (new BombThrower(this));
         }
@@ -173,7 +171,6 @@ public class LevelThree extends GameLevel implements StepListener {
         bombThrowers.get(7).setPosition(new Vec2(278f, 36f));
         bombThrowers.get(8).setPosition(new Vec2(339f, 25f));
         bombThrowers.get(9).setPosition(new Vec2(351f, 33f));
-
     }
 
     public void placeCoins(){
@@ -315,6 +312,7 @@ public class LevelThree extends GameLevel implements StepListener {
         getPortal().setPosition(new Vec2(458f,30.5f));
     }
 
+    //level is completed if user collects more than 119 coins and kills all the enemies
     @Override
     public Boolean objectivesDone() {
         if (getCharacter().getPoints() > 0 || getCharacter().getEnemiesKilled() == 10){

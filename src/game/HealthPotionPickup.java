@@ -3,6 +3,7 @@ package game;
 import city.cs.engine.SensorEvent;
 import city.cs.engine.SensorListener;
 
+//health potion collision with rest of world
 public class HealthPotionPickup implements SensorListener {
 
     private HealthPotion healthPotion;
@@ -14,6 +15,7 @@ public class HealthPotionPickup implements SensorListener {
     public void beginContact(SensorEvent e) {
         if (e.getContactBody() instanceof Character){
             if (type.equals("positive")){
+                //depending on the level, health potion has different values
                 if (e.getContactBody().getWorld() instanceof LevelOne){
                     if (((Character) e.getContactBody()).getHealth() < 76){
                         ((Character) e.getContactBody()).setHealth(((Character) e.getContactBody()).getHealth() + 25);
@@ -33,12 +35,10 @@ public class HealthPotionPickup implements SensorListener {
                         ((Character) e.getContactBody()).setHealth(100);
                     }
                 }
-
             } else {
                 ((Character) e.getContactBody()).setHealth(((Character) e.getContactBody()).getHealth() - 10);
                 ((Character) e.getContactBody()).isAlive();
             }
-
             healthPotion.destroy();
         }
 

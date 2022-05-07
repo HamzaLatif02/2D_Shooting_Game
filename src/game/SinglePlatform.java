@@ -25,7 +25,6 @@ public class SinglePlatform extends StaticBody implements StepListener {
         } else if (w instanceof LevelFour){
             addImage(image4);
         }
-        //setAlwaysOutline(true);
     }
 
     public SinglePlatform(World w, String movement){
@@ -37,10 +36,12 @@ public class SinglePlatform extends StaticBody implements StepListener {
 
         if (movement.equals("vertical")){
             if (w instanceof LevelThree){
+                //each platform starts moving after a random amount of time
                 this.delay = (int)Math.floor(Math.random()*100);
                 addImage(image3);
                 getWorld().addStepListener(this);
             } else if (w instanceof LevelFour){
+                //each platform starts moving after a random amount of time
                 this.delay = (int)Math.floor(Math.random()*100);
                 addImage(image4);
                 getWorld().addStepListener(this);
@@ -71,6 +72,7 @@ public class SinglePlatform extends StaticBody implements StepListener {
     @Override
     public void preStep(StepEvent stepEvent) {
 
+        //only move after the delay
         if (time1 > delay){
             if (time2 % 240 < 120){
                 this.setPosition(new Vec2(getPosition().x, getPosition().y-0.1f));
@@ -79,9 +81,7 @@ public class SinglePlatform extends StaticBody implements StepListener {
             }
             time2++;
         }
-
         time1++;
-
     }
 
     @Override

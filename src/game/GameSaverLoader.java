@@ -8,6 +8,7 @@ import org.jbox2d.common.Vec2;
 import javax.swing.*;
 import java.io.*;
 
+//class containing methods to save current game & load a game
 public class GameSaverLoader {
 
     private static Game game;
@@ -17,17 +18,21 @@ public class GameSaverLoader {
 
 
     public static void save(String fileName, GameLevel level) throws IOException {
+        //overwrite the existing file
         boolean append = false;
         FileWriter writer = null;
         try {
             writer = new FileWriter(fileName, append);
 
+            //save level name
             writer.write(level.getLevelName() + "\n");
 
+            //save timer if level four
             if (level instanceof LevelFour){
                 writer.write(((LevelFour) level).getTimer().getClass().getSimpleName() + "," + ((LevelFour) level).getTimer().getMinutes() + "," + ((LevelFour) level).getTimer().getSeconds() + "," + ((LevelFour) level).getTimer().getTime() + "\n");
             }
 
+            //save all static bodies
             for (int i=0; i< level.getStaticBodies().size(); i++){
                 StaticBody sb = level.getStaticBodies().get(i);
 
@@ -52,6 +57,7 @@ public class GameSaverLoader {
 
             }
 
+            //save all dynamic bodies
             for (int i=0; i<level.getDynamicBodies().size(); i++){
                 DynamicBody db = level.getDynamicBodies().get(i);
 
@@ -86,6 +92,7 @@ public class GameSaverLoader {
             }
         }
 
+        //show message that game has been successfully saved
         JOptionPane.showMessageDialog(game.getView(), "Game successfully saved", "Game Saved", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -99,11 +106,13 @@ public class GameSaverLoader {
 
             String line = reader.readLine();
 
+            //if first line is empty, show an error message
             if (line == null){
                 JOptionPane.showMessageDialog(game.getMainMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
                 return null;
             }
 
+            //create a new level based on first line
             GameLevel level = null;
             if (line.equals("LevelOne")){
                 level = new LevelOne("no");
@@ -120,10 +129,12 @@ public class GameSaverLoader {
 
             line = reader.readLine();
 
+            //if second line is empty, show an error message
             if (line == null){
                 JOptionPane.showMessageDialog(game.getMainMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
                 return null;
             }
+
 
             while (line != null) {
 

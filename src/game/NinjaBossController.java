@@ -24,6 +24,7 @@ public class NinjaBossController implements StepListener {
                 ninjaBoss.moveRight();
             }
 
+            //shoot every second
             if (time % 60 == 0){
                 ninjaBoss.shoot();
             }

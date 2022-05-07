@@ -26,8 +26,6 @@ public class SpeedPotion extends StaticBody {
         speedPotionSensor = new Sensor(this, speedPotionShape);
         speedPotionPickup = new SpeedPotionPickup(this, type);
         speedPotionSensor.addSensorListener(speedPotionPickup);
-
-        //setAlwaysOutline(true);
     }
 
     public String getType() {

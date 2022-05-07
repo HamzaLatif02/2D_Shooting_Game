@@ -18,7 +18,5 @@ public class MinusCoin extends StaticBody {
         minusCoinSensor = new Sensor(this,coinShape);
         minusCoinPickup = new MinusCoinPickup(this);
         minusCoinSensor.addSensorListener(minusCoinPickup);
-
-        //setAlwaysOutline(true);
     }
 }

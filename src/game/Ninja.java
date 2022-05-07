@@ -3,7 +3,8 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
-public class Ninja extends Walker implements StepListener {
+//enemy in first level
+public class Ninja extends Walker {
 
     private static final Shape ninjaShape = new CircleShape(2);
     private static final BodyImage imageLeft = new BodyImage("data/level1/ninja-left.png", 4f);
@@ -21,7 +22,7 @@ public class Ninja extends Walker implements StepListener {
         this.speed = 3;
         this.time = 0;
         this.direction = "left";
-        getWorld().addStepListener(this);
+        getWorld().addStepListener(new NinjaController(this));
     }
 
     public void setHealth(int health){this.health = health;}
@@ -72,28 +73,5 @@ public class Ninja extends Walker implements StepListener {
         this.setDirection("right");
         this.removeAllImages();
         this.addImage(imageRight);
-    }
-
-    @Override
-    public void preStep(StepEvent stepEvent) {
-        if (this.isAlive() == Boolean.TRUE) {
-            if (time % 240 < 120){
-                this.moveRight();
-            } else {
-                this.moveLeft();
-            }
-
-            if (time % 30 == 0){
-                this.shoot();
-            }
-
-            time++;
-        }
-
-    }
-
-    @Override
-    public void postStep(StepEvent stepEvent) {
-
     }
 }

@@ -117,15 +117,11 @@ public class LevelOne extends GameLevel{
         ninjas.get(7).setPosition(new Vec2(204f,1f));
         ninjas.get(8).setPosition(new Vec2(246f,-15f));
         ninjas.get(9).setPosition(new Vec2(283f,1f));
-
     }
 
     public void placeNinjaBoss(){
-
         ninjaBoss.add(new NinjaBoss(this));
         ninjaBoss.get(0).setPosition(new Vec2(319f, 5f));
-        //ninjaBoss.get(0).getWorld().addStepListener(new NinjaBossController(ninjaBoss.get(0)));
-
     }
 
     public void placeCoins(){
@@ -186,7 +182,6 @@ public class LevelOne extends GameLevel{
     }
 
     public void placeMinusCoins(){
-
         new MinusCoin(this).setPosition(new Vec2(40f,4f));
         new MinusCoin(this).setPosition(new Vec2(64f,3f));
         new MinusCoin(this).setPosition(new Vec2(117f,5f));
@@ -219,10 +214,10 @@ public class LevelOne extends GameLevel{
         return Boolean.TRUE;
     }
 
-
+    //level is completed if the user has collected more than 44 coins and defeated the final boss
     @Override
     public Boolean objectivesDone() {
-        if (getCharacter().getPoints() > 0 || checkBossAlive() == Boolean.FALSE){
+        if (getCharacter().getPoints() > 110 || checkBossAlive() == Boolean.FALSE){
             return Boolean.TRUE;
         } else {return Boolean.FALSE;}
     }

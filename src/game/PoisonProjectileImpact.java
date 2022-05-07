@@ -18,6 +18,8 @@ public class PoisonProjectileImpact implements CollisionListener {
     @Override
     public void collide(CollisionEvent e) {
         if (e.getOtherBody() instanceof Character) {
+
+            //poison projectiles slow down the enemy in addition to dealing damage
             ((Character) e.getOtherBody()).setHealth(((Character) e.getOtherBody()).getHealth() - poisonProjectile.getDamage());
             if (((Character) e.getOtherBody()).getSpeed() > 5.1){
                 ((Character) e.getOtherBody()).setSpeed(((Character) e.getOtherBody()).getSpeed()-0.2f);

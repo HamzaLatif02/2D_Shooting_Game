@@ -3,6 +3,7 @@ package game;
 import city.cs.engine.StepEvent;
 import city.cs.engine.StepListener;
 
+
 public class MummyBossController implements StepListener {
 
     private MummyBoss mummyBoss;
@@ -22,6 +23,7 @@ public class MummyBossController implements StepListener {
                 mummyBoss.moveRight();
             }
 
+            //shoot for half second every two seconds
             if (time % 120 < 30 && time % 2 == 0){
                 mummyBoss.shoot();
             }

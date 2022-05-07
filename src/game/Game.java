@@ -27,7 +27,6 @@ public class Game {
     private GameWonMenu gameWonMenu;
     private LoadGameSelectorMenu loadGameSelectorMenu;
     private SaveGameSelectorMenu saveGameSelectorMenu;
-    private TimeScoreDisplayMenu timeScoreDisplayMenu;
     private Boolean menuVisible, mainMenuVisible, showControls, showObjectives;
     private SoundClip bgMusic;
 
@@ -41,7 +40,7 @@ public class Game {
         showControls = Boolean.FALSE;
         showObjectives = Boolean.FALSE;
 
-
+        //initialise all the game menus
         frame = new JFrame("City Game");
         mainMenu = new MainMenu(this);
         inGameMenu = new InGameMenu(this);
@@ -52,62 +51,18 @@ public class Game {
         gameWonMenu = new GameWonMenu(this);
         loadGameSelectorMenu = new LoadGameSelectorMenu(this);
         saveGameSelectorMenu = new SaveGameSelectorMenu(this);
-        timeScoreDisplayMenu = new TimeScoreDisplayMenu(this);
 
-
-        //level = new LevelOne("yes");
-        //view = new GameView(this, level, 800,800, level.getCharacter());
-        //view.addEnemiesLevelOne(((LevelOne)level).getNinja(), ((LevelOne)level).getNinjaBoss());
-        //1. make an empty game world
-        //GameWorld world = new GameWorld();
-
-
-        //characterController = new CharacterController(this, level.getCharacter());
-
-        //3. make a view to look into the game world
-        //GameView view = new GameView(world, 800, 800, world.getCharacter(), world.getNinja(), world.getNinjaBoss());
-
-        //view.addMouseListener(new GiveFocus(view));
-
-        //view.addKeyListener(characterController);
-
-        //level.addStepListener(new Tracker(view, level.getCharacter(), level));
-
-
-        //optional: draw a 1-metre grid over the view
-        //view.setGridResolution(1);
-
-        //4. create a Java window (frame) and add the game
-        //   view to it
-        //final JFrame frame = new JFrame("City Game");
         playBackgroundMusic();
         frame.add(mainMenu.getMainPanel());
 
-        //frame.add(view);
-
-        // enable the frame to quit the application
-        // when the x button is pressed
+        // enable the frame to quit the application when the x button is pressed
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
         // don't let the frame be resized
-        //frame.setResizable(false);
-        // size the frame to fit the world view
+        frame.setResizable(false);
         frame.pack();
         // finally, make the frame visible
         frame.setVisible(true);
-
-        //optional: uncomment this to make a debugging view
-        //JFrame debugView = new DebugViewer(world, 500, 500);
-
-        // start our game world simulation!
-        //level.start();
-
-
-        //checkLevelCompletion();
-    }
-
-    public JFrame getFrame() {
-        return frame;
     }
 
     public InGameMenu getMainMenu() {
@@ -158,6 +113,7 @@ public class Game {
         return inGameMenu;
     }
 
+    //create a new level based on the parameter passed
     public void setNewLevel(GameLevel l){
         level = l;
         view = new GameView(this, level, 800,800, level.getCharacter());
@@ -184,6 +140,7 @@ public class Game {
         frame.pack();
     }
 
+    //go to the next level after the previous one has been completed
     public void goToNextLevel(){
         if (level instanceof LevelOne){
             level.getBackgroundMusic().stop();
@@ -210,6 +167,7 @@ public class Game {
         }
     }
 
+    //update character fields & update view fields when a level changes
     public void updateLevelElements(){
         view.setWorld(level);
         view.updateLevel(level);
@@ -222,13 +180,13 @@ public class Game {
         level.start();
     }
 
+    //hide or show in game menu from game view
     public void toggleMenu(){
         if (menuVisible){
             frame.remove(inGameMenu.getMainPanel());
             menuVisible = Boolean.FALSE;
             frame.pack();
             level.start();
-
         } else {
             frame.add(inGameMenu.getMainPanel(), BorderLayout.WEST);
             menuVisible = Boolean.TRUE;
@@ -237,6 +195,7 @@ public class Game {
         }
     }
 
+    //hide main menu or in game menu & show settings menu
     public void transitionToSettings(String menu){
         if (menu.equals("main")){
             frame.remove(mainMenu.getMainPanel());
@@ -250,6 +209,7 @@ public class Game {
 
     }
 
+    //hide main menu or in game menu & show settings menu
     public void transitionToInGameMenu(){
         if (mainMenuVisible){
             frame.remove(settingMenu.getMainPanel());
@@ -263,44 +223,50 @@ public class Game {
 
     }
 
+    //hide in game menu & show controls menu
     public void transitionToControlsMenu(){
         frame.remove(inGameMenu.getMainPanel());
         frame.add(controlsMenu.getMainPanel(), BorderLayout.WEST);
         frame.pack();
     }
 
+    //hide controls menu & show in game menu
     public void transitionToInGameMenuFromControls(){
         frame.remove(controlsMenu.getMainPanel());
         frame.add(inGameMenu.getMainPanel(), BorderLayout.WEST);
         frame.pack();
     }
 
+    //hide in game menu & show objectives menu
     public void transitionToObjectivesMenu(){
         frame.remove(inGameMenu.getMainPanel());
         frame.add(objectivesMenu.getMainPanel(), BorderLayout.WEST);
         frame.pack();
     }
 
+    //hide objectives menu & show in game menu
     public void transitionToInGameMenuFromObjectives(){
         frame.remove(objectivesMenu.getMainPanel());
         frame.add(inGameMenu.getMainPanel(), BorderLayout.WEST);
         frame.pack();
     }
 
+    //show game lost menu
     public void transitionToGameLostMenu(){
         frame.add(gameLostMenu.getMainPanel(), BorderLayout.WEST);
         frame.pack();
         level.stop();
     }
 
+    //show game won menu
     public void transitiontoGameWonMenu(){
         frame.remove(view);
         frame.add(gameWonMenu.getMainPanel(), BorderLayout.WEST);
-        frame.add(timeScoreDisplayMenu.getMainPanel(), BorderLayout.EAST);
         frame.pack();
         level.stop();
     }
 
+    //show main menu & hide any other visible menu
     public void transitionToMainMenu(){
         frame.remove(view);
         frame.remove(gameLostMenu.getMainPanel());
@@ -310,30 +276,35 @@ public class Game {
         frame.pack();
     }
 
+    //hide main menu & show load game menu
     public void transitionToLoadGameSelectorMenu(){
         frame.remove(mainMenu.getMainPanel());
         frame.add(loadGameSelectorMenu.getMainPanel());
         frame.pack();
     }
 
+    //hide load game menu & show main menu
     public void transitionToMainMenuFromLoadGame(){
         frame.remove(loadGameSelectorMenu.getMainPanel());
         frame.add(mainMenu.getMainPanel());
         frame.pack();
     }
 
+    //hide in game menu & show save game menu
     public void transitionToSaveGameSelectorMenu(){
         frame.remove(inGameMenu.getMainPanel());
         frame.add(saveGameSelectorMenu.getMainPanel(), BorderLayout.WEST);
         frame.pack();
     }
 
+    //hide save game menu & show in game menu
     public void transitionToInGameMenuFromSaveGame(){
         frame.remove(saveGameSelectorMenu.getMainPanel());
         frame.add(inGameMenu.getMainPanel(), BorderLayout.WEST);
         frame.pack();
     }
 
+    //start a new game from level one
     public void startNewGame(){
         mainMenuVisible = Boolean.FALSE;
         level = new LevelOne("yes");
@@ -350,6 +321,7 @@ public class Game {
         frame.pack();
     }
 
+    //play background music
     public void playBackgroundMusic(){
         try {
             bgMusic = new SoundClip("data/bgm1.wav");
@@ -360,6 +332,7 @@ public class Game {
         }
     }
 
+    //restart current level
     public void restartLevel(GameLevel l){
         level.stop();
         frame.remove(gameLostMenu.getMainPanel());
@@ -379,7 +352,10 @@ public class Game {
             level.startBackgroundMusic();
             view.addEnemiesLevelThree(((LevelThree)level).getBombThrowers());
             updateLevelElements();
-
+        } else if (l instanceof LevelFour){
+            level = new LevelFour("yes");
+            level.startBackgroundMusic();
+            updateLevelElements();
         }
     }
 

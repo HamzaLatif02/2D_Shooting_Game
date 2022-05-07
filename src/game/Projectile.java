@@ -2,6 +2,7 @@ package game;
 
 import city.cs.engine.*;
 
+//projectiles are shot by the character
 public class Projectile extends DynamicBody implements StepListener {
 
     private static final Shape projectileShape = new PolygonShape(-0.48f,0.286f, 0.096f,0.5f, 0.48f,0.012f, 0.136f,-0.5f, -0.458f,-0.332f);
@@ -20,12 +21,14 @@ public class Projectile extends DynamicBody implements StepListener {
             this.damage =5;
         } else if (w instanceof LevelTwo){
             this.addImage(image2);
+            //projectiles are not affected by gravity
             this.setGravityScale(0);
             getWorld().addStepListener(this);
             this.time =0;
             this.damage =5;
         } else if (w instanceof LevelThree){
             this.addImage(image3);
+            //projectiles are not affected by gravity
             this.setGravityScale(0);
             getWorld().addStepListener(this);
             this.time =0;
@@ -33,7 +36,6 @@ public class Projectile extends DynamicBody implements StepListener {
         }
     }
 
-    public void setDamage(int damage){this.damage = damage;}
     public int getDamage(){return damage;}
 
     public int getTime() {
@@ -47,6 +49,7 @@ public class Projectile extends DynamicBody implements StepListener {
     @Override
     public void preStep(StepEvent stepEvent) {
         time++;
+        //projectiles are destroyed after half second
         if (time % 30 == 0){
             this.destroy();
         }

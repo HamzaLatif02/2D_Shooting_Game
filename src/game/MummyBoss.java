@@ -3,7 +3,8 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
-public class MummyBoss extends Walker implements StepListener {
+//final boss for second level
+public class MummyBoss extends Walker {
 
     private static final Shape mummyBossShape = new CircleShape(4.8f);
     private static final BodyImage imageLeft = new BodyImage("data/level2/mummyboss-left.png", 10f);
@@ -66,6 +67,8 @@ public class MummyBoss extends Walker implements StepListener {
         this.addImage(imageRight);
     }
 
+
+    //boss shoots three projectiles at once
     public void shoot(){
 
         int offset = 3;
@@ -86,27 +89,6 @@ public class MummyBoss extends Walker implements StepListener {
             PoisonProjectileImpact poisonProjectileImpact = new PoisonProjectileImpact(poisonProjectiles[i]);
             poisonProjectiles[i].addCollisionListener(poisonProjectileImpact);
         }
-
-    }
-
-    @Override
-    public void preStep(StepEvent stepEvent) {
-        if (this.isAlive() == Boolean.TRUE){
-            if (time % 240 < 120){
-                this.moveLeft();
-            } else {
-                this.moveRight();
-            }
-
-            if (time % 120 < 30 && time % 2 == 0){
-                this.shoot();
-            }
-        }
-        time++;
-    }
-
-    @Override
-    public void postStep(StepEvent stepEvent) {
 
     }
 }

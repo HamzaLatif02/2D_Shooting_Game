@@ -24,6 +24,7 @@ public class MummyController implements StepListener {
                 }
             }
 
+            //shoot every second
             if (time % 60 == 0){
                 mummy.shoot();
             }

@@ -7,6 +7,7 @@ import org.jbox2d.common.Vec2;
 import javax.swing.*;
 import java.awt.*;
 
+//base class for all the game levels
 public abstract class GameLevel extends World {
 
     private Character character;
@@ -24,16 +25,12 @@ public abstract class GameLevel extends World {
             this.completed = Boolean.FALSE;
             portal = new Portal(this);
             this.playSoundEffects = Boolean.TRUE;
-        } else {
+        } else { //when the game is loaded
             character = new Character(this);
             portal = new Portal(this);
             this.completed = Boolean.FALSE;
             this.playSoundEffects = Boolean.TRUE;
         }
-    }
-
-    public Boolean getCompleted() {
-        return completed;
     }
 
     public void setCompleted(Boolean completed) {

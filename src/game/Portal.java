@@ -2,6 +2,7 @@ package game;
 
 import city.cs.engine.*;
 
+//portals are used to go to next level or enable the ability to change gravity
 public class Portal extends StaticBody {
 
     private static final Shape portalShape = new CircleShape(2.5f);
@@ -20,7 +21,6 @@ public class Portal extends StaticBody {
         addImage(portalImage);
         this.portalInteraction = new PortalInteraction(this, (GameLevel) w);
         this.addCollisionListener(portalInteraction);
-        //setAlwaysOutline(true);
     }
 
     public Portal(World w, String type, String direction){

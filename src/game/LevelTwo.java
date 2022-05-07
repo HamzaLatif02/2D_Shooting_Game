@@ -55,7 +55,6 @@ public class LevelTwo extends GameLevel{
     }
 
     public void placePlatforms(){
-
         new WallPlatform(this).setPosition(new Vec2(-16f,0f));
 
         new GroundPlatform(this).setPosition(new Vec2(0f,-17.5f));
@@ -105,7 +104,6 @@ public class LevelTwo extends GameLevel{
     }
 
     public void placeMummies(){
-
         for (int i =0; i<5; i++){
             mummies.add(new Mummy(this, "no"));
         }
@@ -144,7 +142,6 @@ public class LevelTwo extends GameLevel{
     }
 
     public void placeCoins(){
-
         for (int i=0; i<3; i++){
             new Coin(this, "single").setPosition(new Vec2(4 + i*5, -8f));
         }
@@ -219,7 +216,6 @@ public class LevelTwo extends GameLevel{
         new Coin(this, "double").setPosition(new Vec2(295f, 26f));
         new Coin(this, "single").setPosition(new Vec2(305f, 24f));
         new Coin(this, "single").setPosition(new Vec2(314f, 36f));
-
     }
 
     public void placeMinusCoins(){
@@ -247,6 +243,7 @@ public class LevelTwo extends GameLevel{
         return Boolean.TRUE;
     }
 
+    //level completed when user collects more than 44 coins and defeats the final boss
     @Override
     public Boolean objectivesDone() {
         if (getCharacter().getPoints() > 0 || checkBossAlive() == Boolean.FALSE){

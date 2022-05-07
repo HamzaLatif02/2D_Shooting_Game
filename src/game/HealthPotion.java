@@ -25,8 +25,6 @@ public class HealthPotion extends StaticBody{
         healthPotionSensor = new Sensor(this, healthPotionShape);
         healthPotionPickup = new HealthPotionPickup(this, type);
         healthPotionSensor.addSensorListener(healthPotionPickup);
-
-        //setAlwaysOutline(true);
     }
 
     public String getType() {

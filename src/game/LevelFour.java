@@ -200,6 +200,7 @@ public class LevelFour extends GameLevel{
         background = new ImageIcon("data/level4/background4.gif").getImage();
     }
 
+    //level is completed if the user finishes under 1 minute
     @Override
     public Boolean objectivesDone() {
         if ((timer.getMinutes() > 1 && timer.getSeconds() < 60 || timer.getSeconds() != 0) || (timer.getMinutes() == 1 && timer.getSeconds() == 0)){

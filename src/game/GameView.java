@@ -10,6 +10,7 @@ import javax.swing.text.Style;
 import java.awt.*;
 import java.util.ArrayList;
 
+//game visual
 public class GameView extends UserView {
 
     private Game game;
@@ -58,6 +59,7 @@ public class GameView extends UserView {
     @Override
     protected void paintForeground(Graphics2D g){
 
+        //background transparent box
         g.setColor(new Color(255,255,255,75));
         g.fillRect(10,35,80,20);
         g.setColor(Color.white);
@@ -65,9 +67,11 @@ public class GameView extends UserView {
 
         g.setFont(new Font("JetBrains Mono", 0, 12));
 
+        //show how many coins the user has collected
         g.setColor(Color.black);
         g.drawString("Coins: " + character.getPoints(),20,50);
 
+        //show game controls if the option is on
         g.setColor(new Color(255,255,255,75));
         if (game.getShowControls()){
             g.fillRect(340, 35, 160, 80);
@@ -79,11 +83,12 @@ public class GameView extends UserView {
             g.drawString("Move: Arrows or WASD", 350, 80);
             g.drawString("Shoot: C or K", 350, 95);
 
-            if (level instanceof LevelThree && character.getChangeGravity()){
+            if ((level instanceof LevelThree || level instanceof LevelFour) && character.getChangeGravity()){
                 g.drawString("Gravity: Spacebar", 350, 110);
             }
         }
 
+        //show level objectives if option is on
         g.setColor(new Color(255,255,255,75));
         if (game.getShowObjectives()){
             g.fillRect(590, 35, 190, 50);
@@ -97,11 +102,14 @@ public class GameView extends UserView {
             } else if (level instanceof LevelThree){
                 g.drawString("Collect min 120 coins AND", 600, 65);
                 g.drawString("Defeat all enemies", 600, 80);
+            } else if (level instanceof LevelFour){
+                g.drawString("Finish the level", 600, 65);
+                g.drawString("under 1 minute", 600, 80);
             }
         }
 
 
-
+        //show character health
         g.setColor(new Color(255,255,255,75));
         g.fillRect(90, 35, 170, 20);
         g.setColor(Color.white);
@@ -121,6 +129,7 @@ public class GameView extends UserView {
 
         g.fillRect(150,40,character.getHealth(),10);
 
+        //show character speed in level two
         if (level instanceof LevelTwo){
             g.setColor(new Color(255,255,255,75));
             g.fillRect(90, 55, 130, 20);
@@ -133,6 +142,7 @@ public class GameView extends UserView {
             g.fillRect(150,60, (int) (character.getSpeed()*10f),10);
         }
 
+        //show how many enemies the character has killed in level three
         if (level instanceof LevelThree){
             g.setColor(new Color(255,255,255,75));
             g.fillRect(10, 55, 160, 20);
@@ -142,6 +152,7 @@ public class GameView extends UserView {
             g.drawString("Enemies killed: " + character.getEnemiesKilled() + "/10", 20, 70);
         }
 
+        //show timer in level four
         if (level instanceof LevelFour){
                 g.setColor(new Color(255,255,255,75));
                 g.fillRect(330, 660, 200, 100);
@@ -162,6 +173,7 @@ public class GameView extends UserView {
 
         g.setFont(new Font("JetBrains Mono", 0, 12));
 
+        //display text near gravity portal
         if (level instanceof LevelThree){
             g.setFont(new Font("JetBrains Mono", Font.BOLD, 35));
             g.setColor(Color.black);
@@ -173,6 +185,7 @@ public class GameView extends UserView {
             g.drawString("TO CHANGE GRAVITY", Math.round(this.worldToView(new Vec2(84.9f, 0f)).x), Math.round(this.worldToView(new Vec2(0f, 19.9f)).y));
         }
 
+        //show enemies health above them
         if (level instanceof LevelOne){
             for (Ninja ninja : ninja){
                 if (ninja.isAlive()){
@@ -217,7 +230,7 @@ public class GameView extends UserView {
             }
         }
 
-
+        //write loss text if character dies
         if (!character.isAlive()){
             game.transitionToGameLostMenu();
             g.setFont(new Font("JetBrains Mono", Font.BOLD, 100));
@@ -228,14 +241,15 @@ public class GameView extends UserView {
             g.drawString("YOU LOST", 200,400);
         }
 
-        if (level.objectivesDone() && (level instanceof LevelOne || level instanceof LevelTwo)){
+        //display text when user completes level
+        if (level.objectivesDone() && (level instanceof LevelOne || level instanceof LevelTwo || level instanceof LevelThree)){
             g.setFont(new Font("JetBrains Mono", Font.BOLD, 40));
             g.setColor(Color.black);
             g.drawString("LEVEL COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-150), Math.round(this.worldToView(level.getPortal().getPosition()).y+200));
             g.setFont(new Font("JetBrains Mono", Font.BOLD, 40));
             g.setColor(new Color(73,152,183));
             g.drawString("LEVEL COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-148),Math.round(this.worldToView(level.getPortal().getPosition()).y+198));
-        } else if (level.objectivesDone() && level instanceof LevelThree){
+        } else if (level.objectivesDone() && level instanceof LevelFour){
             g.setFont(new Font("JetBrains Mono", Font.BOLD, 40));
             g.setColor(Color.black);
             g.drawString("GAME COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-150), Math.round(this.worldToView(level.getPortal().getPosition()).y+200));

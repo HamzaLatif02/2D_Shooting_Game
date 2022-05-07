@@ -2,6 +2,7 @@ package game;
 
 import city.cs.engine.*;
 
+//projectiles shot by mummies in level two
 public class PoisonProjectile extends DynamicBody implements StepListener{
 
     private static final Shape poisonProjectileShape = new PolygonShape(0.014f,0.496f, -0.478f,0.146f, -0.468f,-0.498f, 0.508f,-0.502f, 0.282f,0.5f);
@@ -35,10 +36,11 @@ public class PoisonProjectile extends DynamicBody implements StepListener{
     @Override
     public void preStep(StepEvent stepEvent) {
         this.time++;
+
+        //projectiles die after 1 second
         if (this.time % 60 == 0){
             this.destroy();
         }
-        //this.time++;
     }
 
     @Override

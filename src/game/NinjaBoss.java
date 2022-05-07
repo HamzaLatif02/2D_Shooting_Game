@@ -3,7 +3,7 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
-public class NinjaBoss extends Walker implements StepListener{
+public class NinjaBoss extends Walker{
 
     private static final Shape ninjaBossShape = new CircleShape(4.8f);
     private static final BodyImage imageLeft = new BodyImage("data/level1/ninjaboss-left.png", 10f);
@@ -22,7 +22,7 @@ public class NinjaBoss extends Walker implements StepListener{
         this.direction = "left";
         this.speed = 5;
         this.time =0;
-        getWorld().addStepListener(this);
+        getWorld().addStepListener(new NinjaBossController(this));
     }
 
     public int getHealth(){return health;}
@@ -83,27 +83,5 @@ public class NinjaBoss extends Walker implements StepListener{
         this.setDirection("right");
         this.removeAllImages();
         this.addImage(imageRight);
-    }
-
-    @Override
-    public void preStep(StepEvent stepEvent) {
-        if (this.isAlive() == Boolean.TRUE){
-
-            if (time % 240 < 120){
-                this.moveLeft();
-            } else {
-                this.moveRight();
-            }
-
-            if (time % 60 == 0){
-                this.shoot();
-            }
-            time++;
-        }
-    }
-
-    @Override
-    public void postStep(StepEvent stepEvent) {
-
     }
 }

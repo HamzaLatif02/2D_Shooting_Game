@@ -4,6 +4,7 @@ import city.cs.engine.StepEvent;
 import city.cs.engine.StepListener;
 import city.cs.engine.World;
 
+//timer used in level four
 public class Timer implements StepListener {
 
     private int seconds, minutes, time;
@@ -54,8 +55,7 @@ public class Timer implements StepListener {
     @Override
     public void preStep(StepEvent stepEvent) {
 
-        //System.out.println("time: " + time + "\n" + "minutes: " + minutes + "\n" + "seconds: " + seconds + "\n");
-
+        //timer runs only when character is inside the gravity changing portal
         if (running || level.getCharacter().getChangeGravity()){
             time++;
             if (time == 60){
