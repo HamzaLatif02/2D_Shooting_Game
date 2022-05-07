@@ -246,7 +246,7 @@ public class LevelTwo extends GameLevel{
     //level completed when user collects more than 44 coins and defeats the final boss
     @Override
     public Boolean objectivesDone() {
-        if (getCharacter().getPoints() > 0 || checkBossAlive() == Boolean.FALSE){
+        if (getCharacter().getPoints() > 44 && checkBossAlive() == Boolean.FALSE){
             return Boolean.TRUE;
         } else {return Boolean.FALSE;}
     }

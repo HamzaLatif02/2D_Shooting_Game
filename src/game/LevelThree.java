@@ -315,7 +315,7 @@ public class LevelThree extends GameLevel implements StepListener {
     //level is completed if user collects more than 119 coins and kills all the enemies
     @Override
     public Boolean objectivesDone() {
-        if (getCharacter().getPoints() > 0 || getCharacter().getEnemiesKilled() == 10){
+        if (getCharacter().getPoints() > 119 && getCharacter().getEnemiesKilled() == 10){
             return Boolean.TRUE;
         } else {return Boolean.FALSE;}
     }

@@ -108,7 +108,7 @@ public class GameSaverLoader {
 
             //if first line is empty, show an error message
             if (line == null){
-                JOptionPane.showMessageDialog(game.getMainMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(game.getLoadGameSelectorMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
                 return null;
             }
 
@@ -123,7 +123,7 @@ public class GameSaverLoader {
             } else if (line.equals("LevelFour")){
                 level = new LevelFour("no");
             }else {
-                JOptionPane.showMessageDialog(game.getMainMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(game.getLoadGameSelectorMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
                 return null;
             }
 
@@ -131,7 +131,7 @@ public class GameSaverLoader {
 
             //if second line is empty, show an error message
             if (line == null){
-                JOptionPane.showMessageDialog(game.getMainMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(game.getLoadGameSelectorMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
                 return null;
             }
 
@@ -254,7 +254,7 @@ public class GameSaverLoader {
                     WallPlatform wallPlatform = new WallPlatform(level);
                     wallPlatform.setPosition(new Vec2(Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2])));
                 } else {
-                    JOptionPane.showMessageDialog(game.getMainMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(game.getLoadGameSelectorMenu().getMainPanel(), "This file does not contain a saved level", "Level not found", JOptionPane.ERROR_MESSAGE);
                     return null;
                 }
 

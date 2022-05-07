@@ -280,12 +280,12 @@ public class GameView extends UserView {
             g.drawString("GAME COMPLETED", Math.round(this.worldToView(level.getPortal().getPosition()).x-148),Math.round(this.worldToView(level.getPortal().getPosition()).y+198));
         }
 
-        //if (level.getCompleted()){
-          //  game.goToNextLevel();
-        //}
-
-        if (level.objectivesDone()){
+        if (level.getCompleted()){
             game.goToNextLevel();
         }
+
+        //if (level.objectivesDone()){
+         //   game.goToNextLevel();
+        //}
     }
 }
