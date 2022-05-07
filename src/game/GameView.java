@@ -8,6 +8,7 @@ import org.jbox2d.common.Vec2;
 import javax.swing.*;
 import javax.swing.text.Style;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 //game visual
@@ -68,8 +69,10 @@ public class GameView extends UserView {
         g.setFont(new Font("JetBrains Mono", 0, 12));
 
         //show how many coins the user has collected
+        ImageIcon coinImage = new ImageIcon("data/coin.png");
+        g.drawImage(coinImage.getImage(), 20, 35, 30,30,null);
         g.setColor(Color.black);
-        g.drawString("Coins: " + character.getPoints(),20,50);
+        g.drawString(": " + character.getPoints(),50,50);
 
         //show game controls if the option is on
         g.setColor(new Color(255,255,255,75));
@@ -81,7 +84,10 @@ public class GameView extends UserView {
             g.drawString("Controls", 350,50);
             g.drawString("Pause: Esc", 350, 65);
             g.drawString("Move: Arrows or WASD", 350, 80);
-            g.drawString("Shoot: C or K", 350, 95);
+
+            if (!(level instanceof LevelFour)){
+                g.drawString("Shoot: C or K", 350, 95);
+            }
 
             if ((level instanceof LevelThree || level instanceof LevelFour) && character.getChangeGravity()){
                 g.drawString("Gravity: Spacebar", 350, 110);

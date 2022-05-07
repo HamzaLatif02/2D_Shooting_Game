@@ -55,6 +55,13 @@ public class InGameMenu {
                     game.getObjectivesMenu().getKillTextLevelOneTwo().setVisible(false);
                     game.getObjectivesMenu().getCoinTextLevelThree().setVisible(true);
                     game.getObjectivesMenu().getKillTextLevelThree().setVisible(true);
+                //only show objectives for level four
+                } else if (game.getLevel() instanceof LevelFour){
+                    game.getObjectivesMenu().getCoinsTextLevelOneTwo().setVisible(false);
+                    game.getObjectivesMenu().getKillTextLevelOneTwo().setVisible(false);
+                    game.getObjectivesMenu().getCoinTextLevelThree().setVisible(false);
+                    game.getObjectivesMenu().getKillTextLevelThree().setVisible(false);
+                    game.getObjectivesMenu().getFinishTextLevelFour().setVisible(true);
                 }
                 game.transitionToObjectivesMenu();
             }
@@ -68,6 +75,10 @@ public class InGameMenu {
                     game.getControlsMenu().getChangeGravityText().setVisible(false);
                 //only show controls for level three
                 } else if (game.getLevel() instanceof LevelThree){
+                    game.getControlsMenu().getChangeGravityText().setVisible(true);
+                //only show controls for level four
+                } else if (game.getLevel() instanceof LevelFour){
+                    game.getControlsMenu().getShootText().setVisible(false);
                     game.getControlsMenu().getChangeGravityText().setVisible(true);
                 }
                 game.transitionToControlsMenu();

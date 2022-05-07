@@ -39,4 +39,8 @@ public class ControlsMenu {
     public JLabel getChangeGravityText() {
         return changeGravityText;
     }
+
+    public JLabel getShootText() {
+        return shootText;
+    }
 }
