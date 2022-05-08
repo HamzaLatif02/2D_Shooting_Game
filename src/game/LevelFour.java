@@ -3,13 +3,17 @@ package game;
 import city.cs.engine.SoundClip;
 import org.jbox2d.common.Vec2;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class LevelFour extends GameLevel{
 
     private Image background;
     private Timer timer;
+    private static SoundClip bgMusic;
 
     public LevelFour(String populate){
         super(populate);
@@ -27,6 +31,14 @@ public class LevelFour extends GameLevel{
 
     public Timer getTimer() {
         return timer;
+    }
+
+    static {
+        try {
+            bgMusic = new SoundClip("data/bgm5.wav");
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            System.out.println(e);
+        }
     }
 
     public void placePlatforms(){
@@ -221,11 +233,12 @@ public class LevelFour extends GameLevel{
 
     @Override
     public void startBackgroundMusic() {
-
+        bgMusic.setVolume(0.5);
+        bgMusic.loop();
     }
 
     @Override
     public SoundClip getBackgroundMusic() {
-        return null;
+        return bgMusic;
     }
 }

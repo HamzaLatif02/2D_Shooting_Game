@@ -326,7 +326,7 @@ public class GameView extends UserView {
         }
 
         //if (level.objectivesDone()){
-         //   game.goToNextLevel();
+          //  game.goToNextLevel();
         //}
     }
 }
