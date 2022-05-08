@@ -11,6 +11,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+/**
+ * Game visual
+ */
 //game visual
 public class GameView extends UserView {
 
@@ -23,7 +26,14 @@ public class GameView extends UserView {
     private ArrayList<MummyBoss> mummyBoss;
     private ArrayList<BombThrower> bombThrowers;
 
-
+    /**
+     * Initialise a new GameView
+     * @param g which game the view is created in
+     * @param l what the current level is
+     * @param width width of the game view
+     * @param height height of the game view
+     * @param c what character is in the game
+     */
     public GameView(Game g, GameLevel l, int width, int height, Character c){
         super (l,width,height);
         game = g;
@@ -31,32 +41,63 @@ public class GameView extends UserView {
         level = l;
     }
 
+    /**
+     * Add enemies of second level to the game view
+     * @param m all the mummy objects in level two
+     * @param mb all the mummy boss objects in level two
+     */
     public void addEnemiesLevelTwo(ArrayList<Mummy> m, ArrayList<MummyBoss> mb){
         mummy = m;
         mummyBoss = mb;
     }
 
+    /**
+     * Add enemies of first level to the game view
+     * @param n all the ninja objects in level one
+     * @param nb all the ninja boss objects in level one
+     */
     public void addEnemiesLevelOne(ArrayList<Ninja> n, ArrayList<NinjaBoss> nb){
         ninja = n;
         ninjaBoss = nb;
     }
+
+    /**
+     * Add enemies of third level to the game view
+     * @param bt all the bomb thrower objects in level three
+     */
     public void addEnemiesLevelThree(ArrayList<BombThrower> bt){
         bombThrowers = bt;
     }
 
+    /**
+     * Update character field in game view
+     * @param character current character in the level
+     */
     public void updateCharacter(Character character){
         this.character = character;
     }
 
+    /**
+     * Update level field in game view
+     * @param level current level
+     */
     public void updateLevel(GameLevel level){
         this.level = level;
     }
 
+    /**
+     * Paint shapes, images and text on the background
+     * @param g render 2d shapes, images and text
+     */
     @Override
     protected void paintBackground(Graphics2D g){
         g.drawImage(level.getBackground() , 0,0, this);
     }
 
+    /**
+     * Paint shapes, images and text on the foreground
+     * @param g render 2d shapes, images and text
+     */
     @Override
     protected void paintForeground(Graphics2D g){
 

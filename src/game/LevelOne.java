@@ -10,6 +10,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * First level of the game
+ */
 public class LevelOne extends GameLevel{
 
     private ArrayList<Ninja> ninjas = new ArrayList<>();
@@ -17,6 +20,10 @@ public class LevelOne extends GameLevel{
     private Image background;
     private static SoundClip bgMusic;
 
+    /**
+     * Initialise a new Level One
+     * @param populate whether to place all the objects in the level
+     */
     public LevelOne(String populate){
         super(populate);
         if (getPopulate().equals("yes")){
@@ -32,6 +39,9 @@ public class LevelOne extends GameLevel{
         setBackground();
     }
 
+    /**
+     * Try and load background music
+     */
     static {
         try {
             bgMusic = new SoundClip("data/bgm2.wav");
@@ -40,14 +50,28 @@ public class LevelOne extends GameLevel{
         }
     }
 
-
+    /**
+     * Get ninja field
+     * @return ninjas field
+     */
     public ArrayList<Ninja> getNinja(){return ninjas;}
+
+    /**
+     * Get ninja boss field
+     * @return ninjaBoss field
+     */
     public ArrayList<NinjaBoss> getNinjaBoss(){return ninjaBoss;}
 
+    /**
+     * Set background of the level
+     */
     public void setBackground(){
         background = new ImageIcon("data/level1/background.gif").getImage();
     }
 
+    /**
+     * Place all the platforms in the level
+     */
     public void placePlatforms(){
 
         new WallPlatform(this).setPosition(new Vec2(-16f,0f));
@@ -101,6 +125,9 @@ public class LevelOne extends GameLevel{
         new WallPlatform(this).setPosition(new Vec2(329f,0f));
     }
 
+    /**
+     * Place all the ninjas in the level
+     */
     public void placeNinjas(){
 
         for (int i=0; i< 10; i++){
@@ -119,11 +146,17 @@ public class LevelOne extends GameLevel{
         ninjas.get(9).setPosition(new Vec2(283f,1f));
     }
 
+    /**
+     * Place all the ninja bosses in the level
+     */
     public void placeNinjaBoss(){
         ninjaBoss.add(new NinjaBoss(this));
         ninjaBoss.get(0).setPosition(new Vec2(319f, 5f));
     }
 
+    /**
+     * Place all the coins in the level
+     */
     public void placeCoins(){
 
         for (int i = 0; i < 3; i++){
@@ -181,6 +214,9 @@ public class LevelOne extends GameLevel{
         }
     }
 
+    /**
+     * Place all the minus coins in the level
+     */
     public void placeMinusCoins(){
         new MinusCoin(this).setPosition(new Vec2(40f,4f));
         new MinusCoin(this).setPosition(new Vec2(64f,3f));
@@ -192,19 +228,32 @@ public class LevelOne extends GameLevel{
 
     }
 
+    /**
+     * Place all the health potions in the level
+     */
     public void placeHealthPotion(){
         new HealthPotion(this, "positive").setPosition(new Vec2(262f,-13f));
 
     }
 
+    /**
+     * Place all the speed potions in the level
+     */
     public void placeSpeedPotion(){
         new SpeedPotion(this, "positive").setPosition(new Vec2(117f,15f));
     }
 
+    /**
+     * place all the portals in the level
+     */
     public void placePortal(){
         getPortal().setPosition(new Vec2(327f, 4.5f));
     }
 
+    /**
+     * Check if the final boss is alive
+     * @return whether the final boss is alive
+     */
     public Boolean checkBossAlive(){
         for (NinjaBoss ninjaBoss : ninjaBoss){
             if (ninjaBoss.isAlive() == Boolean.FALSE){
@@ -215,6 +264,10 @@ public class LevelOne extends GameLevel{
     }
 
     //level is completed if the user has collected more than 44 coins and defeated the final boss
+    /**
+     * Level is completed if the user has collected more than 44 coins and defeated the final boss
+     * @return whether the user has completed all the objectives
+     */
     @Override
     public Boolean objectivesDone() {
         if (getCharacter().getPoints() > 44 && checkBossAlive() == Boolean.FALSE){
@@ -222,22 +275,37 @@ public class LevelOne extends GameLevel{
         } else {return Boolean.FALSE;}
     }
 
+    /**
+     * Get background image
+     * @return background field
+     */
     @Override
     public Image getBackground(){
         return background;
     }
 
+    /**
+     * Level name
+     * @return string "LevelOne"
+     */
     @Override
     public String getLevelName() {
         return "LevelOne";
     }
 
+    /**
+     * Start the background music
+     */
     @Override
     public void startBackgroundMusic() {
         bgMusic.setVolume(0.5);
         bgMusic.loop();
     }
 
+    /**
+     * Get background music
+     * @return bgMusic field
+     */
     @Override
     public SoundClip getBackgroundMusic() {
         return bgMusic;
